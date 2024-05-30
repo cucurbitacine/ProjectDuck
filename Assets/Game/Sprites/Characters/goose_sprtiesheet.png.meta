@@ -1,0 +1,2239 @@
+fileFormatVersion: 2
+guid: d59f92cbbbc797241b65578799e67c26
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: goose_sprtiesheet_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c00cd7e88587f478ea6ef5327f7613
+      internalID: 670982188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 337
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daaf619c6f9cedc4bb3af67c757cb86c
+      internalID: -118463041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd11cdb46678a3646add1d1dc80304ab
+      internalID: -1221185128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392a91cd2f36ddb47946783deb4e77f8
+      internalID: 1088528096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 337
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9a16a7d2c22da4dbaa07f06dac3cbd
+      internalID: 1998185201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_5
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea31a5bd3e0c8cb44a14241c2ce95cef
+      internalID: 603774163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c68b86c58b4a494f8ef04199117ab52
+      internalID: 1581959705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_7
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 337
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 498434096c55e5641935ebe38926a9ec
+      internalID: -1671626409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_8
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0233f5d8db87aa42a52563b00eca1b9
+      internalID: 1153009374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_9
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4215a079186ff43bbfeacf56c29768
+      internalID: 1685108937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_10
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 337
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d531ffa4022b9ef47946a4840dea3cea
+      internalID: -1718896390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_11
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 336
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce68cd49d5866aa4d8dec28b77552ea2
+      internalID: -816955433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0779447e7be7c7b45a63ee2283955c19
+      internalID: -930095010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 289
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afd84c17f82097f4cbab061540b0fe02
+      internalID: 449766501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b41b419b376d4a8419a14158eb6f7dfd
+      internalID: -947897401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_15
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21deb2614233de14ba6fc433364d78d9
+      internalID: 699307738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 289
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c508efa29a64c114d834718bb87290b4
+      internalID: -2036050345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_17
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2464371e7cd0edd4e8c025173769f43e
+      internalID: -1086777992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_18
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1406df28287b5c04a9396675cc757961
+      internalID: 1504990985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_19
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 289
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cf35b66d3211240b356efdef22c165
+      internalID: -817438360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_20
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1397fd33d84e9bb419f6aef5c246f51d
+      internalID: 780606721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_21
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8084426f7f6711c499801b638113bbef
+      internalID: 1732654746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_22
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 289
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24fc0a0fb05f384285127059b89fbb0
+      internalID: 88407762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_23
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 288
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db2e2047f41bd54cbd55b1924ad014f
+      internalID: -1285860815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_24
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965bcd99a7d6a8b46aa147d69c54ac58
+      internalID: 550523208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_25
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 241
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e79308ad6f5a24640b1b3b442b54c1a4
+      internalID: 567444946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_26
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11e7fc5e682ff346b0ca698902bfce6
+      internalID: -1187609558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_27
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6f427e647caa34b916fa3eec955d29
+      internalID: -934079165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_28
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 241
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b8bcdc70a22fd4980cffc61019093c
+      internalID: 807556668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_29
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f3cf0adb6e57f439eab0df414bb9b7
+      internalID: 366013964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_30
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e8fb12cabd77494e838a88013c2e39f
+      internalID: 1423891399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_31
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 241
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fb4773f4b98dc4aa770504439d80dd
+      internalID: -155816961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_32
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d28558e80defd40a7ed3d02fa2ee8a
+      internalID: 1720458551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_33
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14484ba389be742479497eb465886c92
+      internalID: -2088146216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_34
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 241
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a934e6b4a37e337488c89ada4f26c931
+      internalID: 961830580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_35
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 240
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93bf72025b495e849bb292b3f7e78f92
+      internalID: 596142058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_36
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7fd80e6131bcf489365667bc61efcc
+      internalID: 1235650360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_37
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 194
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b081b62851c3643914a5fa0207ae8a
+      internalID: -1848966725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_38
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d829eeec7789f41890ee00de184782
+      internalID: 579864701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_39
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec1fac54d21e6b40975c1735b936ae5
+      internalID: 466726604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_40
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 194
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab27ee2438e33a4e901bf06c3ae5880
+      internalID: 998896461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_41
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f1d48f5d60e0a4aa3513ce5613343c
+      internalID: -482138777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_42
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7aae41b794b2a4890e1bf3a17a7c60
+      internalID: 657316462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_43
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 194
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c2c5aaf1f64fca46abdda6d33a71b87
+      internalID: 1461208712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_44
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86ac98ff6fcab924faf6cedf0c9cbf20
+      internalID: -74919371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_45
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 173df0be509d2ef41adbde8197e993fb
+      internalID: 856375772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_46
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 194
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fc9d69f3c3f46743a8d14e9bbd73b57
+      internalID: -1572110647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_47
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 193
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd398ebd9836dc94885422c3049e2576
+      internalID: -1284028200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_48
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cea2955e996b124eaedd0afc082bf20
+      internalID: 1068791364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_49
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 145
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8583e1ccab1de6341ab411d6681762eb
+      internalID: 796412217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_50
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a2b8ba58566e04ca1e4d85ca1ac11f
+      internalID: -442898553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_51
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb46271af813d6946a7a20683e6c69e5
+      internalID: 1892447937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_52
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 145
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882ca4d8ca740ba43a1727053cbc56b9
+      internalID: -476730968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_53
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6c546a3d57b2848ae73ba9cc6c2e6c
+      internalID: 1892516258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_54
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93170720f085374090a2903cd04560c
+      internalID: 964328720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_55
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 145
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14702f906233c0946ba8ce83505af168
+      internalID: 899960704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_56
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ffa07ddb499b6499f5309231db9bce
+      internalID: -320554740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_57
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35afb05d9c04bd4ebd0065438754720
+      internalID: 1780548356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_58
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 145
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e035a70709f133c4e98d902811ba2c05
+      internalID: 637364641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_59
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 144
+        width: 21
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54013c80e9f14144ea2f1290eb43c288
+      internalID: 1241252391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_60
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab52e31b2720ecb43a473bc10bc6c10f
+      internalID: -59252873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_61
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 97
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9251ba98268c04c4cba3f5fbd60e6170
+      internalID: -577821530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_62
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caee8287c8b1f6b459ef337417696b6a
+      internalID: -1885390768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_63
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cee1cd91c438504083768eb095edf01
+      internalID: 484064080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_64
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 97
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f090d626670ee1c429a708a5d727f328
+      internalID: -1436036422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_65
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d403c40b930e01b44a362bfa9f46f280
+      internalID: 1581244381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_66
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ae4fd50082d7b4d89301622212e832
+      internalID: 1836555812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_67
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 97
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 893609baff71dd14a827a508bb57c87c
+      internalID: 1262537830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_68
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a69e045542f9eb547a20ddc472e35629
+      internalID: 202033586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_69
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b9b9685bf97d24e8eb9c291526a357
+      internalID: -1930282910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_70
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 97
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74869b048130f6a48a8a515e73d73838
+      internalID: -1010406028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_71
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 96
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49ef0beb76c6a34bb5c906c04d39663
+      internalID: 1537219335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_72
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f456a1efef75bd740bfffcfc8107641f
+      internalID: -1901073203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_73
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 49
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 637c36cae66f4014dae533f2bb99c66e
+      internalID: -1762219230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_74
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515694444b54f30469c31dc76f9ebca3
+      internalID: -1667795459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_75
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc59d75d5e94b8448389f7a1f327bf0
+      internalID: 1072934177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_76
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 49
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aaad7f1a65f682498525c926a16b713
+      internalID: -879195791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_77
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c26f9e4befc23847b5864c676a24bbc
+      internalID: -2019215428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_78
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7efa4fd2f791b734e94407cb9ae2c3b0
+      internalID: 187411787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_79
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 49
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2bb66a874593f4b9ba1908f5709e3f
+      internalID: -815728922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_80
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13629b02dfd8dd7409ddc761b52e0d4f
+      internalID: -1412438517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_81
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b371f1df532f25d4e865cf1e83e0ca95
+      internalID: -408028188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_82
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 49
+        width: 34
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e583124f5b2946648bfbea9122b675bb
+      internalID: -274857087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_83
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 48
+        width: 35
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6749dcbc49293944baaa8e153557bf1
+      internalID: 849775492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_84
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9711aaba637d13d4eb183b360c443932
+      internalID: 2451701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_85
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 2
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc266c024f652924286ad4fa644e4917
+      internalID: 1069202207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_86
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0f7d980d8b9ea74fa4300dc5675d435
+      internalID: 1149505504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_87
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db626d03b25a0a34bbcf111daaac352a
+      internalID: 1466047575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_88
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 2
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b07c3aeebb7dd4a8b4456b6c4b973f
+      internalID: -2047077447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_89
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d0ef34f3e5be7c44ac06772e2041841
+      internalID: -874335599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_90
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abc3d0dbe68dbb4ea4f253c7bfaaacd
+      internalID: -1590146851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_91
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 2
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246af8824082cd04283692142309bb65
+      internalID: 1866800966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_92
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee55aa9a23a1d043a1677e1aa07b887
+      internalID: -1662384780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_93
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bbc5202d6cbc0849bed0aeac9525c15
+      internalID: -1385777280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_94
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 2
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c17f944094cee6549a1fdab287572837
+      internalID: 106224976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goose_sprtiesheet_95
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 1
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dc5746ca9e4e34d83a07cc753570b1
+      internalID: -692443955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      goose_sprtiesheet_0: 670982188
+      goose_sprtiesheet_1: -118463041
+      goose_sprtiesheet_10: -1718896390
+      goose_sprtiesheet_11: -816955433
+      goose_sprtiesheet_12: -930095010
+      goose_sprtiesheet_13: 449766501
+      goose_sprtiesheet_14: -947897401
+      goose_sprtiesheet_15: 699307738
+      goose_sprtiesheet_16: -2036050345
+      goose_sprtiesheet_17: -1086777992
+      goose_sprtiesheet_18: 1504990985
+      goose_sprtiesheet_19: -817438360
+      goose_sprtiesheet_2: -1221185128
+      goose_sprtiesheet_20: 780606721
+      goose_sprtiesheet_21: 1732654746
+      goose_sprtiesheet_22: 88407762
+      goose_sprtiesheet_23: -1285860815
+      goose_sprtiesheet_24: 550523208
+      goose_sprtiesheet_25: 567444946
+      goose_sprtiesheet_26: -1187609558
+      goose_sprtiesheet_27: -934079165
+      goose_sprtiesheet_28: 807556668
+      goose_sprtiesheet_29: 366013964
+      goose_sprtiesheet_3: 1088528096
+      goose_sprtiesheet_30: 1423891399
+      goose_sprtiesheet_31: -155816961
+      goose_sprtiesheet_32: 1720458551
+      goose_sprtiesheet_33: -2088146216
+      goose_sprtiesheet_34: 961830580
+      goose_sprtiesheet_35: 596142058
+      goose_sprtiesheet_36: 1235650360
+      goose_sprtiesheet_37: -1848966725
+      goose_sprtiesheet_38: 579864701
+      goose_sprtiesheet_39: 466726604
+      goose_sprtiesheet_4: 1998185201
+      goose_sprtiesheet_40: 998896461
+      goose_sprtiesheet_41: -482138777
+      goose_sprtiesheet_42: 657316462
+      goose_sprtiesheet_43: 1461208712
+      goose_sprtiesheet_44: -74919371
+      goose_sprtiesheet_45: 856375772
+      goose_sprtiesheet_46: -1572110647
+      goose_sprtiesheet_47: -1284028200
+      goose_sprtiesheet_48: 1068791364
+      goose_sprtiesheet_49: 796412217
+      goose_sprtiesheet_5: 603774163
+      goose_sprtiesheet_50: -442898553
+      goose_sprtiesheet_51: 1892447937
+      goose_sprtiesheet_52: -476730968
+      goose_sprtiesheet_53: 1892516258
+      goose_sprtiesheet_54: 964328720
+      goose_sprtiesheet_55: 899960704
+      goose_sprtiesheet_56: -320554740
+      goose_sprtiesheet_57: 1780548356
+      goose_sprtiesheet_58: 637364641
+      goose_sprtiesheet_59: 1241252391
+      goose_sprtiesheet_6: 1581959705
+      goose_sprtiesheet_60: -59252873
+      goose_sprtiesheet_61: -577821530
+      goose_sprtiesheet_62: -1885390768
+      goose_sprtiesheet_63: 484064080
+      goose_sprtiesheet_64: -1436036422
+      goose_sprtiesheet_65: 1581244381
+      goose_sprtiesheet_66: 1836555812
+      goose_sprtiesheet_67: 1262537830
+      goose_sprtiesheet_68: 202033586
+      goose_sprtiesheet_69: -1930282910
+      goose_sprtiesheet_7: -1671626409
+      goose_sprtiesheet_70: -1010406028
+      goose_sprtiesheet_71: 1537219335
+      goose_sprtiesheet_72: -1901073203
+      goose_sprtiesheet_73: -1762219230
+      goose_sprtiesheet_74: -1667795459
+      goose_sprtiesheet_75: 1072934177
+      goose_sprtiesheet_76: -879195791
+      goose_sprtiesheet_77: -2019215428
+      goose_sprtiesheet_78: 187411787
+      goose_sprtiesheet_79: -815728922
+      goose_sprtiesheet_8: 1153009374
+      goose_sprtiesheet_80: -1412438517
+      goose_sprtiesheet_81: -408028188
+      goose_sprtiesheet_82: -274857087
+      goose_sprtiesheet_83: 849775492
+      goose_sprtiesheet_84: 2451701
+      goose_sprtiesheet_85: 1069202207
+      goose_sprtiesheet_86: 1149505504
+      goose_sprtiesheet_87: 1466047575
+      goose_sprtiesheet_88: -2047077447
+      goose_sprtiesheet_89: -874335599
+      goose_sprtiesheet_9: 1685108937
+      goose_sprtiesheet_90: -1590146851
+      goose_sprtiesheet_91: 1866800966
+      goose_sprtiesheet_92: -1662384780
+      goose_sprtiesheet_93: -1385777280
+      goose_sprtiesheet_94: 106224976
+      goose_sprtiesheet_95: -692443955
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
