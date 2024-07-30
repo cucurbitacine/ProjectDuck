@@ -1,4 +1,3 @@
-using System;
 using Game.Abilities;
 using Game.Movements;
 using Game.Utils;
@@ -16,6 +15,8 @@ namespace Game.Player
         [SerializeField] private ModelLoader modelLoader;
         [SerializeField] private MovementController movementController;
 
+        public Vector2 position => movementController ? movementController.position : transform.position;
+        
         public void PickAbility(PickupAbility pickupAbility)
         {
             DropAbility();

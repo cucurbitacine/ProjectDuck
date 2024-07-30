@@ -15,17 +15,19 @@ namespace Game.Player
         
         [Header("References")]
         [SerializeField] private Movement2D movement;
-
-        private Vector2 move { get; set; }
-        private HashSet<Collider2D> ignoredPlatforms { get; } = new HashSet<Collider2D>();
-
+        
         private PlayerActionsProfile playerActions;
         private Collider2D playerCollider;
         
         private bool _lastJump;
         private bool _down;
         private bool _lastDown;
-
+        
+        private Vector2 move { get; set; }
+        private HashSet<Collider2D> ignoredPlatforms { get; } = new HashSet<Collider2D>();
+        
+        public Vector2 position => movement ? movement.position : transform.position;
+        
         public Movement2D GetMovement()
         {
             return movement;

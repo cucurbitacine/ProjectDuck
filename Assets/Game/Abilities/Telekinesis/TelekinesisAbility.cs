@@ -22,11 +22,11 @@ namespace Game.Abilities.Telekinesis
         [SerializeField] private bool primaryFire;
         [SerializeField] private Vector2 screenPoint;
         
-        private readonly List<Collider2D> _overlaps = new List<Collider2D>();
-        private readonly HashSet<Rigidbody2D> _usedRigidbody2d = new HashSet<Rigidbody2D>();
         private ContactFilter2D _filter2D = new ContactFilter2D();
         private PlayerActionsProfile _playerActions;
-
+        private readonly List<Collider2D> _overlaps = new List<Collider2D>();
+        private readonly HashSet<Rigidbody2D> _usedRigidbody2d = new HashSet<Rigidbody2D>();
+        
         private static Camera CameraMain => Camera.main;
 
         private Vector2 worldPoint => _playerActions ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
