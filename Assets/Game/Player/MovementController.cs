@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Movements;
-using Game.Utils;
 using Inputs;
 using UnityEngine;
 
@@ -16,12 +15,11 @@ namespace Game.Player
         
         [Header("References")]
         [SerializeField] private Movement2D movement;
-        [SerializeField] private ModelLoader modelLoader;
-        [SerializeField] private PlayerActions playerActions;
 
         private Vector2 move { get; set; }
         private HashSet<Collider2D> ignoredPlatforms { get; } = new HashSet<Collider2D>();
-        
+
+        private PlayerActionsProfile playerActions;
         private Collider2D playerCollider;
         
         private bool _lastJump;
@@ -31,6 +29,23 @@ namespace Game.Player
         public Movement2D GetMovement()
         {
             return movement;
+        }
+
+        public void SetPlayerActions(PlayerActionsProfile playerActionsProfile)
+        {
+            if (playerActions)
+            {
+                playerActions.MoveEvent -= OnMove;
+                playerActions.JumpEvent -= OnJump;
+            }
+
+            playerActions = playerActionsProfile;
+            
+            if (playerActions)
+            {
+                playerActions.MoveEvent += OnMove;
+                playerActions.JumpEvent += OnJump;
+            }
         }
         
         public void SetPlayerCollider(Collider2D cld2d)
@@ -120,14 +135,20 @@ namespace Game.Player
         
         private void OnEnable()
         {
-            playerActions.MoveEvent += OnMove;
-            playerActions.JumpEvent += OnJump;
+            if (playerActions)
+            {
+                playerActions.MoveEvent += OnMove;
+                playerActions.JumpEvent += OnJump;
+            }
         }
 
         private void OnDisable()
         {
-            playerActions.MoveEvent -= OnMove;
-            playerActions.JumpEvent -= OnJump;
+            if (playerActions)
+            {
+                playerActions.MoveEvent -= OnMove;
+                playerActions.JumpEvent -= OnJump;
+            }
         }
 
         private void Update()

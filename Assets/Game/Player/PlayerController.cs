@@ -1,24 +1,24 @@
+using System;
 using Game.Abilities;
 using Game.Movements;
 using Game.Utils;
+using Inputs;
 using UnityEngine;
 
 namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private Ability activeAbility;
+        [SerializeField] private AbilityBase activeAbility;
         
         [Header("References")]
+        [SerializeField] private PlayerActionsProfile playerActions;
         [SerializeField] private ModelLoader modelLoader;
         [SerializeField] private MovementController movementController;
-        
+
         public void PickAbility(PickupAbility pickupAbility)
         {
-            if (activeAbility)
-            {
-                Destroy(activeAbility.gameObject);
-            }
+            DropAbility();
             
             var abilityPrefab = pickupAbility.GetAbility();
             activeAbility = Instantiate(abilityPrefab);
@@ -27,7 +27,17 @@ namespace Game.Player
 
         public void DropAbility()
         {
-            
+            if (activeAbility)
+            {
+                Destroy(activeAbility.gameObject);
+
+                activeAbility = null;
+            }
+        }
+
+        public PlayerActionsProfile GetPlayerActions()
+        {
+            return playerActions;
         }
         
         private void HandleModelLoad(GameObject model)
@@ -68,6 +78,11 @@ namespace Game.Player
         private void OnDisable()
         {
             modelLoader.OnModelLoaded -= HandleModelLoad;
+        }
+
+        private void Start()
+        {
+            movementController.SetPlayerActions(playerActions);
         }
     }
 }

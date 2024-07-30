@@ -72,9 +72,9 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
   - [x] Slide
   - [x] Platform
 - [ ] Abilities System (5 Abilities)
-  - [ ] Pick and Drop abilities
-   - [ ] Gravity Sphere (Create gravity sphere)
-     - [ ] Gravity-influenced objects
+  - [x] Pick and Drop abilities
+   - [x] Gravity Sphere (Create gravity sphere)
+     - [x] Gravity-influenced objects
    - [ ] Lasers (create laser beam)
      - [ ] Heatable objects
      - [ ] Reflective surfaces
