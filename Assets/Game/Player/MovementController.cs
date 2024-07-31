@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Movements;
-using Game.Utils;
 using Inputs;
 using UnityEngine;
 
@@ -16,26 +15,44 @@ namespace Game.Player
         
         [Header("References")]
         [SerializeField] private Movement2D movement;
-        [SerializeField] private ModelLoader modelLoader;
-        [SerializeField] private PlayerActions playerActions;
-
-        private Vector2 move { get; set; }
-        private HashSet<Collider2D> ignoredPlatforms { get; } = new HashSet<Collider2D>();
         
-        private Collider2D playerCollider;
+        private PlayerInput _playerActions;
+        private Collider2D _playerCollider;
         
         private bool _lastJump;
         private bool _down;
         private bool _lastDown;
-
+        
+        private Vector2 move { get; set; }
+        private HashSet<Collider2D> ignoredPlatforms { get; } = new HashSet<Collider2D>();
+        
+        public Vector2 position => movement ? movement.position : transform.position;
+        
         public Movement2D GetMovement()
         {
             return movement;
         }
+
+        public void SetPlayerActions(PlayerInput playerInput)
+        {
+            if (_playerActions)
+            {
+                _playerActions.MoveEvent -= OnMove;
+                _playerActions.JumpEvent -= OnJump;
+            }
+
+            _playerActions = playerInput;
+            
+            if (_playerActions)
+            {
+                _playerActions.MoveEvent += OnMove;
+                _playerActions.JumpEvent += OnJump;
+            }
+        }
         
         public void SetPlayerCollider(Collider2D cld2d)
         {
-            playerCollider = cld2d;
+            _playerCollider = cld2d;
         }
         
         private void OnMove(Vector2 move)
@@ -94,18 +111,18 @@ namespace Game.Player
         
         private IEnumerator IgnorePlatform(float duration)
         {
-            if (playerCollider && movement.isGrounded && IsPlatform(movement.ground.groundCollider))
+            if (_playerCollider && movement.isGrounded && IsPlatform(movement.ground.groundCollider))
             {
                 var platform = movement.ground.groundCollider;
 
                 if (ignoredPlatforms.Add(platform))
                 {
                     Ignore(platform, true);
-                    Physics2D.IgnoreCollision(playerCollider, platform, true);
+                    Physics2D.IgnoreCollision(_playerCollider, platform, true);
 
                     yield return new WaitForSeconds(duration);
                 
-                    Physics2D.IgnoreCollision(playerCollider, platform, false);
+                    Physics2D.IgnoreCollision(_playerCollider, platform, false);
                     Ignore(platform, false);
                 
                     ignoredPlatforms.Remove(platform);
@@ -120,14 +137,20 @@ namespace Game.Player
         
         private void OnEnable()
         {
-            playerActions.MoveEvent += OnMove;
-            playerActions.JumpEvent += OnJump;
+            if (_playerActions)
+            {
+                _playerActions.MoveEvent += OnMove;
+                _playerActions.JumpEvent += OnJump;
+            }
         }
 
         private void OnDisable()
         {
-            playerActions.MoveEvent -= OnMove;
-            playerActions.JumpEvent -= OnJump;
+            if (_playerActions)
+            {
+                _playerActions.MoveEvent -= OnMove;
+                _playerActions.JumpEvent -= OnJump;
+            }
         }
 
         private void Update()

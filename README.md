@@ -31,7 +31,6 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
    - Lasers (heating, destroying, cutting)
    - Electricity (keep  electric charge)
    - Teleportation
-   - Time control
 5. **Resources**:
    - Health (lose condition)
    - Energy (ability usage) ?
@@ -71,18 +70,17 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
   - [x] Fall
   - [x] Slide
   - [x] Platform
-- [ ] Abilities System (5 Abilities)
-  - [ ] Pick and Drop abilities
-   - [ ] Gravity Sphere (Create gravity sphere)
-     - [ ] Gravity-influenced objects
-   - [ ] Lasers (create laser beam)
-     - [ ] Heatable objects
-     - [ ] Reflective surfaces
-     - [ ] Laser sockets
-   - [ ] Electricity (pick, hold and put electricity charge)
-     - [ ] Electrical objects (turn on/off)
-   - [ ] Teleportation (teleport to max distance)
-   - [ ] Time control
+- [x] Abilities System (4 Abilities)
+  - [x] Pick and Drop abilities
+   - [x] Gravity Sphere (Create gravity sphere)
+     - [x] Gravity-influenced objects
+   - [x] Lasers (create laser beam)
+     - [x] Heatable objects
+     - [x] Reflective surfaces
+     - [x] Laser sockets
+   - [x] Electricity (pick, hold and put electricity charge)
+     - [x] Electrical objects (turn on/off)
+   - [x] Teleportation (teleport to max distance)
 - [ ] Interaction System (interactable objects)
   - [ ] Doors
   - [ ] Lifts

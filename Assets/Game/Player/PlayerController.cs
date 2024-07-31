@@ -1,24 +1,27 @@
 using Game.Abilities;
 using Game.Movements;
 using Game.Utils;
+using Inputs;
 using UnityEngine;
 
 namespace Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private Ability activeAbility;
+        [SerializeField] private AbilityBase activeAbility;
         
         [Header("References")]
+        [SerializeField] private PlayerInput playerInput;
         [SerializeField] private ModelLoader modelLoader;
         [SerializeField] private MovementController movementController;
+
+        private Collider2D _playerCollider;
+        
+        public Vector2 position => movementController ? movementController.position : transform.position;
         
         public void PickAbility(PickupAbility pickupAbility)
         {
-            if (activeAbility)
-            {
-                Destroy(activeAbility.gameObject);
-            }
+            DropAbility();
             
             var abilityPrefab = pickupAbility.GetAbility();
             activeAbility = Instantiate(abilityPrefab);
@@ -27,20 +30,43 @@ namespace Game.Player
 
         public void DropAbility()
         {
-            
+            if (activeAbility)
+            {
+                Destroy(activeAbility.gameObject);
+
+                activeAbility = null;
+            }
+        }
+
+        public PlayerInput GetPlayerInput()
+        {
+            return playerInput;
+        }
+
+        public Movement2D GetMovement()
+        {
+            return movementController ? movementController.GetMovement() : null;
+        }
+        
+        public Bounds GetBounds()
+        {
+            return _playerCollider ? _playerCollider.bounds : default;
         }
         
         private void HandleModelLoad(GameObject model)
         {
-            var playerCollider = model.GetComponent<Collider2D>();
-            movementController.SetPlayerCollider(playerCollider);
-
-            SetMovement2D(model);
+            _playerCollider = model.GetComponent<Collider2D>();
+            
+            SetupMovementController(model);
         }
 
-        private void SetMovement2D(GameObject root)
+        private void SetupMovementController(GameObject root)
         {
-            var movement = movementController?.GetMovement();
+            if (!movementController) return;
+            
+            movementController.SetPlayerCollider(_playerCollider);
+            
+            var movement = movementController.GetMovement();
             
             if (!movement) return;
             
@@ -68,6 +94,11 @@ namespace Game.Player
         private void OnDisable()
         {
             modelLoader.OnModelLoaded -= HandleModelLoad;
+        }
+
+        private void Start()
+        {
+            movementController.SetPlayerActions(playerInput);
         }
     }
 }

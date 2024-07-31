@@ -7,11 +7,20 @@ namespace Game.Abilities
     [DisallowMultipleComponent]
     public class PickupAbility : MonoBehaviour
     {
-        [SerializeField] private Ability abilityPrefab;
+        [SerializeField] private bool destroyAfterPick = false;
+        [SerializeField] private bool disableAfterPick = false;
+        [SerializeField] private float enableTimeAfterDisabled = 0f;
+        [Space]
+        [SerializeField] private AbilityBase abilityPrefab;
 
-        public Ability GetAbility()
+        public AbilityBase GetAbility()
         {
             return abilityPrefab;
+        }
+
+        private void Enable()
+        {
+            gameObject.SetActive(true);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -19,8 +28,20 @@ namespace Game.Abilities
             if (other.TryGet<PlayerController>(out var player))
             {
                 player.PickAbility(this);
-                
-                Destroy(gameObject);
+
+                if (destroyAfterPick)
+                {
+                    Destroy(gameObject);
+                }
+                else if (disableAfterPick)
+                {
+                    gameObject.SetActive(false);
+
+                    if (enableTimeAfterDisabled > 0f)
+                    {
+                        Invoke(nameof(Enable), enableTimeAfterDisabled);
+                    }
+                }
             }
         }
     }

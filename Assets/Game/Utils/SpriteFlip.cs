@@ -27,7 +27,7 @@ namespace Game.Utils
         {
             if (movement && movement.isMoving)
             {
-                Flip(movement.input.x);
+                Flip(movement.move.x);
             }
         }
     }

@@ -310,8 +310,6 @@ MonoBehaviour:
   platformIgnoreDuration: 1
   jumpOnlyOnGround: 0
   movement: {fileID: 1659502839920317133}
-  modelLoader: {fileID: 974729393684145747}
-  playerActions: {fileID: 11400000, guid: e2c2254adbc67c54d827063516c50873, type: 2}
 --- !u!114 &5909778122338099259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c93a7ddf8a04674a2716290509a5521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeAbility: {fileID: 0}
+  playerInput: {fileID: 11400000, guid: e2c2254adbc67c54d827063516c50873, type: 2}
   modelLoader: {fileID: 974729393684145747}
   movementController: {fileID: 1730756464327193263}
 --- !u!114 &974729393684145747 stripped

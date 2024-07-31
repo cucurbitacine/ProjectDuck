@@ -4,14 +4,14 @@ using UnityEngine.InputSystem;
 
 namespace Inputs
 {
-    [CreateAssetMenu(menuName = "Game/Inputs/Create Player Actions", fileName = nameof(PlayerActions), order = 0)]
-    public class PlayerActions : ScriptableObject, GameInput.IPlayerActions
+    [CreateAssetMenu(menuName = "Game/Inputs/Create Player Input", fileName = nameof(PlayerInput), order = 0)]
+    public class PlayerInput : ScriptableObject, GameInput.IPlayerActions
     {
         public Vector2 ScreenPoint { get; private set; }
         
         public event Action<Vector2> MoveEvent;
         public event Action<Vector2> LookEvent;
-        public event Action<Vector2> PointEvent;
+        public event Action<Vector2> ScreenPointEvent;
         
         public event Action<bool> PrimaryFireEvent;
         public event Action<bool> SecondaryFireEvent;
@@ -60,7 +60,7 @@ namespace Inputs
         {
             ScreenPoint = context.ReadValue<Vector2>();
             
-            PointEvent?.Invoke(ScreenPoint);
+            ScreenPointEvent?.Invoke(ScreenPoint);
         }
 
         public void OnJump(InputAction.CallbackContext context)
