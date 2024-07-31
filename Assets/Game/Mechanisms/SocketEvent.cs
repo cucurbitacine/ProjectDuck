@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.Abilities.Laser
+namespace Game.Mechanisms
 {
-    public class LaserSocketHandler : MonoBehaviour
+    public class SocketEvent : MonoBehaviour
     {
         [SerializeField] private UnityEvent<bool> onSocketChanged = new UnityEvent<bool>(); 
         
         [Space]
-        [SerializeField] private LaserSocket socket;
+        [SerializeField] private SocketBase socket;
 
         private void HandleSocket(bool isOn)
         {
@@ -17,12 +17,12 @@ namespace Game.Abilities.Laser
         
         private void OnEnable()
         {
-            socket.OnStateChanged += HandleSocket;
+            socket.OnSocketChanged += HandleSocket;
         }
 
         private void OnDisable()
         {
-            socket.OnStateChanged -= HandleSocket;
+            socket.OnSocketChanged -= HandleSocket;
         }
 
         private void Start()

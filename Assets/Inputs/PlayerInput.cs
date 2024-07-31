@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 namespace Inputs
 {
-    [CreateAssetMenu(menuName = "Game/Inputs/Create Player Actions Profile", fileName = nameof(PlayerActionsProfile), order = 0)]
-    public class PlayerActionsProfile : ScriptableObject, GameInput.IPlayerActions
+    [CreateAssetMenu(menuName = "Game/Inputs/Create Player Input", fileName = nameof(PlayerInput), order = 0)]
+    public class PlayerInput : ScriptableObject, GameInput.IPlayerActions
     {
         public Vector2 ScreenPoint { get; private set; }
         

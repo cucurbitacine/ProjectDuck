@@ -16,7 +16,7 @@ namespace Game.Player
         [Header("References")]
         [SerializeField] private Movement2D movement;
         
-        private PlayerActionsProfile playerActions;
+        private PlayerInput playerActions;
         private Collider2D playerCollider;
         
         private bool _lastJump;
@@ -33,7 +33,7 @@ namespace Game.Player
             return movement;
         }
 
-        public void SetPlayerActions(PlayerActionsProfile playerActionsProfile)
+        public void SetPlayerActions(PlayerInput playerInput)
         {
             if (playerActions)
             {
@@ -41,7 +41,7 @@ namespace Game.Player
                 playerActions.JumpEvent -= OnJump;
             }
 
-            playerActions = playerActionsProfile;
+            playerActions = playerInput;
             
             if (playerActions)
             {

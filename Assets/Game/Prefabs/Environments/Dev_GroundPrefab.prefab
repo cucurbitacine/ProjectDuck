@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4779037324742123495}
   - component: {fileID: 2417939500696295888}
   m_Layer: 0
-  m_Name: Test_GroundPrefab
+  m_Name: Dev_GroundPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

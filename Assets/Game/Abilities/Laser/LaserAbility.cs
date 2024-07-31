@@ -30,13 +30,13 @@ namespace Game.Abilities.Laser
         [SerializeField] private bool primaryFire;
         [SerializeField] private Vector2 screenPoint;
         
-        private PlayerActionsProfile _playerActions;
+        private PlayerInput _playerInput;
         
         private readonly List<Vector3> laserPoints = new List<Vector3>();
         
         private static Camera CameraMain => Camera.main;
         
-        private Vector2 worldPoint => _playerActions ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
+        private Vector2 worldPoint => _playerInput ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
 
         private Vector2 laserCenter => Player
             ? Player.position + (Vector2)Player.transform.TransformVector(offset)
@@ -46,10 +46,10 @@ namespace Game.Abilities.Laser
 
         protected override void OnSetPlayer()
         {
-            _playerActions = Player.GetPlayerActions();
+            _playerInput = Player.GetPlayerInput();
             
-            _playerActions.PrimaryFireEvent += HandlePrimaryFire;
-            _playerActions.ScreenPointEvent += HandleScreenPoint;
+            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
         
         private void HandlePrimaryFire(bool value)
@@ -127,21 +127,27 @@ namespace Game.Abilities.Laser
                 line.SetPosition(i, points[i]);
             }
         }
+        
         private void OnEnable()
         {
-            if (_playerActions)
+            if (_playerInput)
             {
-                _playerActions.PrimaryFireEvent += HandlePrimaryFire;
-                _playerActions.ScreenPointEvent += HandleScreenPoint;
+                _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+                _playerInput.ScreenPointEvent += HandleScreenPoint;
+            }
+
+            if (line)
+            {
+                line.enabled = false;
             }
         }
         
         private void OnDisable()
         {
-            if (_playerActions)
+            if (_playerInput)
             {
-                _playerActions.PrimaryFireEvent -= HandlePrimaryFire;
-                _playerActions.ScreenPointEvent -= HandleScreenPoint;
+                _playerInput.PrimaryFireEvent -= HandlePrimaryFire;
+                _playerInput.ScreenPointEvent -= HandleScreenPoint;
             }
         }
         

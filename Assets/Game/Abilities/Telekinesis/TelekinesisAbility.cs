@@ -23,20 +23,20 @@ namespace Game.Abilities.Telekinesis
         [SerializeField] private Vector2 screenPoint;
         
         private ContactFilter2D _filter2D = new ContactFilter2D();
-        private PlayerActionsProfile _playerActions;
+        private PlayerInput _playerInput;
         private readonly List<Collider2D> _overlaps = new List<Collider2D>();
         private readonly HashSet<Rigidbody2D> _usedRigidbody2d = new HashSet<Rigidbody2D>();
         
         private static Camera CameraMain => Camera.main;
 
-        private Vector2 worldPoint => _playerActions ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
+        private Vector2 worldPoint => _playerInput ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
         
         protected override void OnSetPlayer()
         {
-            _playerActions = Player.GetPlayerActions();
+            _playerInput = Player.GetPlayerInput();
             
-            _playerActions.PrimaryFireEvent += HandlePrimaryFire;
-            _playerActions.ScreenPointEvent += HandleScreenPoint;
+            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
 
         private void HandlePrimaryFire(bool value)
@@ -99,19 +99,19 @@ namespace Game.Abilities.Telekinesis
         
         private void OnEnable()
         {
-            if (_playerActions)
+            if (_playerInput)
             {
-                _playerActions.PrimaryFireEvent += HandlePrimaryFire;
-                _playerActions.ScreenPointEvent += HandleScreenPoint;
+                _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+                _playerInput.ScreenPointEvent += HandleScreenPoint;
             }
         }
         
         private void OnDisable()
         {
-            if (_playerActions)
+            if (_playerInput)
             {
-                _playerActions.PrimaryFireEvent -= HandlePrimaryFire;
-                _playerActions.ScreenPointEvent -= HandleScreenPoint;
+                _playerInput.PrimaryFireEvent -= HandlePrimaryFire;
+                _playerInput.ScreenPointEvent -= HandleScreenPoint;
             }
         }
         

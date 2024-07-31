@@ -1,4 +1,4 @@
-using Game.Abilities.Laser;
+using Game.Mechanisms;
 using UnityEngine;
 
 namespace Game.Dev

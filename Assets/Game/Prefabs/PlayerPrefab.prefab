@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeAbility: {fileID: 0}
-  playerActions: {fileID: 11400000, guid: e2c2254adbc67c54d827063516c50873, type: 2}
+  playerInput: {fileID: 11400000, guid: e2c2254adbc67c54d827063516c50873, type: 2}
   modelLoader: {fileID: 974729393684145747}
   movementController: {fileID: 1730756464327193263}
 --- !u!114 &974729393684145747 stripped

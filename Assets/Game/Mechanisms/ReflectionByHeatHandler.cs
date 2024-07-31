@@ -1,7 +1,6 @@
-using Game.Abilities.Laser;
 using UnityEngine;
 
-namespace Game.Dev
+namespace Game.Mechanisms
 {
     [DisallowMultipleComponent]
     public class ReflectionByHeatHandler : MonoBehaviour

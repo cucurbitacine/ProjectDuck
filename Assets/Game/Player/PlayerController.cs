@@ -11,7 +11,7 @@ namespace Game.Player
         [SerializeField] private AbilityBase activeAbility;
         
         [Header("References")]
-        [SerializeField] private PlayerActionsProfile playerActions;
+        [SerializeField] private PlayerInput playerInput;
         [SerializeField] private ModelLoader modelLoader;
         [SerializeField] private MovementController movementController;
 
@@ -36,9 +36,9 @@ namespace Game.Player
             }
         }
 
-        public PlayerActionsProfile GetPlayerActions()
+        public PlayerInput GetPlayerInput()
         {
-            return playerActions;
+            return playerInput;
         }
         
         private void HandleModelLoad(GameObject model)
@@ -83,7 +83,7 @@ namespace Game.Player
 
         private void Start()
         {
-            movementController.SetPlayerActions(playerActions);
+            movementController.SetPlayerActions(playerInput);
         }
     }
 }
