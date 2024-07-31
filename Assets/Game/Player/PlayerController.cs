@@ -15,6 +15,8 @@ namespace Game.Player
         [SerializeField] private ModelLoader modelLoader;
         [SerializeField] private MovementController movementController;
 
+        private Collider2D _playerCollider;
+        
         public Vector2 position => movementController ? movementController.position : transform.position;
         
         public void PickAbility(PickupAbility pickupAbility)
@@ -40,18 +42,31 @@ namespace Game.Player
         {
             return playerInput;
         }
+
+        public Movement2D GetMovement()
+        {
+            return movementController ? movementController.GetMovement() : null;
+        }
+        
+        public Bounds GetBounds()
+        {
+            return _playerCollider ? _playerCollider.bounds : default;
+        }
         
         private void HandleModelLoad(GameObject model)
         {
-            var playerCollider = model.GetComponent<Collider2D>();
-            movementController.SetPlayerCollider(playerCollider);
-
-            SetMovement2D(model);
+            _playerCollider = model.GetComponent<Collider2D>();
+            
+            SetupMovementController(model);
         }
 
-        private void SetMovement2D(GameObject root)
+        private void SetupMovementController(GameObject root)
         {
-            var movement = movementController?.GetMovement();
+            if (!movementController) return;
+            
+            movementController.SetPlayerCollider(_playerCollider);
+            
+            var movement = movementController.GetMovement();
             
             if (!movement) return;
             

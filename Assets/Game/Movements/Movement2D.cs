@@ -15,10 +15,10 @@ namespace Game.Movements
         [SerializeField] private PhysicsMaterial2D idleFriction;
         [SerializeField] private PhysicsMaterial2D moveFriction;
         
-        private Rigidbody2D rigid;
-        private bool jumpedOffGround;
+        private Rigidbody2D _rigid;
+        private bool _jumpedOffGround;
         
-        public Vector2 input { get; private set; }
+        public Vector2 move { get; private set; }
         public Ground2D ground { get; private set; }
         public Vector2 groundUp => isGrounded ? ground.groundNormal : worldUp;
         public Vector2 groundRight => -Vector2.Perpendicular(groundUp);
@@ -28,16 +28,26 @@ namespace Game.Movements
         public static Vector2 worldRight => -Vector2.Perpendicular(worldUp);
         
         public Vector2 position => transform.position;
-
-        public float mass => rigid ? rigid.mass : 0f;
+        
+        public float mass => _rigid ? _rigid.mass : 0f;
         public Vector2 gravity => worldGravity * gravityScale;
         public float gravityPower => gravity.magnitude;
-        public float gravityScale => rigid ? rigid.gravityScale : 0f;
-        
+        public float gravityScale
+        {
+            get => _rigid ? _rigid.gravityScale : 0f;
+            set
+            {
+                if (_rigid)
+                {
+                    _rigid.gravityScale = value;
+                }
+            }
+        }
+
         public Vector2 up => transform.up;
         public Vector2 right => transform.right;
         
-        public bool isMoving => !Mathf.Approximately(input.x, 0f);
+        public bool isMoving => !Mathf.Approximately(move.x, 0f);
         public bool isJumping => !isGrounded && Vector2.Dot(Vector3.Project(selfVelocity, worldUp), worldUp) > 0f;
         public bool isFalling => !isGrounded && !isJumping;
         
@@ -48,24 +58,37 @@ namespace Game.Movements
         
         public Vector2 velocity
         {
-            get => rigid ? rigid.velocity : Vector2.zero;
+            get => _rigid ? _rigid.velocity : Vector2.zero;
             private set
             {
-                if (rigid) rigid.velocity = value;
+                if (_rigid)
+                {
+                    _rigid.velocity = value;
+                }
             }
         }
 
         public Vector2 inertialVelocity { get; private set; }
         public Vector2 selfVelocity => velocity - inertialVelocity;
-        
-        public void Move(Vector2 move)
+
+        public void Warp(Vector2 newPosition)
         {
-            input = move;
+            if (_rigid)
+            {
+                _rigid.position = newPosition;
+                
+                _rigid.velocity = Vector2.zero;
+            }
+        }
+        
+        public void Move(Vector2 input)
+        {
+            move = input;
         }
         
         public void Jump()
         {
-            jumpedOffGround = isGrounded;
+            _jumpedOffGround = isGrounded;
             
             var jumpSpeed = Mathf.Sqrt(2 * gravityPower * jumpHeight);
             var jumpVelocity = worldUp * jumpSpeed;
@@ -104,25 +127,28 @@ namespace Game.Movements
                 };
             }
         }
-
-        private void UpdateInput(float deltaTime)
+        
+        private void UpdateMovement(float deltaTime)
         {
-            var inputUp = jumpedOffGround ? worldUp : groundUp;
-            var inputRight = jumpedOffGround ? worldRight : groundRight;
+            if (!isMoving) return;
             
-            var inputVelocity = inputRight * (input.x * speedMax);
+            var movementUp = _jumpedOffGround ? worldUp : groundUp;
+            var movementRight = _jumpedOffGround ? worldRight : groundRight;
             
-            if (isMoving)
+            var movementVelocity = movementRight * (move.x * speedMax);
+            
+            // We should slide
+            if (onSurface && !isGrounded)
             {
-                if (!isGrounded && onSurface)
-                {
-                    inputVelocity = Vector3.Project(selfVelocity, inputRight);
-                }
-                
-                inputVelocity += (Vector2)Vector3.Project(inertialVelocity, inputRight);
-                
-                velocity = inputVelocity + (Vector2)Vector3.Project(velocity, inputUp);
+                // Keep velocity along axis Right
+                movementVelocity = Vector3.Project(selfVelocity, movementRight);
             }
+                
+            // Apply inertial velocity along axis Right
+            movementVelocity += (Vector2)Vector3.Project(inertialVelocity, movementRight);
+                
+            // Keep velocity along axis Up
+            velocity = movementVelocity + (Vector2)Vector3.Project(velocity, movementUp);
         }
 
         private void UpdateGround(float deltaTime)
@@ -139,9 +165,9 @@ namespace Game.Movements
         
         private void UpdateRigid(float deltaTime)
         {
-            rigid.sharedMaterial = isGrounded && !isMoving ? idleFriction : moveFriction;
+            _rigid.sharedMaterial = isGrounded && !isMoving ? idleFriction : moveFriction;
 
-            if (isGrounded && !isMoving && !jumpedOffGround)
+            if (isGrounded && !isMoving && !_jumpedOffGround)
             {
                 velocity = selfVelocity * dragDecay + inertialVelocity;
             }
@@ -157,13 +183,13 @@ namespace Game.Movements
             {
                 // Have Taken Off
 
-                if (jumpedOffGround) jumpedOffGround = false;
+                if (_jumpedOffGround) _jumpedOffGround = false;
             }
         }
         
         private void Awake()
         {
-            rigid = GetComponent<Rigidbody2D>();
+            _rigid = GetComponent<Rigidbody2D>();
             ground = GetComponent<Ground2D>();
 
             SetupFrictions();
@@ -178,10 +204,10 @@ namespace Game.Movements
         {
             ground.OnChanged -= HandleGround;
         }
-        
+
         private void Update()
         {
-            UpdateInput(Time.deltaTime);
+            UpdateMovement(Time.deltaTime);
         }
 
         private void FixedUpdate()

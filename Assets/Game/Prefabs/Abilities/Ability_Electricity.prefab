@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7502622744347257837}
   - component: {fileID: 904596524580035400}
   m_Layer: 0
-  m_Name: ElectricityPrefab
+  m_Name: Ability_Electricity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

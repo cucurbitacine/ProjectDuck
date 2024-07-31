@@ -56,15 +56,6 @@ namespace Game.Abilities.Electricity
             return amount;
         }
         
-        protected override void OnSetPlayer()
-        {
-            _playerInput = Player.GetPlayerInput();
-            
-            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-            _playerInput.SecondaryFireEvent += HandleSecondaryFire;
-            _playerInput.ScreenPointEvent += HandleScreenPoint;
-        }
-        
         private void HandlePrimaryFire(bool value)
         {
             primaryFire = value;
@@ -100,17 +91,16 @@ namespace Game.Abilities.Electricity
             screenPoint = value;
         }
         
-        private void OnEnable()
+        protected override void OnSetPlayer()
         {
-            if (_playerInput)
-            {
-                _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-                _playerInput.SecondaryFireEvent += HandleSecondaryFire;
-                _playerInput.ScreenPointEvent += HandleScreenPoint;
-            }
+            _playerInput = Player.GetPlayerInput();
+            
+            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+            _playerInput.SecondaryFireEvent += HandleSecondaryFire;
+            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
-
-        private void OnDisable()
+        
+        private void OnDestroy()
         {
             if (_playerInput)
             {

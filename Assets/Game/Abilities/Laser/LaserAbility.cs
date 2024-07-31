@@ -43,14 +43,6 @@ namespace Game.Abilities.Laser
             : transform.position + transform.TransformVector(offset);
         private Vector2 laserDirection => (worldPoint - laserCenter).normalized;
         private Vector2 laserOrigin => laserCenter + laserDirection * nearPlane;
-
-        protected override void OnSetPlayer()
-        {
-            _playerInput = Player.GetPlayerInput();
-            
-            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-            _playerInput.ScreenPointEvent += HandleScreenPoint;
-        }
         
         private void HandlePrimaryFire(bool value)
         {
@@ -128,26 +120,28 @@ namespace Game.Abilities.Laser
             }
         }
         
-        private void OnEnable()
+        protected override void OnSetPlayer()
         {
-            if (_playerInput)
-            {
-                _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-                _playerInput.ScreenPointEvent += HandleScreenPoint;
-            }
-
-            if (line)
-            {
-                line.enabled = false;
-            }
+            _playerInput = Player.GetPlayerInput();
+            
+            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
         
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (_playerInput)
             {
                 _playerInput.PrimaryFireEvent -= HandlePrimaryFire;
                 _playerInput.ScreenPointEvent -= HandleScreenPoint;
+            }
+        }
+        
+        private void OnEnable()
+        {
+            if (line)
+            {
+                line.enabled = false;
             }
         }
         
@@ -157,7 +151,7 @@ namespace Game.Abilities.Laser
             
             BuildLine(laserPoints);
         }
-
+        
         private void OnDrawGizmos()
         {
             var isValidPoint = Vector2.Distance(worldPoint, laserCenter) > nearPlane;

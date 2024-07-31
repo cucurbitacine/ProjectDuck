@@ -30,14 +30,6 @@ namespace Game.Abilities.Telekinesis
         private static Camera CameraMain => Camera.main;
 
         private Vector2 worldPoint => _playerInput ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
-        
-        protected override void OnSetPlayer()
-        {
-            _playerInput = Player.GetPlayerInput();
-            
-            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-            _playerInput.ScreenPointEvent += HandleScreenPoint;
-        }
 
         private void HandlePrimaryFire(bool value)
         {
@@ -96,17 +88,16 @@ namespace Game.Abilities.Telekinesis
                 }
             }
         }
-        
-        private void OnEnable()
+
+        protected override void OnSetPlayer()
         {
-            if (_playerInput)
-            {
-                _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-                _playerInput.ScreenPointEvent += HandleScreenPoint;
-            }
+            _playerInput = Player.GetPlayerInput();
+            
+            _playerInput.PrimaryFireEvent += HandlePrimaryFire;
+            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
         
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (_playerInput)
             {
@@ -122,7 +113,7 @@ namespace Game.Abilities.Telekinesis
                 ApplyForces();
             }
         }
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = primaryFire ? Color.white : Color.grey;

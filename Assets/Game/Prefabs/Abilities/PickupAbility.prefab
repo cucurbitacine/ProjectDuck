@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8056815285922953468}
   - component: {fileID: 5104121968419525446}
   m_Layer: 2
-  m_Name: PickupAbilityPrefab
+  m_Name: PickupAbility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
