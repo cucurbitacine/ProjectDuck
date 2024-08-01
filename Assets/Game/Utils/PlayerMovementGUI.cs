@@ -45,7 +45,7 @@ namespace Game.Utils
             GUILayout.Toggle(movement.isGrounded, "On Ground");
             GUILayout.Toggle(movement.onSurface, "On Surface");
             GUILayout.Toggle(movement.onSlope, "On Slope");
-            GUILayout.Toggle(movement.onPlatform, "On Platform");
+            GUILayout.Toggle(movement.onInertialGround, "On Platform");
             GUILayout.Box($"{speed:F1} u/s");
             
             GUILayout.EndArea();

@@ -4,7 +4,7 @@ namespace Game.Movements
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Platform2D : MonoBehaviour
+    public class Inertial2D : MonoBehaviour
     {
         [SerializeField] private bool paused = false;
         
@@ -19,12 +19,12 @@ namespace Game.Movements
 
         private void OnEnable()
         {
-            Ground2D.AddPlatform(rigidbody2d, this);
+            Ground2D.AddInertial(rigidbody2d, this);
         }
 
         private void OnDisable()
         {
-            Ground2D.RemovePlatform(rigidbody2d, out _);
+            Ground2D.RemoveInertial(rigidbody2d, out _);
         }
     }
 }

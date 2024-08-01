@@ -38,7 +38,7 @@ namespace Game.Movements
         public bool isGrounded => onSurface && Mathf.Abs(groundSlopeAngle) <= maxSlopeAngle && !ignore.Contains(groundCollider);
         public bool onSurface => groundHit;
         public bool onSlope => !Mathf.Approximately(Mathf.Abs(groundSlopeAngle), 0f);
-        public bool onPlatform => groundRigidbody && Platforms.TryGetValue(groundRigidbody, out var platform) && platform.active;
+        public bool isInertial => groundRigidbody && InertialDict.TryGetValue(groundRigidbody, out var inertial) && inertial.active;
         
         public Vector2 pointGroundCheck => transform.position;
         public Vector2 groundPoint => groundHit.raycastHit ? groundHit.raycastHit.point : pointGroundCheck;
@@ -51,16 +51,16 @@ namespace Game.Movements
         
         public float groundSlopeAngle => Vector2.SignedAngle(groundNormal, -Direction);
         
-        private static readonly Dictionary<Rigidbody2D, Platform2D> Platforms = new Dictionary<Rigidbody2D, Platform2D>();
+        private static readonly Dictionary<Rigidbody2D, Inertial2D> InertialDict = new Dictionary<Rigidbody2D, Inertial2D>();
         
-        public static bool AddPlatform(Rigidbody2D rigidbody2d, Platform2D platform2D)
+        public static bool AddInertial(Rigidbody2D rigidbody2d, Inertial2D inertial2D)
         {
-            return Platforms.TryAdd(rigidbody2d, platform2D);
+            return InertialDict.TryAdd(rigidbody2d, inertial2D);
         }
         
-        public static bool RemovePlatform(Rigidbody2D rigidbody2d, out Platform2D platform2D)
+        public static bool RemoveInertial(Rigidbody2D rigidbody2d, out Inertial2D inertial2D)
         {
-            return Platforms.Remove(rigidbody2d, out platform2D);
+            return InertialDict.Remove(rigidbody2d, out inertial2D);
         }
         
         public void Ignore(Collider2D cld, bool value)
@@ -87,10 +87,33 @@ namespace Game.Movements
                 }
             }
         }
+
+        private ContactFilter2D _groundFilter = default;
+        private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
         
         public void CheckGround()
         {
-            groundHit = (GroundHit2D)Physics2D.BoxCast(raycastOrigin, raycastSize, raycastAngle, Direction, raycastDistance, groundLayer);
+            _groundFilter.useLayerMask = true;
+            _groundFilter.layerMask = groundLayer;
+            _groundFilter.useTriggers = false;
+
+            var count = Physics2D.BoxCast(raycastOrigin, raycastSize, raycastAngle, Direction, _groundFilter, _hits, raycastDistance);
+
+            groundHit = count > 0 ? (GroundHit2D)_hits[0] : default;
+            
+            /*
+            // Search the closest
+            var minDistance = float.MaxValue;
+            for (var i = 0; i < count; i++)
+            {
+                var hit = _hits[i];
+
+                if (hit.distance >= minDistance) continue;
+                
+                minDistance = hit.distance;
+                groundHit = (GroundHit2D)hit;
+            }
+            */
 
             if (groundHit && ignore.Contains(groundHit.raycastHit.collider))
             {

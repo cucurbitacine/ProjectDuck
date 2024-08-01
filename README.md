@@ -82,7 +82,7 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
      - [x] Electrical objects (turn on/off)
    - [x] Teleportation (teleport to max distance)
 - [ ] Interaction System (interactable objects)
-  - [ ] Doors
+  - [x] Doors
   - [ ] Lifts
   - [ ] Platforms
   - [ ] Pressure buttons

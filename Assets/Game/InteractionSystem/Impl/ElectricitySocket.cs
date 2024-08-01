@@ -1,10 +1,10 @@
 using System;
-using Game.Mechanisms;
+using Game.Abilities.Electricity;
 using UnityEngine;
 
-namespace Game.Abilities.Electricity
+namespace Game.InteractionSystem.Impl
 {
-    public class ElectricitySocket : SocketBase, IElectricityStorage
+    public class ElectricitySocket : SwitcherBase, IElectricityStorage
     {
         [SerializeField] private int electricityCharge = 0;
         [SerializeField] private int electricityChargeMax = 1;
@@ -20,7 +20,8 @@ namespace Game.Abilities.Electricity
                 {
                     electricityCharge = value;
                     OnChargeChanged?.Invoke(electricityCharge);
-                    isOn = ElectricityCharge >= electricityChargeMax;
+                    
+                    TurnOn(ElectricityCharge >= electricityChargeMax);
                 }
             }
         }
@@ -47,7 +48,7 @@ namespace Game.Abilities.Electricity
 
         private void Start()
         {
-            isOn = ElectricityCharge >= electricityChargeMax;
+            TurnOn(ElectricityCharge >= electricityChargeMax);
         }
     }
 }

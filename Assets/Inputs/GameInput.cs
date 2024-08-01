@@ -403,7 +403,7 @@ namespace Inputs
                 {
                     ""name"": """",
                     ""id"": ""39090a55-007f-4821-ad76-3b3d1bb00295"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
