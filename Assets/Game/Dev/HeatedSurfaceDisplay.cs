@@ -1,4 +1,4 @@
-using Game.Mechanisms;
+using Game.InteractionSystem.Impl;
 using UnityEngine;
 
 namespace Game.Dev

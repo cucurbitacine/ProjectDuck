@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Mechanisms
+namespace Game.InteractionSystem.Impl
 {
     [DisallowMultipleComponent]
     public class ReflectionByHeatHandler : MonoBehaviour

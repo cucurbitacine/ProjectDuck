@@ -1,9 +1,9 @@
 using Game.Abilities.Laser;
 using UnityEngine;
 
-namespace Game.Mechanisms
+namespace Game.InteractionSystem.Impl
 {
-    public class LaserSocket : SocketBase, ILaserHandler
+    public class LaserSocket : SwitcherBase, ILaserHandler
     {
         [SerializeField] private float timeout = 0.1f;
 
@@ -13,7 +13,7 @@ namespace Game.Mechanisms
         
         public void Impact(Vector2 point, float value)
         {
-            isOn = true;
+            TurnOn(true);
             
             _timer = timeout;
         }
@@ -26,13 +26,13 @@ namespace Game.Mechanisms
             }
             else
             {
-                isOn = false;
+                TurnOn(false);
             }
         }
         
         private void Update()
         {
-            if (isOn)
+            if (TurnedOn)
             {
                 HandleTimeout(Time.deltaTime);
             }

@@ -54,7 +54,7 @@ namespace Game.Movements
         public bool isGrounded => ground && ground.isGrounded;
         public bool onSurface => ground && ground.onSurface;
         public bool onSlope => ground && ground.onSlope;
-        public bool onPlatform => ground && ground.onPlatform;
+        public bool onInertialGround => ground && ground.isInertial;
         
         public Vector2 velocity
         {
@@ -159,7 +159,7 @@ namespace Game.Movements
 
             if (ground.isGrounded)
             {
-                inertialVelocity = ground.onPlatform ? ground.groundVelocity : Vector2.zero;
+                inertialVelocity = ground.isInertial ? ground.groundVelocity : Vector2.zero;
             }
         }
         

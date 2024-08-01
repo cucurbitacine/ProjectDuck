@@ -37,16 +37,16 @@ namespace Game.Player
         {
             if (_playerActions)
             {
-                _playerActions.MoveEvent -= OnMove;
-                _playerActions.JumpEvent -= OnJump;
+                _playerActions.MoveEvent -= HandleMove;
+                _playerActions.JumpEvent -= HandleJump;
             }
 
             _playerActions = playerInput;
             
             if (_playerActions)
             {
-                _playerActions.MoveEvent += OnMove;
-                _playerActions.JumpEvent += OnJump;
+                _playerActions.MoveEvent += HandleMove;
+                _playerActions.JumpEvent += HandleJump;
             }
         }
         
@@ -55,7 +55,7 @@ namespace Game.Player
             _playerCollider = cld2d;
         }
         
-        private void OnMove(Vector2 move)
+        private void HandleMove(Vector2 move)
         {
             this.move = move;
 
@@ -68,7 +68,7 @@ namespace Game.Player
             }
         }
  
-        private void OnJump(bool jump)
+        private void HandleJump(bool jump)
         {
             if (!_lastJump && jump)
             {
@@ -139,8 +139,8 @@ namespace Game.Player
         {
             if (_playerActions)
             {
-                _playerActions.MoveEvent += OnMove;
-                _playerActions.JumpEvent += OnJump;
+                _playerActions.MoveEvent += HandleMove;
+                _playerActions.JumpEvent += HandleJump;
             }
         }
 
@@ -148,8 +148,8 @@ namespace Game.Player
         {
             if (_playerActions)
             {
-                _playerActions.MoveEvent -= OnMove;
-                _playerActions.JumpEvent -= OnJump;
+                _playerActions.MoveEvent -= HandleMove;
+                _playerActions.JumpEvent -= HandleJump;
             }
         }
 

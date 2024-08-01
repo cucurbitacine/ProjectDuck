@@ -1,7 +1,7 @@
 using Game.Abilities.Laser;
 using UnityEngine;
 
-namespace Game.Mechanisms
+namespace Game.InteractionSystem.Impl
 {
     [DisallowMultipleComponent]
     public sealed class ReflectorSurface : MonoBehaviour, ILaserHandler

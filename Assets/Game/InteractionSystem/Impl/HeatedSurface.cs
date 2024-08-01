@@ -2,7 +2,7 @@ using System;
 using Game.Abilities.Laser;
 using UnityEngine;
 
-namespace Game.Mechanisms
+namespace Game.InteractionSystem.Impl
 {
     [DisallowMultipleComponent]
     public class HeatedSurface : MonoBehaviour, ILaserHandler

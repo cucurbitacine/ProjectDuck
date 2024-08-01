@@ -24,7 +24,7 @@ namespace Game.Utils
             Gizmos.DrawLine(d, a);
         }
 
-        public static bool TryGet<T>(this Collider2D collider2D, out T component) where T : Component
+        public static bool TryGet<T>(this Collider2D collider2D, out T component)
         {
             if (collider2D.TryGetComponent(out component))
             {
