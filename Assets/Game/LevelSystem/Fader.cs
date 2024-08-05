@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.Levels
+namespace Game.LevelSystem
 {
     [DisallowMultipleComponent]
     public class Fader : MonoBehaviour

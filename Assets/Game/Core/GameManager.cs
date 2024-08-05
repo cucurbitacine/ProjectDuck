@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Game.Core
 {
-    public class GameManager
+    public sealed class GameManager
     {
         #region Singleton
 
@@ -17,23 +17,15 @@ namespace Game.Core
 
         #endregion
         
-        private const string LoadingSceneName = "Loading";
+        private const string MainMenuSceneName = "MainMenu";
         
-        public const string MainMenuSceneName = "MainMenu";
-        
-        public LoadingData LoadingData { get; private set; }
-
         public GameObject Player { get; private set; }
+        
         public event Action<GameObject> OnPlayerChanged; 
         
-        public AsyncOperation LoadSceneWithLoadingScreenAsync(string sceneName)
+        public AsyncOperation LoadSceneAsync(string sceneName)
         {
-            LoadingData = new LoadingData()
-            {
-                sceneName = sceneName,
-            };
-            
-            return SceneManager.LoadSceneAsync(LoadingSceneName, LoadSceneMode.Single);
+            return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         }
         
         public AsyncOperation MainMenuAsync()
