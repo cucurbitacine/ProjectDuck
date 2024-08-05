@@ -14,7 +14,7 @@ namespace Game.InteractionSystem.Utils
         {
             interactEvent.Invoke();
         }
-        
+
         private void Awake()
         {
             _interaction = GetComponent<IInteraction>();
@@ -22,18 +22,12 @@ namespace Game.InteractionSystem.Utils
 
         private void OnEnable()
         {
-            if (_interaction != null)
-            {
-                _interaction.OnInteracted += HandleInteract;
-            }
+            _interaction.OnInteracted += HandleInteract;
         }
 
         private void OnDisable()
         {
-            if (_interaction != null)
-            {
-                _interaction.OnInteracted -= HandleInteract;
-            }
+            _interaction.OnInteracted -= HandleInteract;
         }
     }
 }

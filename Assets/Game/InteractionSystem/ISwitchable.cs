@@ -7,5 +7,7 @@ namespace Game.InteractionSystem
         public bool TurnedOn { get; }
 
         public event Action<bool> OnChanged;
+
+        public void TurnOn(bool value);
     }
 }

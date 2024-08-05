@@ -1,26 +1,25 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Game.InteractionSystem.Utils
 {
-    [RequireComponent(typeof(SwitcherBase))]
+    [RequireComponent(typeof(ISwitchable))]
     public sealed class AutoSwitch : MonoBehaviour
     {
         [SerializeField] private bool expectedValue = false;
         [Min(0f)]
         [SerializeField] private float timeout = 1f;
         
-        private SwitcherBase _switcher;
-        private Coroutine _switching;
+        private ISwitchable _switcher;
+        private Coroutine _switchingProcess;
         
         private void HandleSwitch(bool value)
         {
-            if (_switching != null) StopCoroutine(_switching);
+            if (_switchingProcess != null) StopCoroutine(_switchingProcess);
             
             if (expectedValue != value)
             {
-                _switching = StartCoroutine(Switching());
+                _switchingProcess = StartCoroutine(Switching());
             }
         }
 
@@ -28,39 +27,27 @@ namespace Game.InteractionSystem.Utils
         {
             yield return new WaitForSeconds(timeout);
 
-            if (_switcher)
-            {
-                _switcher.TurnOn(expectedValue);
-            }
+            _switcher?.TurnOn(expectedValue);
         }
 
         private void Awake()
         {
-            _switcher = GetComponent<SwitcherBase>();
+            _switcher = GetComponent<ISwitchable>();
         }
 
         private void OnEnable()
         {
-            if (_switcher)
-            {
-                _switcher.OnChanged += HandleSwitch;
-            }
+            _switcher.OnChanged += HandleSwitch;
         }
 
         private void OnDisable()
         {
-            if (_switcher)
-            {
-                _switcher.OnChanged -= HandleSwitch;
-            }
+            _switcher.OnChanged -= HandleSwitch;
         }
 
         private void Start()
         {
-            if (_switcher)
-            {
-                HandleSwitch(_switcher.TurnedOn);
-            }
+            HandleSwitch(_switcher.TurnedOn);
         }
     }
 }

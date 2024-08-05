@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
-namespace Game.Combat
+namespace Game.Combat.Utils
 {
+    [RequireComponent(typeof(Health))]
     public class HealthLogger : MonoBehaviour
     {
-        [SerializeField] private Health health;
-
+        private Health _health;
         private int _previousHealth; 
         
         private void HandleHealth(int current, int max)
@@ -20,23 +21,22 @@ namespace Game.Combat
 
             _previousHealth = current;
         }
-        
+
+        private void Awake()
+        {
+            _health = GetComponent<Health>();
+        }
+
         private void OnEnable()
         {
-            if (health)
-            {
-                health.OnHealthChanged += HandleHealth;
+            _health.OnHealthChanged += HandleHealth;
 
-                HandleHealth(health.HealthCurrent, health.HealthMax);
-            }
+            HandleHealth(_health.HealthCurrent, _health.HealthMax);
         }
         
         private void OnDisable()
         {
-            if (health)
-            {
-                health.OnHealthChanged -= HandleHealth;
-            }
+            _health.OnHealthChanged -= HandleHealth;
         }
     }
 }

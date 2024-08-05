@@ -1,22 +1,30 @@
 using System;
+using CucuTools.DamageSystem;
 using UnityEngine;
 
 namespace Game.Combat
 {
+    [RequireComponent(typeof(DamageReceiver))]
     public class Health : MonoBehaviour
     {
         public const int MinHealthMax = 1;
         public const int DeadlyHealth = 0;
         
         [field: SerializeField] public bool IsDead { get; private set; }
+        [field: Space]
         [field: SerializeField, Min(DeadlyHealth)] public int HealthCurrent { get; private set; } = 90;
         [field: SerializeField, Min(MinHealthMax)] public int HealthMax { get; private set; } = 100;
 
+        [Space]
+        [SerializeField] private bool selfDamage = false;
+        
+        private DamageReceiver _damageReceiver;
+        
         /// <typeparam name="Current">Health Current</typeparam>
         /// <typeparam name="Max">Health Max</typeparam>
         public event Action<int, int> OnHealthChanged;
         public event Action OnDied;
-
+        
         public void SetHealth(int newHealth, int newHealthMax)
         {
             if (IsDead) return;
@@ -68,11 +76,51 @@ namespace Game.Combat
             Delta(-amount);
         }
 
-        public void Revive()
+        public void Revive(int amount)
         {
             IsDead = false;
 
-            SetHealth(HealthCurrent > DeadlyHealth ? HealthCurrent : 1);
+            SetHealth(amount);
+        }
+        
+        [ContextMenu(nameof(Revive))]
+        public void Revive()
+        {
+            Revive(HealthCurrent > DeadlyHealth ? HealthCurrent : 1);
+        }
+
+        [ContextMenu(nameof(Death))]
+        public void Death()
+        {
+            Damage(HealthCurrent);
+        }
+        
+        private void HandleDamageEvent(DamageEvent damageEvent)
+        {
+            if (!selfDamage && damageEvent.source.Owner == _damageReceiver.Owner)
+            {
+                return;
+            }
+
+            if (damageEvent.damage.amount > 0)
+            {
+                Damage(damageEvent.damage.amount);
+            }
+        }
+
+        private void Awake()
+        {
+            _damageReceiver = GetComponent<DamageReceiver>();
+        }
+
+        private void OnEnable()
+        {
+            _damageReceiver.OnDamageReceived += HandleDamageEvent;
+        }
+
+        private void OnDisable()
+        {
+            _damageReceiver.OnDamageReceived -= HandleDamageEvent;
         }
     }
 }

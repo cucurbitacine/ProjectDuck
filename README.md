@@ -81,24 +81,32 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
    - [x] Electricity (pick, hold and put electricity charge)
      - [x] Electrical objects (turn on/off)
    - [x] Teleportation (teleport to max distance)
-- [ ] Interaction System (interactable objects)
+- [x] Interaction System (interactable objects)
   - [x] Doors
-  - [ ] Lifts
-  - [ ] Platforms
-  - [ ] Pressure buttons
-  - [ ] Pressure plates
+  - [x] Lifts
+  - [x] Platforms
+  - [x] Pressure buttons
+  - [x] Pressure plates
 - [ ] Damage System
-  - [ ] Health 
+  - [x] Health 
   - [ ] Destroyable objects
   - [ ] Danger objects (sharp things, too hot things, etc.)
-- [ ] Level management
-  - [ ] Load level what you need
-  - [ ] Go back to Main menu
-  - [ ] Pause
 - [ ] Level System
   - [ ] Subsequence in Level
   - [ ] Check fail Condition
   - [ ] Check success Condition
+- [ ] Levels 
+  - [ ] Intro
+  - [ ] Electricity
+  - [ ] Laser
+  - [ ] Telekinesis
+  - [ ] Teleportation
+  - [ ] Mix
+  - [ ] Final
+- [ ] Level management
+  - [ ] Load level what you need
+  - [ ] Go back to Main menu
+  - [ ] Pause
 - [ ] Save and Load System
   - [ ] Create new game 
   - [ ] Keep progress of current game

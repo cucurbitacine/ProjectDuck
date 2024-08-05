@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using CucuTools.DamageSystem;
+using Game.Utils;
 using Inputs;
 using UnityEngine;
 
@@ -25,13 +27,16 @@ namespace Game.Abilities.Laser
         
         [Header("References")]
         [SerializeField] private LineRenderer line;
+        [SerializeField] private DamageSource source;
         
         [Header("Input")]
         [SerializeField] private bool primaryFire;
         [SerializeField] private Vector2 screenPoint;
         
         private PlayerInput _playerInput;
+        private ContactFilter2D _filter2d = default;
         
+        private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
         private readonly List<Vector3> laserPoints = new List<Vector3>();
         
         private static Camera CameraMain => Camera.main;
@@ -54,6 +59,19 @@ namespace Game.Abilities.Laser
             screenPoint = value;
         }
         
+        private RaycastHit2D Raycast(Vector2 origin, Vector2 direction, float distance)
+        {
+            _filter2d.useTriggers = false;
+            _filter2d.useLayerMask = true;
+            _filter2d.layerMask = layerMask;
+
+            var count = Physics2D.Raycast(origin, direction, _filter2d, _hits, distance);
+
+            return count > 0 ? _hits[0] : default;
+
+            //return Physics2D.Raycast(origin, direction, distance, layerMask);
+        }
+        
         private void EvaluateLaserPoints(ICollection<Vector3> points, float deltaTime)
         {
             points.Clear();
@@ -72,10 +90,16 @@ namespace Game.Abilities.Laser
             const int limit = 100;
             for (var i = 0; i < limit; i++)
             {
-                var hit = Physics2D.Raycast(origin, direction, distance, layerMask);
+                var hit = Raycast(origin, direction, distance);
                 
                 if (hit)
                 {
+                    if (hit.collider.TryGet<DamageReceiver>(out var receiver))
+                    {
+                        var damage = source.CreateDamage(receiver);
+                        source.SendDamage(damage, receiver);
+                    }
+                    
                     points.Add(hit.point);
                     
                     direction = Vector2.Reflect(direction, hit.normal);
@@ -126,6 +150,8 @@ namespace Game.Abilities.Laser
             
             _playerInput.PrimaryFireEvent += HandlePrimaryFire;
             _playerInput.ScreenPointEvent += HandleScreenPoint;
+            
+            source.SetOwner(Player.gameObject);
         }
         
         private void OnDestroy()
