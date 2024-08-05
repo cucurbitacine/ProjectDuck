@@ -15,7 +15,7 @@ namespace Game.InteractionSystem.Utils
         {
             focusEvent.Invoke(inverse ? !value : value);
         }
-        
+
         private void Awake()
         {
             _focused = GetComponent<IFocused>();
@@ -23,26 +23,17 @@ namespace Game.InteractionSystem.Utils
 
         private void OnEnable()
         {
-            if (_focused != null)
-            {
-                _focused.OnFocusChanged += HandleFocus;
-            }
+            _focused.OnFocusChanged += HandleFocus;
         }
 
         private void OnDisable()
         {
-            if (_focused != null)
-            {
-                _focused.OnFocusChanged -= HandleFocus;
-            }
+            _focused.OnFocusChanged -= HandleFocus;
         }
 
         private void Start()
         {
-            if (_focused != null)
-            {
-                HandleFocus(_focused.Focused);
-            }
+            HandleFocus(_focused.Focused);
         }
     }
 }

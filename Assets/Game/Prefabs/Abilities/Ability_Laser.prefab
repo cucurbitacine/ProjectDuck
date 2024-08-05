@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8385517468045074913}
   - component: {fileID: 1550618873983664486}
+  - component: {fileID: 3557279880140907758}
   m_Layer: 0
   m_Name: Ability_Laser
   m_TagString: Untagged
@@ -188,8 +189,25 @@ MonoBehaviour:
   laserDistance: 10
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65
   threshold: 0.001
   line: {fileID: 5464102718704201642}
+  source: {fileID: 3557279880140907758}
   primaryFire: 0
   screenPoint: {x: 0, y: 0}
+--- !u!114 &3557279880140907758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342814070766405688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0944271f1044a29be238912663f8f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  <DamageAmount>k__BackingField: 1
+  <CriticalChance>k__BackingField: 0
+  <CriticalBonusPercentage>k__BackingField: 1

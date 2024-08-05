@@ -123,6 +123,42 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &125005129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 443255463110614456, guid: 3c2ee230ecfc6c7458b719ef45ed39b7, type: 3}
+  m_PrefabInstance: {fileID: 1348285857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &125005142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125005129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1fae4c6c5cc493ab054e29b3dda7de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 125005129}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  health: {fileID: 0}
 --- !u!1 &175449557
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994bcf5df06e410981c711e0f902ff8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOn: 0
+  <TurnedOn>k__BackingField: 0
+  <Paused>k__BackingField: 0
   timeout: 0.1
 --- !u!114 &926945644
 MonoBehaviour:
@@ -904,10 +941,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 926945637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4c15452e3c4e0286237feff2797371, type: 3}
+  m_Script: {fileID: 11500000, guid: be2c8d51873340d6a88f53187745667e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSocketChanged:
+  inverse: 0
+  switchEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 175449557}
@@ -922,7 +960,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  socket: {fileID: 926945643}
 --- !u!1 &1060358796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,7 +1686,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 443255463110614456, guid: 3c2ee230ecfc6c7458b719ef45ed39b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 125005142}
   m_SourcePrefab: {fileID: 100100000, guid: 3c2ee230ecfc6c7458b719ef45ed39b7, type: 3}
 --- !u!1 &1445154651
 GameObject:

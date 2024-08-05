@@ -15,7 +15,7 @@ namespace Game.InteractionSystem.Utils
         {
             switchEvent.Invoke(inverse ? !value : value);
         }
-        
+
         private void Awake()
         {
             _switcher = GetComponent<ISwitchable>();
@@ -23,26 +23,17 @@ namespace Game.InteractionSystem.Utils
 
         private void OnEnable()
         {
-            if (_switcher != null)
-            {
-                _switcher.OnChanged += HandleSwitch;
-            }
+            _switcher.OnChanged += HandleSwitch;
         }
 
         private void OnDisable()
         {
-            if (_switcher != null)
-            {
-                _switcher.OnChanged -= HandleSwitch;
-            }
+            _switcher.OnChanged -= HandleSwitch;
         }
 
         private void Start()
         {
-            if (_switcher != null)
-            {
-                HandleSwitch(_switcher.TurnedOn);
-            }
+            HandleSwitch(_switcher.TurnedOn);
         }
     }
 }

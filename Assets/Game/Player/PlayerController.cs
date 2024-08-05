@@ -1,4 +1,5 @@
 using Game.Abilities;
+using Game.Core;
 using Game.Movements;
 using Game.Utils;
 using Inputs;
@@ -6,18 +7,20 @@ using UnityEngine;
 
 namespace Game.Player
 {
+    [RequireComponent(typeof(ModelLoader))]
+    [RequireComponent(typeof(MovementController))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private AbilityBase activeAbility;
         
         [Header("References")]
         [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private ModelLoader modelLoader;
-        [SerializeField] private MovementController movementController;
-
+        
+        private ModelLoader _modelLoader;
+        private MovementController _movementController;
         private Collider2D _playerCollider;
         
-        public Vector2 position => movementController ? movementController.position : transform.position;
+        public Vector2 position => _movementController ? _movementController.position : transform.position;
         
         public void PickAbility(PickupAbility pickupAbility)
         {
@@ -45,7 +48,7 @@ namespace Game.Player
 
         public Movement2D GetMovement()
         {
-            return movementController ? movementController.GetMovement() : null;
+            return _movementController ? _movementController.GetMovement() : null;
         }
         
         public Bounds GetBounds()
@@ -62,11 +65,9 @@ namespace Game.Player
 
         private void SetupMovementController(GameObject root)
         {
-            if (!movementController) return;
+            _movementController.SetPlayerCollider(_playerCollider);
             
-            movementController.SetPlayerCollider(_playerCollider);
-            
-            var movement = movementController.GetMovement();
+            var movement = _movementController.GetMovement();
             
             if (!movement) return;
             
@@ -80,25 +81,36 @@ namespace Game.Player
         
         private void Awake()
         {
-            if (modelLoader == null) modelLoader = GetComponent<ModelLoader>();
-            if (movementController == null) movementController = GetComponent<MovementController>();
+            _modelLoader = GetComponent<ModelLoader>();
+            _movementController = GetComponent<MovementController>();
         }
 
         private void OnEnable()
         {
-            modelLoader.OnModelLoaded += HandleModelLoad;
+            _modelLoader.OnModelLoaded += HandleModelLoad;
 
-            HandleModelLoad(modelLoader.GetModel());
+            HandleModelLoad(_modelLoader.GetModel());
+            
+            GameManager.Instance.SetPlayer(gameObject);
         }
 
         private void OnDisable()
         {
-            modelLoader.OnModelLoaded -= HandleModelLoad;
+            _modelLoader.OnModelLoaded -= HandleModelLoad;
+            
+            GameManager.Instance.RemovePlayer();
         }
 
         private void Start()
         {
-            movementController.SetPlayerActions(playerInput);
+            if (playerInput)
+            {
+                _movementController.SetPlayerActions(playerInput);
+            }
+            else
+            {
+                Debug.LogError($"\"{name} ({GetType().Name})\" has no \"{nameof(PlayerInput)}\"");
+            }
         }
     }
 }

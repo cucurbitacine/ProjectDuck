@@ -144,6 +144,8 @@ GameObject:
   - component: {fileID: 2592183224835912719}
   - component: {fileID: 2665350467257986036}
   - component: {fileID: 4502588156554141546}
+  - component: {fileID: 1145872874129505099}
+  - component: {fileID: 8870094113250298816}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -260,3 +262,33 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+--- !u!114 &1145872874129505099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881053207049479297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78242ff8878d4b458a243d4a358d8470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsDead>k__BackingField: 0
+  <HealthCurrent>k__BackingField: 90
+  <HealthMax>k__BackingField: 100
+  damageReceiver: {fileID: 0}
+  selfDamage: 0
+--- !u!114 &8870094113250298816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881053207049479297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3603e70d8e8573488f6556b714cc2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 3881053207049479297}

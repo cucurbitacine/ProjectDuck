@@ -23,6 +23,9 @@ namespace Game.Core
         
         public LoadingData LoadingData { get; private set; }
 
+        public GameObject Player { get; private set; }
+        public event Action<GameObject> OnPlayerChanged; 
+        
         public AsyncOperation LoadSceneWithLoadingScreenAsync(string sceneName)
         {
             LoadingData = new LoadingData()
@@ -45,6 +48,20 @@ namespace Game.Core
 #else
             Application.Quit();
 #endif
+        }
+
+        public void SetPlayer(GameObject newPlayer)
+        {
+            Player = newPlayer;
+            
+            OnPlayerChanged?.Invoke(newPlayer);
+        }
+
+        public void RemovePlayer()
+        {
+            Player = null;
+            
+            OnPlayerChanged?.Invoke(null);
         }
     }
 
