@@ -1,12 +1,11 @@
 using System.Collections;
 using Game.Core;
-using Game.Levels;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scenes.MainMenu
+namespace Game.LevelSystem
 {
-    public class MainMenuLevelController : LevelController
+    public class MainMenuManager : MonoBehaviour
     {
         [Header("Settings")]
         [Min(0f)]
@@ -35,7 +34,7 @@ namespace Game.Scenes.MainMenu
                 yield return fader.FadeIn(fadeDuration);
             }
 
-            var loading = Game.LoadSceneWithLoadingScreenAsync(sceneName);
+            var loading = GameManager.Instance.LoadSceneAsync(sceneName);
 
             yield return new WaitUntil(() => loading.isDone);
         }
@@ -55,7 +54,7 @@ namespace Game.Scenes.MainMenu
                 yield return fader.FadeIn(fadeDuration);
             }
             
-            Game.Quit();
+            GameManager.Instance.Quit();
         }
         
         private void OnEnable()

@@ -87,14 +87,18 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
   - [x] Platforms
   - [x] Pressure buttons
   - [x] Pressure plates
-- [ ] Damage System
+- [x] Damage System
   - [x] Health 
-  - [ ] Destroyable objects
-  - [ ] Danger objects (sharp things, too hot things, etc.)
+  - [x] Destroyable objects
+  - [x] Danger objects (sharp things, too hot things, etc.)
 - [ ] Level System
   - [ ] Subsequence in Level
   - [ ] Check fail Condition
   - [ ] Check success Condition
+- [ ] Level management
+  - [ ] Load level what you need
+  - [ ] Go back to Main menu
+  - [ ] Pause
 - [ ] Levels 
   - [ ] Intro
   - [ ] Electricity
@@ -103,10 +107,6 @@ Keep enduring challenges and completing tasks until you have a chance to escape 
   - [ ] Teleportation
   - [ ] Mix
   - [ ] Final
-- [ ] Level management
-  - [ ] Load level what you need
-  - [ ] Go back to Main menu
-  - [ ] Pause
 - [ ] Save and Load System
   - [ ] Create new game 
   - [ ] Keep progress of current game

@@ -1,4 +1,5 @@
 using Game.Abilities;
+using Game.Combat;
 using Game.Core;
 using Game.Movements;
 using Game.Utils;
@@ -9,6 +10,7 @@ namespace Game.Player
 {
     [RequireComponent(typeof(ModelLoader))]
     [RequireComponent(typeof(MovementController))]
+    [RequireComponent(typeof(Health))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private AbilityBase activeAbility;
@@ -21,6 +23,8 @@ namespace Game.Player
         private Collider2D _playerCollider;
         
         public Vector2 position => _movementController ? _movementController.position : transform.position;
+        
+        public Health Health { get; private set; }
         
         public void PickAbility(PickupAbility pickupAbility)
         {
@@ -48,12 +52,17 @@ namespace Game.Player
 
         public Movement2D GetMovement()
         {
-            return _movementController ? _movementController.GetMovement() : null;
+            return _movementController.GetMovement();
         }
         
         public Bounds GetBounds()
         {
             return _playerCollider ? _playerCollider.bounds : default;
+        }
+        
+        public void Pause(bool value)
+        {
+            _movementController.Pause(value);
         }
         
         private void HandleModelLoad(GameObject model)
@@ -83,6 +92,7 @@ namespace Game.Player
         {
             _modelLoader = GetComponent<ModelLoader>();
             _movementController = GetComponent<MovementController>();
+            Health = GetComponent<Health>();
         }
 
         private void OnEnable()

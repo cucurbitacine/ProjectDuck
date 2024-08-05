@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Movements;
@@ -11,6 +10,7 @@ namespace Game.Player
     public class MovementController : MonoBehaviour
     {
         [Header("Settings")]
+        [SerializeField] private bool paused = false;
         [SerializeField] private float platformIgnoreDuration = 1f;
         [SerializeField] private bool jumpOnlyOnGround = false;
         
@@ -54,12 +54,24 @@ namespace Game.Player
             _playerCollider = cld2d;
         }
         
-        private void HandleMove(Vector2 move)
+        public void Pause(bool value)
         {
-            this.move = move;
+            paused = value;
+
+            if (paused)
+            {
+                move = Vector2.zero;
+            }
+        }
+        
+        private void HandleMove(Vector2 newMove)
+        {
+            if (paused) return;
+            
+            move = newMove;
 
             _lastDown = _down;
-            _down = this.move.y < -0.5f;
+            _down = move.y < -0.5f;
 
             if (!_lastDown && _down)
             {
@@ -69,6 +81,8 @@ namespace Game.Player
  
         private void HandleJump(bool jump)
         {
+            if (paused) return;
+            
             if (!_lastJump && jump)
             {
                 if (!jumpOnlyOnGround || _movement2d.isGrounded)
