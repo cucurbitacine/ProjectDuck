@@ -1,6 +1,7 @@
 using Game.Abilities;
 using Game.Combat;
 using Game.Core;
+using Game.LevelSystem;
 using Game.Movements;
 using Game.Utils;
 using Inputs;
@@ -101,14 +102,14 @@ namespace Game.Player
 
             HandleModelLoad(_modelLoader.GetModel());
             
-            GameManager.Instance.SetPlayer(gameObject);
+            LevelManager.SetPlayer(this);
         }
 
         private void OnDisable()
         {
             _modelLoader.OnModelLoaded -= HandleModelLoad;
             
-            GameManager.Instance.RemovePlayer();
+            LevelManager.RemovePlayer();
         }
 
         private void Start()

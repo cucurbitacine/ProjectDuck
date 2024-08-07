@@ -1,37 +1,32 @@
 using System.Collections;
 using CucuTools.StateMachines;
-using Game.Core;
 using Game.LevelSystem;
-using Game.Player;
 using UnityEngine;
 
 namespace Game.Dev
 {
-    public class Dev_LevelManager : LevelManager
+    public class DevLevelManager : LevelManager
     {
         [Header("Dev")]
-        [SerializeField] private PlayerController player;
         [SerializeField] private StateMachineBase stateMachine;
 
-        private IEnumerator LoadPlayer()
+        private static IEnumerator WaitPlayer()
         {
-            yield return new WaitUntil(() => GameManager.Instance.Player);
-
-            player = GameManager.Instance.Player.GetComponent<PlayerController>();
+            yield return new WaitUntil(() => Player);
         }
         
         protected override IEnumerator PrepareLevel()
         {
-            yield return LoadPlayer();
+            yield return WaitPlayer();
             
-            player.Pause(true);
+            Player.Pause(true);
             
             //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
 
         protected override void OnStartLevel()
         {
-            player.Pause(false);
+            Player.Pause(false);
             
             stateMachine.StartState();
         }
@@ -42,7 +37,7 @@ namespace Game.Dev
 
         protected override IEnumerator DisposeLevel()
         {
-            player.Pause(true);
+            Player.Pause(true);
             
             //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
             yield return null;

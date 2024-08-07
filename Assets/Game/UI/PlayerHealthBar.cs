@@ -1,5 +1,6 @@
 using Game.Combat;
-using Game.Core;
+using Game.LevelSystem;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.UI
@@ -8,11 +9,9 @@ namespace Game.UI
     {
         [SerializeField] private HealthBar healthBar;
 
-        private void HandlePlayer(GameObject playerGameObject)
+        private void HandlePlayer(PlayerController player)
         {
-            var health = playerGameObject?.GetComponent<Health>();
-                    
-            healthBar.SetHealth(health);
+            healthBar.SetHealth(player?.Health);
         }
 
         private void Awake()
@@ -22,12 +21,12 @@ namespace Game.UI
 
         private void OnEnable()
         {
-            GameManager.Instance.OnPlayerChanged += HandlePlayer;
+            LevelManager.OnPlayerChanged += HandlePlayer;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.OnPlayerChanged -= HandlePlayer;
+            LevelManager.OnPlayerChanged -= HandlePlayer;
         }
     }
 }

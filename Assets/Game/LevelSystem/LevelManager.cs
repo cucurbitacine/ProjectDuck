@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using Game.Core;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.LevelSystem
 {
+    [DisallowMultipleComponent]
     public abstract class LevelManager : MonoBehaviour
     {
         #region Static
 
         private static LevelManager _current;
         
-        public static LevelManager Instance
+        public static LevelManager Current
         {
             get => _current;
             private set
@@ -21,8 +23,25 @@ namespace Game.LevelSystem
                 OnLevelChanged?.Invoke(_current);
             }
         }
-
+        
+        public static PlayerController Player { get; private set; }
+        
+        public static event Action<PlayerController> OnPlayerChanged; 
         public static event Action<LevelManager> OnLevelChanged;
+        
+        public static void SetPlayer(PlayerController newPlayer)
+        {
+            Player = newPlayer;
+            
+            OnPlayerChanged?.Invoke(newPlayer);
+        }
+
+        public static void RemovePlayer()
+        {
+            Player = null;
+            
+            OnPlayerChanged?.Invoke(null);
+        }
         
         #endregion
 
@@ -35,8 +54,6 @@ namespace Game.LevelSystem
         [SerializeField] private float fadeTime = 1f;
         [SerializeField] private Fader fader;
 
-        private bool _goingToMainMenu;
-
         public event Action<LevelResult> OnLevelEnded;
         
         [ContextMenu(nameof(Win))]
@@ -45,6 +62,8 @@ namespace Game.LevelSystem
             //
             
             OnLevelEnded?.Invoke(LevelResult.Won);
+            
+            GoToNextLevel();
         }
 
         [ContextMenu(nameof(Fail))]
@@ -53,16 +72,24 @@ namespace Game.LevelSystem
             //
 
             OnLevelEnded?.Invoke(LevelResult.Failed);
+
+            GoToNextLevel();
         }
         
         [ContextMenu(nameof(GoToMainMenu))]
         public void GoToMainMenu()
         {
-            if (_goingToMainMenu) return;
-            
             StartCoroutine(GoingToMainMenu());
         }
+
+        [ContextMenu(nameof(GoToNextLevel))]
+        public void GoToNextLevel()
+        {
+            StartCoroutine(GoingToNextLevel());
+        }
         
+        #region Virtual API
+
         protected virtual IEnumerator PrepareLevel()
         {
             yield return null;
@@ -80,25 +107,44 @@ namespace Game.LevelSystem
         {
             yield return null;
         }
-        
-        private IEnumerator GoingToMainMenu()
-        {
-            _goingToMainMenu = true;
 
+        #endregion
+
+        private IEnumerator PreparePlayer()
+        {
+            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
+        }
+        
+        private IEnumerator ShutdownLevel()
+        {
             OnStopLevel();
             
             yield return fader?.FadeIn(fadeTime);
 
             yield return DisposeLevel();
+        }
+        
+        private IEnumerator GoingToMainMenu()
+        {
+            yield return ShutdownLevel();
             
             yield return GameManager.Instance.MainMenuAsync();
         }
         
+        private IEnumerator GoingToNextLevel()
+        {
+            yield return ShutdownLevel();
+            
+            yield return GameManager.Instance.LoadNextLevelAsync();
+        }
+        
         private IEnumerator Start()
         {
-            Instance = this;
+            Current = this;
 
             fader?.FadeIn();
+
+            yield return PreparePlayer();
             
             yield return PrepareLevel();
             
@@ -109,7 +155,7 @@ namespace Game.LevelSystem
 
         private void OnDestroy()
         {
-            Instance = null;
+            Current = null;
         }
     }
 }
