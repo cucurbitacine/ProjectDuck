@@ -20,7 +20,7 @@ namespace Inputs
         
         public event Action<float> ZoomEvent;
         
-        private GameInput gameInput;
+        private GameInput _gameInput;
         
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -36,7 +36,7 @@ namespace Inputs
         {
             if (context.performed)
             {
-                PrimaryFireEvent?.Invoke(true);
+                PrimaryFireEvent?.Invoke(true); 
             }
             else if (context.canceled)
             {
@@ -94,21 +94,21 @@ namespace Inputs
 
         private void OnEnable()
         {
-            if (gameInput == null)
+            if (_gameInput == null)
             {
-                gameInput = new GameInput();
+                _gameInput = new GameInput();
             }
             
-            gameInput.Player.SetCallbacks(this);
-            gameInput.Player.Enable();
+            _gameInput.Player.SetCallbacks(this);
+            _gameInput.Player.Enable();
         }
 
         private void OnDisable()
         {
-            if (gameInput != null)
+            if (_gameInput != null)
             {
-                gameInput.Player.RemoveCallbacks(this);
-                gameInput.Player.Disable();
+                _gameInput.Player.RemoveCallbacks(this);
+                _gameInput.Player.Disable();
             }
         }
     }

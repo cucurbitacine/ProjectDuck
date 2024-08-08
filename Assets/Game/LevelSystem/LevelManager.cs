@@ -1,28 +1,34 @@
 using System;
 using System.Collections;
 using Game.Core;
+using Game.Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.LevelSystem
 {
-    public abstract class LevelManager : MonoBehaviour
+    [DisallowMultipleComponent]
+    public class LevelManager : MonoBehaviour
     {
         #region Static
-
-        private static LevelManager _current;
         
-        public static LevelManager Instance
+        public static PlayerController Player { get; private set; }
+        
+        public static event Action<PlayerController> OnPlayerChanged; 
+        
+        public static void SetPlayer(PlayerController newPlayer)
         {
-            get => _current;
-            private set
-            {
-                _current = value;
-                
-                OnLevelChanged?.Invoke(_current);
-            }
+            Player = newPlayer;
+            
+            OnPlayerChanged?.Invoke(newPlayer);
         }
 
-        public static event Action<LevelManager> OnLevelChanged;
+        public static void RemovePlayer()
+        {
+            Player = null;
+            
+            OnPlayerChanged?.Invoke(null);
+        }
         
         #endregion
 
@@ -31,38 +37,75 @@ namespace Game.LevelSystem
             Won,
             Failed,
         }
-        
+
+        [Header("Settings")]
+        [SerializeField] private bool busy = false;
         [SerializeField] private float fadeTime = 1f;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onLevelStarted = new UnityEvent();
+        
+        [Header("References")]
         [SerializeField] private Fader fader;
 
-        private bool _goingToMainMenu;
+        public bool Busy
+        {
+            get => busy;
+            private set => busy = value;
+        }
 
         public event Action<LevelResult> OnLevelEnded;
         
         [ContextMenu(nameof(Win))]
         public void Win()
         {
+            if (busy) return;
+            
             //
             
             OnLevelEnded?.Invoke(LevelResult.Won);
+            
+            GoToNextLevel();
         }
 
         [ContextMenu(nameof(Fail))]
         public void Fail()
         {
+            if (Busy) return;
+            
             //
 
             OnLevelEnded?.Invoke(LevelResult.Failed);
+
+            RestartLevel();
         }
         
         [ContextMenu(nameof(GoToMainMenu))]
         public void GoToMainMenu()
         {
-            if (_goingToMainMenu) return;
+            if (Busy) return;
             
             StartCoroutine(GoingToMainMenu());
         }
+
+        [ContextMenu(nameof(GoToNextLevel))]
+        public void GoToNextLevel()
+        {
+            if (Busy) return;
+            
+            StartCoroutine(GoingToNextLevel());
+        }
+
+        [ContextMenu(nameof(RestartLevel))]
+        public void RestartLevel()
+        {
+            if (Busy) return;
+            
+            StartCoroutine(RestartingLevel());
+        }
         
+        #region Virtual API
+
         protected virtual IEnumerator PrepareLevel()
         {
             yield return null;
@@ -80,36 +123,83 @@ namespace Game.LevelSystem
         {
             yield return null;
         }
-        
-        private IEnumerator GoingToMainMenu()
-        {
-            _goingToMainMenu = true;
 
+        #endregion
+
+        private IEnumerator PreparePlayer()
+        {
+            yield return new WaitUntil(() => Player);
+            
+            Player.Pause(true);
+
+            Player.Health.OnDied += HandlePlayerDeath;
+            
+            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
+        }
+
+        private IEnumerator ShutdownLevel()
+        {
+            Busy = true;
+            
+            Player.Health.OnDied -= HandlePlayerDeath;
+            
             OnStopLevel();
             
             yield return fader?.FadeIn(fadeTime);
 
+            Player.Pause(true);
+            
             yield return DisposeLevel();
+        }
+        
+        private IEnumerator GoingToMainMenu()
+        {
+            yield return ShutdownLevel();
             
             yield return GameManager.Instance.MainMenuAsync();
         }
         
+        private IEnumerator GoingToNextLevel()
+        {
+            yield return ShutdownLevel();
+            
+            yield return GameManager.Instance.LoadNextLevelAsync();
+        }
+
+        private IEnumerator RestartingLevel()
+        {
+            yield return ShutdownLevel();
+            
+            yield return GameManager.Instance.StartGameAsync();
+        }
+        
+        private void HandlePlayerDeath()
+        {
+            Fail();
+        }
+        
+        private void Awake()
+        {
+            Busy = true;
+        }
+
         private IEnumerator Start()
         {
-            Instance = this;
-
             fader?.FadeIn();
+
+            yield return PreparePlayer();
             
             yield return PrepareLevel();
             
             yield return fader?.FadeOut(fadeTime);
             
+            Player.Pause(false);
+            
+            Busy = false;
+            
             OnStartLevel();
-        }
-
-        private void OnDestroy()
-        {
-            Instance = null;
+            
+            onLevelStarted.Invoke();
         }
     }
 }

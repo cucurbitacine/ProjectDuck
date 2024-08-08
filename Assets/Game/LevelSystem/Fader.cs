@@ -73,7 +73,7 @@ namespace Game.LevelSystem
                 FadeValue = Mathf.Lerp(begin, end, t); 
                 
                 yield return null;
-                fadeTime += Time.deltaTime;
+                fadeTime += Time.deltaTime / Time.timeScale;
             }
             FadeValue = end;
         }
