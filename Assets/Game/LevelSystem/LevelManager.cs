@@ -3,31 +3,18 @@ using System.Collections;
 using Game.Core;
 using Game.Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.LevelSystem
 {
     [DisallowMultipleComponent]
-    public abstract class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
     {
         #region Static
-
-        private static LevelManager _current;
-        
-        public static LevelManager Current
-        {
-            get => _current;
-            private set
-            {
-                _current = value;
-                
-                OnLevelChanged?.Invoke(_current);
-            }
-        }
         
         public static PlayerController Player { get; private set; }
         
         public static event Action<PlayerController> OnPlayerChanged; 
-        public static event Action<LevelManager> OnLevelChanged;
         
         public static void SetPlayer(PlayerController newPlayer)
         {
@@ -50,15 +37,30 @@ namespace Game.LevelSystem
             Won,
             Failed,
         }
-        
+
+        [Header("Settings")]
+        [SerializeField] private bool busy = false;
         [SerializeField] private float fadeTime = 1f;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onLevelStarted = new UnityEvent();
+        
+        [Header("References")]
         [SerializeField] private Fader fader;
+
+        public bool Busy
+        {
+            get => busy;
+            private set => busy = value;
+        }
 
         public event Action<LevelResult> OnLevelEnded;
         
         [ContextMenu(nameof(Win))]
         public void Win()
         {
+            if (busy) return;
+            
             //
             
             OnLevelEnded?.Invoke(LevelResult.Won);
@@ -69,23 +71,37 @@ namespace Game.LevelSystem
         [ContextMenu(nameof(Fail))]
         public void Fail()
         {
+            if (Busy) return;
+            
             //
 
             OnLevelEnded?.Invoke(LevelResult.Failed);
 
-            GoToNextLevel();
+            RestartLevel();
         }
         
         [ContextMenu(nameof(GoToMainMenu))]
         public void GoToMainMenu()
         {
+            if (Busy) return;
+            
             StartCoroutine(GoingToMainMenu());
         }
 
         [ContextMenu(nameof(GoToNextLevel))]
         public void GoToNextLevel()
         {
+            if (Busy) return;
+            
             StartCoroutine(GoingToNextLevel());
+        }
+
+        [ContextMenu(nameof(RestartLevel))]
+        public void RestartLevel()
+        {
+            if (Busy) return;
+            
+            StartCoroutine(RestartingLevel());
         }
         
         #region Virtual API
@@ -112,15 +128,27 @@ namespace Game.LevelSystem
 
         private IEnumerator PreparePlayer()
         {
+            yield return new WaitUntil(() => Player);
+            
+            Player.Pause(true);
+
+            Player.Health.OnDied += HandlePlayerDeath;
+            
             yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
         }
-        
+
         private IEnumerator ShutdownLevel()
         {
+            Busy = true;
+            
+            Player.Health.OnDied -= HandlePlayerDeath;
+            
             OnStopLevel();
             
             yield return fader?.FadeIn(fadeTime);
 
+            Player.Pause(true);
+            
             yield return DisposeLevel();
         }
         
@@ -137,11 +165,26 @@ namespace Game.LevelSystem
             
             yield return GameManager.Instance.LoadNextLevelAsync();
         }
+
+        private IEnumerator RestartingLevel()
+        {
+            yield return ShutdownLevel();
+            
+            yield return GameManager.Instance.StartGameAsync();
+        }
         
+        private void HandlePlayerDeath()
+        {
+            Fail();
+        }
+        
+        private void Awake()
+        {
+            Busy = true;
+        }
+
         private IEnumerator Start()
         {
-            Current = this;
-
             fader?.FadeIn();
 
             yield return PreparePlayer();
@@ -150,12 +193,13 @@ namespace Game.LevelSystem
             
             yield return fader?.FadeOut(fadeTime);
             
+            Player.Pause(false);
+            
+            Busy = false;
+            
             OnStartLevel();
-        }
-
-        private void OnDestroy()
-        {
-            Current = null;
+            
+            onLevelStarted.Invoke();
         }
     }
 }

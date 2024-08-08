@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71c62f022f0429e9e9832d4246ecb9b, type: 3}
-  m_Name: LevelScheduleDefault
+  m_Script: {fileID: 11500000, guid: b3041d1f8e794b549c4c45c13c30f74c, type: 3}
+  m_Name: UIInput
   m_EditorClassIdentifier: 
-  levels:
-  - 
-  - 

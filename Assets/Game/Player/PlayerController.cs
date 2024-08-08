@@ -1,6 +1,5 @@
 using Game.Abilities;
 using Game.Combat;
-using Game.Core;
 using Game.LevelSystem;
 using Game.Movements;
 using Game.Utils;
@@ -63,6 +62,8 @@ namespace Game.Player
         
         public void Pause(bool value)
         {
+            if (Health.IsDead) return;
+            
             _movementController.Pause(value);
         }
         
@@ -89,6 +90,11 @@ namespace Game.Player
             }
         }
         
+        private void HandleDeath()
+        {
+            _movementController.Pause(true);
+        }
+        
         private void Awake()
         {
             _modelLoader = GetComponent<ModelLoader>();
@@ -99,17 +105,20 @@ namespace Game.Player
         private void OnEnable()
         {
             _modelLoader.OnModelLoaded += HandleModelLoad;
-
             HandleModelLoad(_modelLoader.GetModel());
+            
+            Health.OnDied += HandleDeath;
             
             LevelManager.SetPlayer(this);
         }
 
         private void OnDisable()
         {
+            LevelManager.RemovePlayer();
+            
             _modelLoader.OnModelLoaded -= HandleModelLoad;
             
-            LevelManager.RemovePlayer();
+            Health.OnDied -= HandleDeath;
         }
 
         private void Start()

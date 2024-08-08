@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,36 +24,41 @@ namespace Game.Core
             };
         }
         
-        #endregion
-
-        private const string ResourceName_LevelSchedule = "LevelScheduleDefault";
-        
-        private const string SceneName_MainMenu = "MainMenu";
-        private const string KeyName_PlayerProfile = nameof(PlayerData);
-
-        private LevelSchedule LevelSchedule { get; set; }
-        
-        public PlayerData PlayerData { get; private set; }
-
-        public async Task LoadLevelSchedule()
+        private static int GetSceneBuildIndexByLevelNumber(int currentLevel)
         {
-            if (LevelSchedule) return;
+            var buildIndex = -1;
 
-            //var timeout = Task.Delay(60000); // 1 min
-
-            var loading = LoadingLevelSchedule();
-            
-            while (loading.MoveNext())
+            if (currentLevel < 0)
             {
-                await Task.Delay(100);
+                buildIndex = SceneBuildIndex_FirstLevel;
             }
+            else
+            {
+                buildIndex = currentLevel + SceneBuildIndex_FirstLevel;
+            }
+
+            if (buildIndex < 0 || SceneManager.sceneCountInBuildSettings <= buildIndex)
+            {
+                buildIndex = SceneBuildIndex_MainMenu;
+            }
+
+            return buildIndex;
         }
+        
+        #endregion
+        
+        private const int SceneBuildIndex_MainMenu = 0;
+        private const int SceneBuildIndex_FirstLevel = 1;
+        
+        private const string KeyName_PlayerData = nameof(PlayerData);
+
+        public PlayerData PlayerData { get; private set; }
         
         public async Task LoadPlayerDataAsync()
         {
             try
             {
-                var jsonProfile = PlayerPrefs.GetString(KeyName_PlayerProfile);
+                var jsonProfile = PlayerPrefs.GetString(KeyName_PlayerData);
                 PlayerData = JsonUtility.FromJson<PlayerData>(jsonProfile) ?? CreateNewPlayerData();
             }
             catch (Exception e)
@@ -66,7 +70,7 @@ namespace Game.Core
             
             await Task.CompletedTask;
             
-            //Debug.LogWarning($"[LOADED] {JsonUtility.ToJson(PlayerData)}");
+            Debug.Log($"[LOADED PLAYER] {PlayerData}");
         }
         
         public async Task SavePlayerDataAsync()
@@ -78,44 +82,53 @@ namespace Game.Core
             
             var jsonProfile = JsonUtility.ToJson(PlayerData);
             
-            PlayerPrefs.SetString(KeyName_PlayerProfile, jsonProfile);
+            PlayerPrefs.SetString(KeyName_PlayerData, jsonProfile);
             
             await Task.CompletedTask;
             
-            //Debug.LogWarning($"[SAVED] {jsonProfile}");
+            Debug.Log($"[SAVED PLAYER] {PlayerData}");
         }
 
         public async void ResetPlayerData()
         {
             PlayerData = CreateNewPlayerData();
 
+            Debug.Log($"[RESET PLAYER] {PlayerData}");
+            
             await SavePlayerDataAsync();
         }
 
         public AsyncOperation StartGameAsync()
         {
-            if (PlayerData.currentLevel < 0)
+            if (PlayerData.levelNumber < 0)
             {
-                PlayerData.currentLevel = 0;
+                PlayerData.levelNumber = 0;
             }
             
-            var levelName = GetLevelName(PlayerData.currentLevel);
+            var buildIndex = GetSceneBuildIndexByLevelNumber(PlayerData.levelNumber);
             
-            return LoadSceneAsync(levelName);
+            return LoadSceneAsync(buildIndex);
         }
         
         public AsyncOperation LoadNextLevelAsync()
         {
-            var nextLevelName = GetNextLevelName(PlayerData.currentLevel);
-
-            PlayerData.currentLevel++;
+            if (PlayerData.levelNumber < 0)
+            {
+                PlayerData.levelNumber = 0;
+            }
+            else
+            {
+                PlayerData.levelNumber++;
+            }
             
-            return LoadSceneAsync(nextLevelName);
+            var buildIndex = GetSceneBuildIndexByLevelNumber(PlayerData.levelNumber);
+            
+            return LoadSceneAsync(buildIndex);
         }
         
         public AsyncOperation MainMenuAsync()
         {
-            return LoadSceneAsync(SceneName_MainMenu);
+            return LoadSceneAsync(SceneBuildIndex_MainMenu);
         }
 
         public void Quit()
@@ -126,33 +139,12 @@ namespace Game.Core
             Application.Quit();
 #endif
         }
-
-        private IEnumerator LoadingLevelSchedule()
-        {
-            var loadingResource = Resources.LoadAsync<LevelSchedule>(ResourceName_LevelSchedule);
-
-            yield return loadingResource;
-
-            LevelSchedule = (LevelSchedule)loadingResource.asset;
-        }
         
-        private AsyncOperation LoadSceneAsync(string sceneName)
+        private AsyncOperation LoadSceneAsync(int sceneBuildIndex)
         {
-            return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-        }
-        
-        private string GetLevelName(int currentLevel)
-        {
-            return LevelSchedule && LevelSchedule.TryGetLevelName(currentLevel, out var level)
-                ? level
-                : SceneName_MainMenu;
-        }
-        
-        private string GetNextLevelName(int currentLevel)
-        {
-            return LevelSchedule && LevelSchedule.TryGetNextLevelName(currentLevel, out var nextLevel)
-                ? nextLevel
-                : SceneName_MainMenu;
+            Debug.Log($"[LOADING SCENE] \"{sceneBuildIndex}\" {PlayerData}");
+            
+            return SceneManager.LoadSceneAsync(sceneBuildIndex, LoadSceneMode.Single);
         }
     }
 }

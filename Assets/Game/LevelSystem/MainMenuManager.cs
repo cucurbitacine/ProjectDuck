@@ -96,8 +96,6 @@ namespace Game.LevelSystem
             newGameButton.interactable = false;
             continueGameButton.interactable = false;
             
-            yield return new WaitUntil(() => GameManager.Instance.LoadLevelSchedule().IsCompleted);
-            
             yield return new WaitUntil(() => GameManager.Instance.LoadPlayerDataAsync().IsCompleted);
             
             newGameButton.interactable = true;
