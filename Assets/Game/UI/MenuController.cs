@@ -1,3 +1,4 @@
+using System;
 using Game.LevelSystem;
 using Inputs;
 using UnityEngine;
@@ -11,7 +12,6 @@ namespace Game.UI
         [SerializeField] private bool paused = false;
         
         [Header("References")]
-        [SerializeField] private LevelManager levelManager;
         [SerializeField] private UIInput uiInput;
         
         [Header("UI")]
@@ -20,9 +20,11 @@ namespace Game.UI
         [SerializeField] private Button restartButton;
         [SerializeField] private Button mainMenuButton;
 
+        private LevelManager _levelManager;
+        
         public void Pause(bool value)
         {
-            if (levelManager.Busy) return;
+            if (_levelManager.Busy) return;
             
             paused = value;
             
@@ -40,12 +42,12 @@ namespace Game.UI
         
         private void HandleRestartButton()
         {
-            levelManager.RestartLevel();
+            _levelManager.RestartLevel();
         }
         
         private void HandleMainMenuButton()
         {
-            levelManager.GoToMainMenu();
+            _levelManager.GoToMainMenu();
         }
 
         private void HandleCancel(bool value)
@@ -58,7 +60,7 @@ namespace Game.UI
         
         private void Awake()
         {
-            levelManager = FindObjectOfType<LevelManager>();
+            _levelManager = FindObjectOfType<LevelManager>();
         }
 
         private void OnEnable()

@@ -1618,7 +1618,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 94862826}
         m_TargetAssemblyTypeName: Game.LevelSystem.LevelManager, Game
-        m_MethodName: Fail
+        m_MethodName: FailLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2169,7 +2169,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 94862826}
         m_TargetAssemblyTypeName: Game.LevelSystem.LevelManager, Game
-        m_MethodName: Win
+        m_MethodName: CompleteLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

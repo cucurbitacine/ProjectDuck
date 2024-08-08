@@ -126,7 +126,7 @@ namespace Game.Core
             return LoadSceneAsync(buildIndex);
         }
         
-        public AsyncOperation MainMenuAsync()
+        public AsyncOperation LoadMainMenuAsync()
         {
             return LoadSceneAsync(SceneBuildIndex_MainMenu);
         }

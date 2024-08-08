@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game.Core;
 using Game.Player;
+using Game.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,8 +57,8 @@ namespace Game.LevelSystem
 
         public event Action<LevelResult> OnLevelEnded;
         
-        [ContextMenu(nameof(Win))]
-        public void Win()
+        [ContextMenu(nameof(CompleteLevel))]
+        public void CompleteLevel()
         {
             if (busy) return;
             
@@ -68,8 +69,8 @@ namespace Game.LevelSystem
             GoToNextLevel();
         }
 
-        [ContextMenu(nameof(Fail))]
-        public void Fail()
+        [ContextMenu(nameof(FailLevel))]
+        public void FailLevel()
         {
             if (Busy) return;
             
@@ -156,7 +157,7 @@ namespace Game.LevelSystem
         {
             yield return ShutdownLevel();
             
-            yield return GameManager.Instance.MainMenuAsync();
+            yield return GameManager.Instance.LoadMainMenuAsync();
         }
         
         private IEnumerator GoingToNextLevel()
@@ -175,7 +176,7 @@ namespace Game.LevelSystem
         
         private void HandlePlayerDeath()
         {
-            Fail();
+            FailLevel();
         }
         
         private void Awake()
@@ -200,6 +201,22 @@ namespace Game.LevelSystem
             OnStartLevel();
             
             onLevelStarted.Invoke();
+        }
+
+        private void Update()
+        {
+            if (Application.isEditor) // TODO Remove in sometime
+            {
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    CompleteLevel();
+                }
+                
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    FailLevel();
+                }
+            }
         }
     }
 }

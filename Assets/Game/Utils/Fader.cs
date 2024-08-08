@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Game.LevelSystem
+namespace Game.Utils
 {
     [DisallowMultipleComponent]
     public class Fader : MonoBehaviour
@@ -13,6 +13,7 @@ namespace Game.LevelSystem
 
         private const float MinFade = 0f;
         private const float MaxFade = 1f;
+        
         private static float FadeLength => MaxFade - MinFade;
 
         public float FadeValue
