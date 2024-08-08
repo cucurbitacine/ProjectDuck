@@ -17,6 +17,7 @@ namespace Game.Combat
 
         [Space]
         [SerializeField] private bool selfDamage = false;
+        [SerializeField] private bool immortal = false;
         
         private DamageReceiver _damageReceiver;
         
@@ -37,7 +38,10 @@ namespace Game.Combat
             
             if (HealthCurrent == DeadlyHealth)
             {
-                IsDead = true;
+                if (!immortal)
+                {
+                    IsDead = true;
+                }
             }
 
             if (previousHealth != HealthCurrent || previousHealthMax != HealthMax)
