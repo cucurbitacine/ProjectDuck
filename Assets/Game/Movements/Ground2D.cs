@@ -8,7 +8,8 @@ namespace Game.Movements
     [DisallowMultipleComponent]
     public class Ground2D : MonoBehaviour
     {
-        
+        #region SerializeField
+
         [Min(0f)]
         [SerializeField] private float width = 1f;
         [Min(0f)]
@@ -18,18 +19,16 @@ namespace Game.Movements
         [Space] 
         [Range(0f, 90f)]
         [SerializeField] private float maxSlopeAngle = 45f;
-        
-        [field: Space]
-        [field: SerializeField] public bool BoxCasting { get; set; } = true;
-        [field: SerializeField] public Vector2 Direction { get; set; } = Vector2.down;
-        
+
+        #endregion
+
+        #region Private Fields & Properties
+
         private bool _wasGrounded;
         private ContactFilter2D _groundFilter = default;
         
         private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
         private readonly HashSet<Collider2D> _ignore = new HashSet<Collider2D>();
-        
-        private static readonly Dictionary<Rigidbody2D, Inertial2D> InertialDict = new Dictionary<Rigidbody2D, Inertial2D>();
         
         private GroundHit2D groundHit { get; set; }
         
@@ -42,6 +41,30 @@ namespace Game.Movements
         private Vector2 circleRaycastOrigin => pointGroundCheck - Direction.normalized * circleRaycastRadius;
         private float circleRaycastRadius => width * 0.5f;
         private float circleRaycastDistance => distance;
+
+        #endregion
+
+        #region Static
+
+        private static readonly Dictionary<Rigidbody2D, Inertial2D> InertialDict = new Dictionary<Rigidbody2D, Inertial2D>();
+        
+        public static bool AddInertial(Rigidbody2D rigidbody2d, Inertial2D inertial2D)
+        {
+            return InertialDict.TryAdd(rigidbody2d, inertial2D);
+        }
+        
+        public static bool RemoveInertial(Rigidbody2D rigidbody2d, out Inertial2D inertial2D)
+        {
+            return InertialDict.Remove(rigidbody2d, out inertial2D);
+        }
+
+        #endregion
+        
+        #region Public API
+
+        [field: Space]
+        [field: SerializeField] public bool BoxCasting { get; set; } = true;
+        [field: SerializeField] public Vector2 Direction { get; set; } = Vector2.down;
         
         public bool isGrounded => onSurface && Mathf.Abs(groundSlopeAngle) <= maxSlopeAngle && !_ignore.Contains(groundCollider);
         public bool onSurface => groundHit;
@@ -60,16 +83,6 @@ namespace Game.Movements
         public float groundSlopeAngle => Vector2.SignedAngle(groundNormal, -Direction);
         
         public event Action<bool> OnGrounded;
-        
-        public static bool AddInertial(Rigidbody2D rigidbody2d, Inertial2D inertial2D)
-        {
-            return InertialDict.TryAdd(rigidbody2d, inertial2D);
-        }
-        
-        public static bool RemoveInertial(Rigidbody2D rigidbody2d, out Inertial2D inertial2D)
-        {
-            return InertialDict.Remove(rigidbody2d, out inertial2D);
-        }
         
         public void Ignore(Collider2D cld, bool value)
         {
@@ -103,7 +116,7 @@ namespace Game.Movements
         
         public void CheckGround()
         {
-            var count = Cast(_hits);
+            var count = Raycast(_hits);
 
             groundHit = count > 0 ? (GroundHit2D)_hits[0] : default;
             
@@ -129,7 +142,11 @@ namespace Game.Movements
             HandleEvent();
         }
 
-        private int Cast(List<RaycastHit2D> hits)
+        #endregion
+
+        #region Private API
+
+        private int Raycast(List<RaycastHit2D> hits)
         {
             _groundFilter.useLayerMask = true;
             _groundFilter.layerMask = groundLayer;
@@ -157,7 +174,11 @@ namespace Game.Movements
 
             _wasGrounded = isGrounded;
         }
-        
+
+        #endregion
+
+        #region MonoBehaviour
+
         private void OnDrawGizmos()
         {
             if (onSurface)
@@ -194,6 +215,8 @@ namespace Game.Movements
                 }
             }
         }
+
+        #endregion
     }
 
     [Serializable]

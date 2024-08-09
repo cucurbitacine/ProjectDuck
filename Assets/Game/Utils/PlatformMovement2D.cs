@@ -18,6 +18,7 @@ namespace Game.Utils
      * 5. If is looped, has wait time on positions
      */
 
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlatformMovement2D : MonoBehaviour
     {
         public enum PlatformState
@@ -28,18 +29,19 @@ namespace Game.Utils
         }
 
         [SerializeField] private PlatformState state = PlatformState.Idle;
-        [SerializeField] private bool reverse = false;
         
         [Space]
         [SerializeField] private float distance = 5f;
         [SerializeField] private Vector2 direction = Vector2.up;
-        [Min(0)]
-        [SerializeField] private float duration = 5f;
-        [Min(0)]
-        [SerializeField] private float waitTime = 1f;
+        [SerializeField] private bool reverse = false;
+        
+        [Space]
+        [Min(0)] [SerializeField] private float duration = 5f;
+        [Min(0)] [SerializeField] private float waitTime = 1f;
         
         [Space]
         [SerializeField] private Vector2 size = Vector2.one;
+        [SerializeField] private Vector2 offset = Vector2.zero;
         
         private Rigidbody2D _rigid;
         private float _waitingTime;
@@ -191,10 +193,18 @@ namespace Game.Utils
         private void OnDrawGizmos()
         {
             if (!Application.isPlaying) PositionA = transform.position;
+
+            if (TryGetComponent<BoxCollider2D>(out var box))
+            {
+                size = box.size;
+                offset = box.offset;
+            }
             
-            Gizmos.DrawLine(StartPosition, DestinationPosition);
-            Gizmos.DrawWireCube(StartPosition, size);
-            Gizmos.DrawWireCube(DestinationPosition, size);
+            Gizmos.color = Color.magenta;
+
+            Gizmos.DrawLine(StartPosition + offset, DestinationPosition + offset);
+            Gizmos.DrawWireCube(StartPosition + offset, size);
+            Gizmos.DrawWireCube(DestinationPosition + offset, size);
         }
     }
 }

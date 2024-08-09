@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.InteractionSystem.Impl
 {
-    public class PressurePlate : SwitcherBase
+    public class PressurePlate : ToggleBase
     {
         [SerializeField] private TriggerZone2D triggerZone;
 
@@ -13,12 +13,12 @@ namespace Game.InteractionSystem.Impl
         
         private void OnEnable()
         {
-            triggerZone.OnChanged += HandleTriggerZone;
+            triggerZone.OnValueChanged += HandleTriggerZone;
         }
         
         private void OnDisable()
         {
-            triggerZone.OnChanged -= HandleTriggerZone;
+            triggerZone.OnValueChanged -= HandleTriggerZone;
         }
     }
 }

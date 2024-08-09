@@ -40,9 +40,9 @@ namespace Game.Abilities.Teleportation
         
         private void Teleport(Vector2 teleportPosition)
         {
-            var movement = Player.GetMovement();
+            var movement2d = Player.GetMovement2D();
                 
-            movement.Warp(teleportPosition);
+            movement2d.Warp(teleportPosition);
 
             _lastTimeTeleportation = Time.time;
         }

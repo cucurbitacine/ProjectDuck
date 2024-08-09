@@ -27,7 +27,7 @@ namespace Game.Player
         
         public Vector2 position => _movement2d ? _movement2d.position : transform.position;
         
-        public Movement2D GetMovement()
+        public Movement2D GetMovement2D()
         {
             return _movement2d;
         }
@@ -53,8 +53,8 @@ namespace Game.Player
         {
             _playerCollider = cld2d;
             
-            _movement2d.Ground2d.SetWidth(_playerCollider.bounds.size.x);
-            _movement2d.Ground2d.BoxCasting = _playerCollider is BoxCollider2D;
+            _movement2d.Ground2D.SetWidth(_playerCollider.bounds.size.x);
+            _movement2d.Ground2D.BoxCasting = _playerCollider is BoxCollider2D;
         }
         
         public void Pause(bool value)
@@ -114,7 +114,7 @@ namespace Game.Player
 
             if (_movement2d.isGrounded)
             {
-                return _movement2d.Ground2d.groundCollider != other;
+                return _movement2d.Ground2D.groundCollider != other;
             }
             
             return true;
@@ -127,9 +127,9 @@ namespace Game.Player
         
         private IEnumerator IgnorePlatform(float duration)
         {
-            if (_movement2d.isGrounded && IsPlatform(_movement2d.Ground2d.groundCollider))
+            if (_movement2d.isGrounded && IsPlatform(_movement2d.Ground2D.groundCollider))
             {
-                var platform = _movement2d.Ground2d.groundCollider;
+                var platform = _movement2d.Ground2D.groundCollider;
 
                 if (ignoredPlatforms.Add(platform))
                 {
@@ -148,7 +148,7 @@ namespace Game.Player
         
         private void Ignore(Collider2D cld, bool value)
         {
-            _movement2d.Ground2d.Ignore(cld, value);
+            _movement2d.Ground2D.Ignore(cld, value);
         }
 
         private void Awake()
@@ -181,7 +181,7 @@ namespace Game.Player
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            _movement2d.Ground2d.CheckGround();
+            _movement2d.Ground2D.CheckGround();
             
             if (ShouldIgnore(other.collider))
             {

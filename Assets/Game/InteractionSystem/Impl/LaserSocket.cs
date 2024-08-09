@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.InteractionSystem.Impl
 {
-    public class LaserSocket : SwitcherBase, ILaserHandler
+    public class LaserSocket : ToggleBase, ILaserHandler
     {
         [SerializeField] private float timeout = 0.1f;
 

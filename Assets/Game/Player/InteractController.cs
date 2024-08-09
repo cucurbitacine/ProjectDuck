@@ -38,7 +38,7 @@ namespace Game.Player
         [SerializeField] private Vector2 offsetCheckBox = Vector2.zero;
         [SerializeField] private Vector2 sizeCheckBox = Vector2.one;
 
-        [SerializeField] private float direction;
+        [SerializeField] private float direction = 1f;
         
         private void Overlap()
         {
@@ -48,7 +48,7 @@ namespace Game.Player
             _filter2D.layerMask = layerMask;
             _filter2D.useTriggers = true;
 
-            var movement2d = player.GetMovement();
+            var movement2d = player.GetMovement2D();
 
             if (movement2d)
             {
@@ -127,6 +127,13 @@ namespace Game.Player
 
         private void OnDrawGizmos()
         {
+            if (player == null) player = GetComponent<PlayerController>();
+
+            if (Mathf.Approximately(direction, 0f))
+            {
+                direction = 1f;
+            }
+            
             //Gizmos.DrawWireSphere(player ? player.position : transform.position, radiusAccess);
             var offset = Vector2.Scale(offsetCheckBox, Vector2.up + Vector2.right * direction);
             var checkPosition = player.position + (Vector2)player.transform.TransformVector(offset);

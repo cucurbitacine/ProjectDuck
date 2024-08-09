@@ -1,3 +1,4 @@
+using CucuTools.DamageSystem;
 using Game.Abilities;
 using Game.Combat;
 using Game.LevelSystem;
@@ -18,13 +19,14 @@ namespace Game.Player
         [Header("References")]
         [SerializeField] private PlayerInput playerInput;
         
-        private ModelLoader _modelLoader;
-        private MovementController _movementController;
         private Collider2D _playerCollider;
-        
-        public Vector2 position => _movementController ? _movementController.position : transform.position;
+        private MovementController _movementController;
         
         public Health Health { get; private set; }
+        public ModelLoader ModelLoader { get; private set; }
+        public DamageReceiver DamageReceiver => Health?.DamageReceiver;
+        
+        public Vector2 position => _movementController ? _movementController.position : transform.position;
         
         public void PickAbility(PickupAbility pickupAbility)
         {
@@ -50,9 +52,9 @@ namespace Game.Player
             return playerInput;
         }
 
-        public Movement2D GetMovement()
+        public Movement2D GetMovement2D()
         {
-            return _movementController.GetMovement();
+            return _movementController.GetMovement2D();
         }
         
         public Bounds GetBounds()
@@ -76,7 +78,7 @@ namespace Game.Player
         {
             _movementController.SetPlayerCollider(_playerCollider);
             
-            var movement = _movementController.GetMovement();
+            var movement = _movementController.GetMovement2D();
             
             if (!movement) return;
             
@@ -95,16 +97,16 @@ namespace Game.Player
         
         private void Awake()
         {
-            _modelLoader = GetComponent<ModelLoader>();
-            _movementController = GetComponent<MovementController>();
             _playerCollider = GetComponent<Collider2D>();
             
+            ModelLoader = GetComponent<ModelLoader>();
+            _movementController = GetComponent<MovementController>();
             Health = GetComponent<Health>();
         }
 
         private void OnEnable()
         {
-            _modelLoader.OnModelLoaded += HandleModelLoad;
+            ModelLoader.OnModelLoaded += HandleModelLoad;
             
             Health.OnDied += HandleDeath;
             
@@ -115,14 +117,14 @@ namespace Game.Player
         {
             LevelManager.RemovePlayer();
             
-            _modelLoader.OnModelLoaded -= HandleModelLoad;
+            ModelLoader.OnModelLoaded -= HandleModelLoad;
             
             Health.OnDied -= HandleDeath;
         }
 
         private void Start()
         {
-            HandleModelLoad(_modelLoader.GetModel());
+            HandleModelLoad(ModelLoader.GetModel());
             
             if (playerInput)
             {

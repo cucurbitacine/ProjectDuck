@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Game.InteractionSystem.Utils
 {
-    [RequireComponent(typeof(ISwitchable))]
+    [RequireComponent(typeof(IToggle))]
     public sealed class AutoSwitch : MonoBehaviour
     {
         [SerializeField] private bool expectedValue = false;
         [Min(0f)]
         [SerializeField] private float timeout = 1f;
         
-        private ISwitchable _switcher;
+        private IToggle _switcher;
         private Coroutine _switchingProcess;
         
         private void HandleSwitch(bool value)
@@ -32,17 +32,17 @@ namespace Game.InteractionSystem.Utils
 
         private void Awake()
         {
-            _switcher = GetComponent<ISwitchable>();
+            _switcher = GetComponent<IToggle>();
         }
 
         private void OnEnable()
         {
-            _switcher.OnChanged += HandleSwitch;
+            _switcher.OnValueChanged += HandleSwitch;
         }
 
         private void OnDisable()
         {
-            _switcher.OnChanged -= HandleSwitch;
+            _switcher.OnValueChanged -= HandleSwitch;
         }
 
         private void Start()

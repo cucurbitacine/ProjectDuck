@@ -16,10 +16,9 @@ namespace Game.Combat
         [field: SerializeField, Min(MinHealthMax)] public int HealthMax { get; private set; } = 100;
 
         [Space]
-        [SerializeField] private bool selfDamage = false;
         [SerializeField] private bool immortal = false;
         
-        private DamageReceiver _damageReceiver;
+        public DamageReceiver DamageReceiver { get; private set; }
         
         /// <typeparam name="Current">Health Current</typeparam>
         /// <typeparam name="Max">Health Max</typeparam>
@@ -101,30 +100,29 @@ namespace Game.Combat
         
         private void HandleDamageEvent(DamageEvent damageEvent)
         {
-            if (!selfDamage && damageEvent.source.Owner == _damageReceiver.Owner)
-            {
-                return;
-            }
-
             if (damageEvent.damage.amount > 0)
             {
                 Damage(damageEvent.damage.amount);
+            }
+            else if (damageEvent.damage.amount < 0)
+            {
+                Heal(-damageEvent.damage.amount);
             }
         }
 
         private void Awake()
         {
-            _damageReceiver = GetComponent<DamageReceiver>();
+            DamageReceiver = GetComponent<DamageReceiver>();
         }
 
         private void OnEnable()
         {
-            _damageReceiver.OnDamageReceived += HandleDamageEvent;
+            DamageReceiver.OnDamageReceived += HandleDamageEvent;
         }
 
         private void OnDisable()
         {
-            _damageReceiver.OnDamageReceived -= HandleDamageEvent;
+            DamageReceiver.OnDamageReceived -= HandleDamageEvent;
         }
     }
 }

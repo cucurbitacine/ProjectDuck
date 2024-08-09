@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.InteractionSystem.Impl
 {
-    public class ElectricitySocket : SwitcherBase, IElectricityStorage
+    public class ElectricitySocket : ToggleBase, IElectricityStorage
     {
         [SerializeField] private int electricityCharge = 0;
         [SerializeField] private int electricityChargeMax = 1;

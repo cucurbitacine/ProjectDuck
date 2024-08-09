@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CucuTools;
 using Game.Utils;
@@ -6,14 +7,15 @@ using UnityEngine.Events;
 
 namespace Game.InteractionSystem.Impl
 {
-    public class TriggerZone2D : SwitcherBase
+    public class TriggerZone2D : ToggleBase
     {
+        [Header("Trigger Zone")]
         [SerializeField] private LayerMask layerMask = 1;
         [SerializeField] private List<string> whiteList = new List<string>();
 
         [Space]
-        [SerializeField] private UnityEvent<Collider2D> addedEvent = new UnityEvent<Collider2D>();
-        [SerializeField] private UnityEvent<Collider2D> removedEvent = new UnityEvent<Collider2D>();
+        [SerializeField] private UnityEvent<Collider2D> enterEvent = new UnityEvent<Collider2D>();
+        [SerializeField] private UnityEvent<Collider2D> exitEvent = new UnityEvent<Collider2D>();
             
         private readonly HashSet<Collider2D> colliderSet = new HashSet<Collider2D>();
 
@@ -35,7 +37,7 @@ namespace Game.InteractionSystem.Impl
                 TurnOn(true);
             }
             
-            addedEvent.Invoke(other);
+            enterEvent.Invoke(other);
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -47,7 +49,15 @@ namespace Game.InteractionSystem.Impl
                 TurnOn(false);
             }
             
-            removedEvent.Invoke(other);
+            exitEvent.Invoke(other);
+        }
+
+        private void OnValidate()
+        {
+            if (TryGetComponent<Collider2D>(out var cld2d))
+            {
+                cld2d.isTrigger = true;
+            }
         }
     }
 }

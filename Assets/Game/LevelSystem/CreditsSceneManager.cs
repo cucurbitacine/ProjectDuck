@@ -28,7 +28,7 @@ namespace Game.LevelSystem
         {
             mainMenuButton.gameObject.SetActive(false);
             
-            yield return fader?.FadeIn(fadeOutTime);
+            yield return fader?.FadeIn(fadeInTime);
             
             yield return GameManager.Instance.LoadMainMenuAsync();
         }

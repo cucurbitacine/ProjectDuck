@@ -185,6 +185,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1145872874129505099, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
+      propertyPath: selfDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145872874129505099, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
       propertyPath: <HealthCurrent>k__BackingField
       value: 100
       objectReference: {fileID: 0}
@@ -289,6 +293,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3881053207049479297, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5909778122338099259}
+    - targetCorrespondingSourceObject: {fileID: 3881053207049479297, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3743788157282606585}
+    - targetCorrespondingSourceObject: {fileID: 3881053207049479297, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8065717572944816106}
   m_SourcePrefab: {fileID: 100100000, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
 --- !u!1 &443255463110614456 stripped
 GameObject:
@@ -308,8 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
-  platformIgnoreDuration: 1
-  jumpOnlyOnGround: 0
+  platformIgnoreDuration: 0.3
+  jumpOnlyOnGround: 1
 --- !u!114 &5909778122338099259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +334,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeAbility: {fileID: 0}
   playerInput: {fileID: 11400000, guid: e2c2254adbc67c54d827063516c50873, type: 2}
+--- !u!114 &3743788157282606585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443255463110614456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f3205da3be294488edcbdb4b3e2b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  delay: 0.2
+--- !u!114 &8065717572944816106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443255463110614456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57495752955d4d0bbe2048f9d9515a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  <DamageAmount>k__BackingField: 50
+  <CriticalChance>k__BackingField: 0
+  <CriticalBonusPercentage>k__BackingField: 1
+  <Paused>k__BackingField: 1
+  heightMax: 5
+  player: {fileID: 5909778122338099259}
 --- !u!4 &6957013413884646988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6014207647318699893, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
