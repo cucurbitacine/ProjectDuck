@@ -69,8 +69,6 @@ namespace Game.Player
         
         private void HandleModelLoad(GameObject model)
         {
-            _playerCollider = model.GetComponent<Collider2D>();
-            
             SetupMovementController(model);
         }
 
@@ -99,13 +97,14 @@ namespace Game.Player
         {
             _modelLoader = GetComponent<ModelLoader>();
             _movementController = GetComponent<MovementController>();
+            _playerCollider = GetComponent<Collider2D>();
+            
             Health = GetComponent<Health>();
         }
 
         private void OnEnable()
         {
             _modelLoader.OnModelLoaded += HandleModelLoad;
-            HandleModelLoad(_modelLoader.GetModel());
             
             Health.OnDied += HandleDeath;
             
@@ -123,6 +122,8 @@ namespace Game.Player
 
         private void Start()
         {
+            HandleModelLoad(_modelLoader.GetModel());
+            
             if (playerInput)
             {
                 _movementController.SetPlayerActions(playerInput);

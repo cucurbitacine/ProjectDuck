@@ -8,6 +8,7 @@ namespace Game.Movements
     [DisallowMultipleComponent]
     public class Ground2D : MonoBehaviour
     {
+        
         [Min(0f)]
         [SerializeField] private float width = 1f;
         [Min(0f)]
@@ -18,24 +19,31 @@ namespace Game.Movements
         [Range(0f, 90f)]
         [SerializeField] private float maxSlopeAngle = 45f;
         
-        [field: Space, SerializeField]
-        public Vector2 Direction { get; set; } = Vector2.down;
+        [field: Space]
+        [field: SerializeField] public bool BoxCasting { get; set; } = true;
+        [field: SerializeField] public Vector2 Direction { get; set; } = Vector2.down;
         
-        private readonly HashSet<Collider2D> ignore = new HashSet<Collider2D>();
+        private bool _wasGrounded;
+        private ContactFilter2D _groundFilter = default;
+        
+        private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
+        private readonly HashSet<Collider2D> _ignore = new HashSet<Collider2D>();
+        
+        private static readonly Dictionary<Rigidbody2D, Inertial2D> InertialDict = new Dictionary<Rigidbody2D, Inertial2D>();
         
         private GroundHit2D groundHit { get; set; }
         
-        private Vector2 raycastOrigin => pointGroundCheck - Direction.normalized * raycastDistance * 0.5f;
-        private float raycastWidth => width;
-        private float raycastDistance => distance;
-        private Vector2 raycastSize => new Vector2(raycastWidth, raycastDistance);
-        private float raycastAngle => Vector2.SignedAngle(Vector2.up, Direction);
+        private Vector2 boxRaycastOrigin => pointGroundCheck - Direction.normalized * boxRaycastDistance * 0.5f;
+        private float boxRaycastWidth => width;
+        private float boxRaycastDistance => distance;
+        private Vector2 boxRaycastSize => new Vector2(boxRaycastWidth, boxRaycastDistance);
+        private float boxRaycastAngle => Vector2.SignedAngle(Vector2.up, Direction);
+
+        private Vector2 circleRaycastOrigin => pointGroundCheck - Direction.normalized * circleRaycastRadius;
+        private float circleRaycastRadius => width * 0.5f;
+        private float circleRaycastDistance => distance;
         
-        private bool _wasGrounded;
-        
-        public event Action<bool> OnChanged;
-        
-        public bool isGrounded => onSurface && Mathf.Abs(groundSlopeAngle) <= maxSlopeAngle && !ignore.Contains(groundCollider);
+        public bool isGrounded => onSurface && Mathf.Abs(groundSlopeAngle) <= maxSlopeAngle && !_ignore.Contains(groundCollider);
         public bool onSurface => groundHit;
         public bool onSlope => !Mathf.Approximately(Mathf.Abs(groundSlopeAngle), 0f);
         public bool isInertial => groundRigidbody && InertialDict.TryGetValue(groundRigidbody, out var inertial) && inertial.active;
@@ -51,7 +59,7 @@ namespace Game.Movements
         
         public float groundSlopeAngle => Vector2.SignedAngle(groundNormal, -Direction);
         
-        private static readonly Dictionary<Rigidbody2D, Inertial2D> InertialDict = new Dictionary<Rigidbody2D, Inertial2D>();
+        public event Action<bool> OnGrounded;
         
         public static bool AddInertial(Rigidbody2D rigidbody2d, Inertial2D inertial2D)
         {
@@ -74,30 +82,28 @@ namespace Game.Movements
                     HandleEvent();
                 }
                 
-                if (ignore.Add(cld))
+                if (_ignore.Add(cld))
                 {
                     //Debug.Log($"Start Ignore {cld.name}");
                 }
             }
             else
             {
-                if (ignore.Remove(cld))
+                if (_ignore.Remove(cld))
                 {
                     //Debug.Log($"Stop Ignore {cld.name}");
                 }
             }
         }
 
-        private ContactFilter2D _groundFilter = default;
-        private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
+        public void SetWidth(float newWidth)
+        {
+            width = newWidth;
+        }
         
         public void CheckGround()
         {
-            _groundFilter.useLayerMask = true;
-            _groundFilter.layerMask = groundLayer;
-            _groundFilter.useTriggers = false;
-
-            var count = Physics2D.BoxCast(raycastOrigin, raycastSize, raycastAngle, Direction, _groundFilter, _hits, raycastDistance);
+            var count = Cast(_hits);
 
             groundHit = count > 0 ? (GroundHit2D)_hits[0] : default;
             
@@ -115,7 +121,7 @@ namespace Game.Movements
             }
             */
 
-            if (groundHit && ignore.Contains(groundHit.raycastHit.collider))
+            if (groundHit && _ignore.Contains(groundHit.raycastHit.collider))
             {
                 groundHit = default;
             }
@@ -123,11 +129,30 @@ namespace Game.Movements
             HandleEvent();
         }
 
+        private int Cast(List<RaycastHit2D> hits)
+        {
+            _groundFilter.useLayerMask = true;
+            _groundFilter.layerMask = groundLayer;
+            _groundFilter.useTriggers = false;
+            
+            return BoxCasting ? BoxCast(_groundFilter, hits) : CircleCast(_groundFilter, hits);
+        }
+        
+        private int BoxCast(ContactFilter2D filter2d, List<RaycastHit2D> hits)
+        {
+            return Physics2D.BoxCast(boxRaycastOrigin, boxRaycastSize, boxRaycastAngle, Direction, filter2d, hits, boxRaycastDistance);
+        }
+        
+        private int CircleCast(ContactFilter2D filter2d, List<RaycastHit2D> hits)
+        {
+            return Physics2D.CircleCast(circleRaycastOrigin, circleRaycastRadius, Direction.normalized, filter2d, hits, circleRaycastDistance);
+        }
+        
         private void HandleEvent()
         {
             if ((!_wasGrounded && isGrounded) || (_wasGrounded && !isGrounded))
             {
-                OnChanged?.Invoke(isGrounded);
+                OnGrounded?.Invoke(isGrounded);
             }
 
             _wasGrounded = isGrounded;
@@ -138,22 +163,37 @@ namespace Game.Movements
             if (onSurface)
             {
                 Gizmos.color = isGrounded ? Color.green : Color.yellow;
-                Gizmos.DrawSphere(groundPoint, 0.1f);
+                Gizmos.DrawSphere(groundPoint, 0.05f);
                 
                 Gizmos.color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
-                Tools.DrawBox(raycastOrigin + Direction.normalized * groundHit.raycastHit.distance, raycastSize, raycastAngle);
+                if (BoxCasting)
+                {
+                    Tools.DrawBox(boxRaycastOrigin + Direction.normalized * groundHit.raycastHit.distance, boxRaycastSize, boxRaycastAngle);
+                }
+                else
+                {
+                    Gizmos.DrawWireSphere(groundHit.raycastHit.point + groundHit.raycastHit.normal * circleRaycastRadius, circleRaycastRadius);
+                }
+                
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(groundHit.raycastHit.point, groundHit.raycastHit.point + groundHit.raycastHit.normal * distance);
             }
             else
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawSphere(groundPoint, 0.1f);
+                Gizmos.DrawSphere(groundPoint, 0.05f);
                 
                 Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                Tools.DrawBox(raycastOrigin + Direction.normalized * raycastDistance, raycastSize, raycastAngle);
+                if (BoxCasting)
+                {
+                    Tools.DrawBox(boxRaycastOrigin + Direction.normalized * boxRaycastDistance, boxRaycastSize, boxRaycastAngle);
+                }
+                else
+                {
+                    Gizmos.DrawWireSphere(circleRaycastOrigin + Direction.normalized * circleRaycastDistance, circleRaycastRadius);
+                }
             }
         }
-
-        
     }
 
     [Serializable]

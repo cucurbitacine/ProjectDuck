@@ -52,6 +52,9 @@ namespace Game.Player
         public void SetPlayerCollider(Collider2D cld2d)
         {
             _playerCollider = cld2d;
+            
+            _movement2d.Ground2d.SetWidth(_playerCollider.bounds.size.x);
+            _movement2d.Ground2d.BoxCasting = _playerCollider is BoxCollider2D;
         }
         
         public void Pause(bool value)
@@ -111,7 +114,7 @@ namespace Game.Player
 
             if (_movement2d.isGrounded)
             {
-                return _movement2d.ground.groundCollider != other;
+                return _movement2d.Ground2d.groundCollider != other;
             }
             
             return true;
@@ -124,9 +127,9 @@ namespace Game.Player
         
         private IEnumerator IgnorePlatform(float duration)
         {
-            if (_playerCollider && _movement2d.isGrounded && IsPlatform(_movement2d.ground.groundCollider))
+            if (_movement2d.isGrounded && IsPlatform(_movement2d.Ground2d.groundCollider))
             {
-                var platform = _movement2d.ground.groundCollider;
+                var platform = _movement2d.Ground2d.groundCollider;
 
                 if (ignoredPlatforms.Add(platform))
                 {
@@ -145,7 +148,7 @@ namespace Game.Player
         
         private void Ignore(Collider2D cld, bool value)
         {
-            _movement2d.ground.Ignore(cld, value);
+            _movement2d.Ground2d.Ignore(cld, value);
         }
 
         private void Awake()
@@ -178,7 +181,7 @@ namespace Game.Player
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            _movement2d.ground.CheckGround();
+            _movement2d.Ground2d.CheckGround();
             
             if (ShouldIgnore(other.collider))
             {

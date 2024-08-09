@@ -19,9 +19,10 @@ namespace Game.Movements
         private bool _jumpedOffGround;
         
         public Vector2 move { get; private set; }
-        public Ground2D ground { get; private set; }
-        public Vector2 groundUp => isGrounded ? ground.groundNormal : worldUp;
+        public Vector2 groundUp => isGrounded ? Ground2d.groundNormal : worldUp;
         public Vector2 groundRight => -Vector2.Perpendicular(groundUp);
+        
+        public Ground2D Ground2d { get; private set; }
         
         public static Vector2 worldGravity => Physics2D.gravity;
         public static Vector2 worldUp => -worldGravity.normalized;
@@ -51,10 +52,10 @@ namespace Game.Movements
         public bool isJumping => !isGrounded && Vector2.Dot(Vector3.Project(selfVelocity, worldUp), worldUp) > 0f;
         public bool isFalling => !isGrounded && !isJumping;
         
-        public bool isGrounded => ground && ground.isGrounded;
-        public bool onSurface => ground && ground.onSurface;
-        public bool onSlope => ground && ground.onSlope;
-        public bool onInertialGround => ground && ground.isInertial;
+        public bool isGrounded => Ground2d && Ground2d.isGrounded;
+        public bool onSurface => Ground2d && Ground2d.onSurface;
+        public bool onSlope => Ground2d && Ground2d.onSlope;
+        public bool onInertialGround => Ground2d && Ground2d.isInertial;
         
         public Vector2 velocity
         {
@@ -153,13 +154,13 @@ namespace Game.Movements
 
         private void UpdateGround(float deltaTime)
         {
-            ground.Direction = -up;
+            Ground2d.Direction = -up;
             
-            ground.CheckGround();
+            Ground2d.CheckGround();
 
-            if (ground.isGrounded)
+            if (Ground2d.isGrounded)
             {
-                inertialVelocity = ground.isInertial ? ground.groundVelocity : Vector2.zero;
+                inertialVelocity = Ground2d.isInertial ? Ground2d.groundVelocity : Vector2.zero;
             }
         }
         
@@ -190,19 +191,19 @@ namespace Game.Movements
         private void Awake()
         {
             _rigid = GetComponent<Rigidbody2D>();
-            ground = GetComponent<Ground2D>();
+            Ground2d = GetComponent<Ground2D>();
 
             SetupFrictions();
         }
 
         private void OnEnable()
         {
-            ground.OnChanged += HandleGround;
+            Ground2d.OnGrounded += HandleGround;
         }
 
         private void OnDisable()
         {
-            ground.OnChanged -= HandleGround;
+            Ground2d.OnGrounded -= HandleGround;
         }
 
         private void Update()
@@ -219,7 +220,7 @@ namespace Game.Movements
 
         private void OnDrawGizmos()
         {
-            var groundPoint = onSurface ? ground.groundPoint : position;
+            var groundPoint = onSurface ? Ground2d.groundPoint : position;
                 
             Gizmos.color = Color.green;
             Gizmos.DrawLine(groundPoint, groundPoint + groundUp);

@@ -188,10 +188,6 @@ PrefabInstance:
       propertyPath: <HealthCurrent>k__BackingField
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 2592183224835912719, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
-      propertyPath: width
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 3143814409452584867, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
       propertyPath: m_Size.x
       value: 0.75
