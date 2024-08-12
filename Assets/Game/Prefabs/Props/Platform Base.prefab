@@ -47,7 +47,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1672316835
   m_SortingLayer: -1
-  m_SortingOrder: 1
+  m_SortingOrder: 50
   m_SortAtRoot: 0
 --- !u!61 &4943696844776448631
 BoxCollider2D:
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  <PositionA>k__BackingField: {x: 0, y: 0}
   distance: 0
   direction: {x: 0, y: 1}
   reverse: 0

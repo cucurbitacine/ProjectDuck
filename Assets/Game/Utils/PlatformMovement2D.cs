@@ -30,7 +30,8 @@ namespace Game.Utils
 
         [SerializeField] private PlatformState state = PlatformState.Idle;
         
-        [Space]
+        [field: Space]
+        [field: SerializeField] public Vector2 PositionA { get; set; }
         [SerializeField] private float distance = 5f;
         [SerializeField] private Vector2 direction = Vector2.up;
         [SerializeField] private bool reverse = false;
@@ -46,7 +47,6 @@ namespace Game.Utils
         private Rigidbody2D _rigid;
         private float _waitingTime;
         
-        public Vector2 PositionA { get; set; }
         public Vector2 PositionB
         {
             get => PositionA + direction.normalized * distance;

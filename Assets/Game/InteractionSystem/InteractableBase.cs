@@ -8,6 +8,9 @@ namespace Game.InteractionSystem
         [field: SerializeField] public bool Focused { get; private set; }
         [field: SerializeField] public bool Paused { get; private set; }
 
+        [Space]
+        [SerializeField] private bool onlyOnce = false;
+        
         public event Action<bool> OnFocusChanged;
         public event Action OnInteracted;
 
@@ -27,6 +30,11 @@ namespace Game.InteractionSystem
             if (Paused) return;
             
             OnInteracted?.Invoke();
+
+            if (onlyOnce)
+            {
+                Pause(true);
+            }
         }
 
         public void Pause(bool value)

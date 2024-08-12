@@ -1,4 +1,3 @@
-using Game.Combat;
 using Game.LevelSystem;
 using Game.Player;
 using UnityEngine;
@@ -27,6 +26,11 @@ namespace Game.UI
         private void OnDisable()
         {
             LevelManager.OnPlayerChanged -= HandlePlayer;
+        }
+
+        private void Start()
+        {
+            HandlePlayer(LevelManager.Player);
         }
     }
 }

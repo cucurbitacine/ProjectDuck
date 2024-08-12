@@ -6,7 +6,7 @@ namespace Game.LevelSystem
 {
     public class StateToggle : StateBase
     {
-        [Header("Switcher")]
+        [Header("Toggle")]
         [SerializeField] private bool expectedValue = true;
         [SerializeField] private ToggleBase _toggle;
 

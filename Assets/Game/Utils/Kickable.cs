@@ -1,12 +1,17 @@
+using System;
+using Game.InteractionSystem;
 using Game.Movements;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Utils
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Kickable : MonoBehaviour
+    public class Kickable : MonoBehaviour, IInteraction
     {
+        [SerializeField] private bool paused = false;
+        
         private Rigidbody2D rigidbody2d; 
         
         private void Awake()
@@ -16,6 +21,8 @@ namespace Game.Utils
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            if (paused) return;
+            
             var source = other.collider.attachedRigidbody
                 ? other.collider.attachedRigidbody.gameObject
                 : other.collider.gameObject;
@@ -29,12 +36,31 @@ namespace Game.Utils
                 
                 var direction = (contact.normal + movement.groundUp).normalized;
                 
-                var impulse = scale * contact.normalImpulse * direction;
+                var impulse = kickScale * scale * contact.normalImpulse * direction;
                 rigidbody2d.AddForceAtPosition(impulse, origin, ForceMode2D.Impulse);
                 
                 Debug.DrawLine(origin, movement.groundUp * 0.1f + origin, Color.yellow, 1f);
                 Debug.DrawLine(origin, scale * direction + origin, Color.blue, 1f);
             }
+        }
+
+        public event Action OnInteracted;
+        
+        [SerializeField] private float kickScale = 1f;
+        [Space]
+        [SerializeField] private float interactForce = 1f;
+        [SerializeField] private float interactTorque = 1f;
+        
+        
+        public void Interact()
+        {
+            if (paused) return;
+            
+            OnInteracted?.Invoke();
+            
+            rigidbody2d.AddForce(Vector2.up * interactForce, ForceMode2D.Impulse);
+            
+            rigidbody2d.AddTorque(Mathf.Sign(Random.value - 0.5f) * interactTorque, ForceMode2D.Impulse);
         }
     }
 }

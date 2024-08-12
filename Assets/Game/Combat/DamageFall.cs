@@ -10,6 +10,9 @@ namespace Game.Combat
         [field: SerializeField] public bool Paused { get; set; }
         [SerializeField] private float heightMax = 5f;
         
+        [Space]
+        [SerializeField] private float maxSpeed = 5f;
+        
         [Header("References")]
         [SerializeField] private PlayerController player;
  
@@ -19,9 +22,9 @@ namespace Game.Combat
 
             var groundedSpeed = projectedVelocity.magnitude;
 
-            var maxSpeed = Mathf.Sqrt(2 * player.GetMovement2D().gravity.magnitude * heightMax);
-                
-            Debug.Log($"speed {groundedSpeed} < {maxSpeed}");
+            maxSpeed = Mathf.Sqrt(2 * player.GetMovement2D().gravity.magnitude * heightMax);
+
+            Debug.Log($"{groundedSpeed} > {maxSpeed} ?");
             
             if (groundedSpeed > maxSpeed)
             {
@@ -35,7 +38,16 @@ namespace Game.Combat
 
             if (player.GetMovement2D().Ground2D.groundCollider != other.collider) return;
             
+            Debug.Log($"{player.GetComponent<Rigidbody2D>().velocity} / {player.GetMovement2D().velocity} / {other.relativeVelocity}");
+            
             Fall(other.relativeVelocity);
+        }
+
+        private void OnValidate()
+        {
+            var gravityScale = TryGetComponent<Rigidbody2D>(out var rgb) ? rgb.gravityScale : 1f;
+            
+            maxSpeed = Mathf.Sqrt(2 * Physics2D.gravity.magnitude * gravityScale * heightMax);
         }
     }
 }
