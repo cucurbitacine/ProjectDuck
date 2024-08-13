@@ -19,7 +19,7 @@ namespace Game.Utils
      */
 
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlatformMovement2D : MonoBehaviour
+    public class PlatformMovement2D : MonoBehaviour, IPaused
     {
         public enum PlatformState
         {
@@ -27,6 +27,8 @@ namespace Game.Utils
             Moving,
             Looped,
         }
+
+        [field: SerializeField] public bool Paused { get; private set; }
 
         [SerializeField] private PlatformState state = PlatformState.Idle;
         
@@ -59,6 +61,11 @@ namespace Game.Utils
 
         public Vector2 StartPosition => reverse ? PositionB : PositionA;
         public Vector2 DestinationPosition => reverse ? PositionA : PositionB;
+        
+        public void Pause(bool value)
+        {
+            Paused = value;
+        }
         
         [ContextMenu(nameof(MoveOnce))]
         public void MoveOnce()
@@ -115,7 +122,7 @@ namespace Game.Utils
 
         private void FixedUpdate()
         {
-            if (state == PlatformState.Idle)
+            if (Paused || state == PlatformState.Idle)
             {
                 _rigid.velocity = Vector2.zero;
                 

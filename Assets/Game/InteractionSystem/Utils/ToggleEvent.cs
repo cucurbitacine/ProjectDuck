@@ -8,12 +8,38 @@ namespace Game.InteractionSystem.Utils
     {
         [SerializeField] private bool inverse = false;
         [SerializeField] private UnityEvent<bool> toggleValueChanged = new UnityEvent<bool>();
-
+        [Space]
+        [SerializeField] private UnityEvent turnedOn = new UnityEvent();
+        [SerializeField] private UnityEvent turnedOff = new UnityEvent();
+        
         private IToggle _switcher;
 
         private void HandleToggle(bool value)
         {
             toggleValueChanged.Invoke(inverse ? !value : value);
+
+            if (inverse)
+            {
+                if (value)
+                {
+                    turnedOff.Invoke();
+                }
+                else
+                {
+                    turnedOn.Invoke();
+                } 
+            }
+            else
+            {
+                if (value)
+                {
+                    turnedOn.Invoke();
+                }
+                else
+                {
+                    turnedOff.Invoke();
+                }
+            }
         }
 
         private void Awake()

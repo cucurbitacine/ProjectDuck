@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Utils;
 using UnityEngine;
 
@@ -159,10 +160,36 @@ namespace Game.Movements
         {
             return Physics2D.BoxCast(boxRaycastOrigin, boxRaycastSize, boxRaycastAngle, Direction, filter2d, hits, boxRaycastDistance);
         }
-        
+
         private int CircleCast(ContactFilter2D filter2d, List<RaycastHit2D> hits)
         {
-            return Physics2D.CircleCast(circleRaycastOrigin, circleRaycastRadius, Direction.normalized, filter2d, hits, circleRaycastDistance);
+            var count = Physics2D.CircleCast(circleRaycastOrigin, circleRaycastRadius, Direction.normalized, filter2d, hits, circleRaycastDistance);
+
+            if (count <= 0) return count;
+            
+            var projectOrigin = Vector3.Project(circleRaycastOrigin, Direction);
+
+            var i = 0;
+            while (i < count)
+            {
+                var hit = hits[i];
+
+                var projectPoint = Vector3.Project(hit.point, Direction);
+                var projectDirection = projectPoint - projectOrigin;
+
+                if (Vector2.Dot(Direction, projectDirection) < 0) 
+                {
+                    hits.RemoveAt(i);
+                    
+                    count--;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            return count;
         }
         
         private void HandleEvent()

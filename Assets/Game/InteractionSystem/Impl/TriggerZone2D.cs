@@ -7,6 +7,8 @@ namespace Game.InteractionSystem.Impl
 {
     public class TriggerZone2D : ToggleBase
     {
+        public List<Collider2D> INSIDE = new List<Collider2D>();
+        
         [Header("Trigger Zone")]
         [SerializeField] private bool onlyOnce = false;
         [SerializeField] private LayerMask layerMask = 1;
@@ -36,6 +38,8 @@ namespace Game.InteractionSystem.Impl
                 TurnOn(true);
             }
             
+            INSIDE.Add(other);
+            
             //enterEvent.Invoke(other);
         }
 
@@ -50,6 +54,8 @@ namespace Game.InteractionSystem.Impl
                     TurnOn(false);
                 }
             }
+            
+            INSIDE.Remove(other);
             
             //exitEvent.Invoke(other);
         }

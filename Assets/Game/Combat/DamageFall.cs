@@ -24,7 +24,9 @@ namespace Game.Combat
 
             maxSpeed = Mathf.Sqrt(2 * player.GetMovement2D().gravity.magnitude * heightMax);
 
-            Debug.Log($"{groundedSpeed} > {maxSpeed} ?");
+            //Debug.Log($"{groundedSpeed} > {maxSpeed} ?");
+            
+            // TODO Handle somehow valid speed
             
             if (groundedSpeed > maxSpeed)
             {
@@ -38,7 +40,7 @@ namespace Game.Combat
 
             if (player.GetMovement2D().Ground2D.groundCollider != other.collider) return;
             
-            Debug.Log($"{player.GetComponent<Rigidbody2D>().velocity} / {player.GetMovement2D().velocity} / {other.relativeVelocity}");
+            //Debug.Log($"{player.GetComponent<Rigidbody2D>().velocity} / {player.GetMovement2D().velocity} / {other.relativeVelocity}");
             
             Fall(other.relativeVelocity);
         }

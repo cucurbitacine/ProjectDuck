@@ -1,9 +1,10 @@
 using System;
+using Game.Utils;
 using UnityEngine;
 
 namespace Game.InteractionSystem
 {
-    public class ToggleBase : MonoBehaviour, IToggle
+    public class ToggleBase : MonoBehaviour, IToggle, IPaused
     {
         [field: SerializeField] public bool TurnedOn { get; private set; }
         [field: SerializeField] public bool Paused { get; private set; }
