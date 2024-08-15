@@ -34,18 +34,23 @@ namespace Game.Utils
         
         [field: Space]
         [field: SerializeField] public Vector2 PositionA { get; set; }
+        
+        [Header("Destination")]
         [SerializeField] private float distance = 5f;
         [SerializeField] private Vector2 direction = Vector2.up;
         [SerializeField] private bool reverse = false;
         
-        [Space]
+        [Header("Time")]
         [Min(0)] [SerializeField] private float duration = 5f;
         [Min(0)] [SerializeField] private float waitTime = 1f;
         
-        [Space]
+        [Header("FX")]
+        [SerializeField] private LineRenderer lineTrajectory;
+        
+        [Header("Gizmos")]
         [SerializeField] private Vector2 size = Vector2.one;
         [SerializeField] private Vector2 offset = Vector2.zero;
-        
+
         private Rigidbody2D _rigid;
         private float _waitingTime;
         
@@ -115,6 +120,15 @@ namespace Game.Utils
         private RigidbodyConstraints2D GetConstraints()
         {
             return RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        private void UpdateLine()
+        {
+            if (!lineTrajectory || !lineTrajectory.enabled) return;
+            
+            lineTrajectory.positionCount = 2;
+            lineTrajectory.SetPosition(0, PositionA);
+            lineTrajectory.SetPosition(1, PositionB);
         }
         
         private void Awake()
@@ -204,6 +218,11 @@ namespace Game.Utils
             }
         }
         
+        private void OnValidate()
+        {
+            UpdateLine();
+        }
+
         private void OnDrawGizmos()
         {
             if (!Application.isPlaying) PositionA = transform.position;

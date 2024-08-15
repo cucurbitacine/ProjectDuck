@@ -252,6 +252,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal Platform 3x1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -460,8 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefix: Duck #
-  minNumber: 100
-  maxNumber: 999
+  numberType: 0
   text: {fileID: 16140456}
 --- !u!1 &56475020
 GameObject:
@@ -495,7 +510,6 @@ Transform:
   - {fileID: 192473025}
   - {fileID: 1021477242}
   - {fileID: 1746658365592359191}
-  - {fileID: 1143813930}
   - {fileID: 14533784}
   - {fileID: 1645600923}
   m_Father: {fileID: 251825464}
@@ -1875,7 +1889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -1899,10 +1913,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: 7.75
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[2].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2900192433286176914, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
@@ -13553,9 +13579,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 12.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3440614882770939888, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: m_Name
       value: Room 7 Metal Platform 3x1 > Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 12.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 24.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 12.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13651,6 +13697,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!120 &719979743 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+  m_PrefabInstance: {fileID: 1784682005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749377298
 GameObject:
   m_ObjectHideFlags: 0
@@ -13953,7 +14004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -13977,10 +14028,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: 13.75
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
       propertyPath: m_Positions.Array.data[2].z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].x
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459831255292505879, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
+      propertyPath: m_Positions.Array.data[3].z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2900192433286176914, guid: afb6539fe07f4c849b3deead002112a5, type: 3}
@@ -14189,9 +14252,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Metal Platform 2x1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14682,9 +14765,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Room 7 Metal Platform 2x1 > Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14799,9 +14902,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Room 6 Metal Platform 2x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15399,9 +15522,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: -9
       objectReference: {fileID: 0}
+    - target: {fileID: 3440614882770939888, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: m_Name
       value: Room 4 Metal Platform 3x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: -6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15648,7 +15791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[3].x
-      value: -1.75
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[3].y
@@ -15660,15 +15803,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[4].x
-      value: -1.75
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[4].y
-      value: 24.75
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[4].z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.36116505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.3300971
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.36116505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.3300971
       objectReference: {fileID: 0}
     - target: {fileID: 2766460131541335358, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18729,76 +18896,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3613508599291912157, guid: 35906a85a1149144591ee0be13132c90, type: 3}
   m_PrefabInstance: {fileID: 1121560757}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1143813929
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 56475021}
-    m_Modifications:
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: <PositionA>k__BackingField.x
-      value: 11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: <PositionA>k__BackingField.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-      propertyPath: m_Name
-      value: Metal Platform 3x1 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
---- !u!4 &1143813930 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1145060670289893958, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
-  m_PrefabInstance: {fileID: 1143813929}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1152372478
 GameObject:
   m_ObjectHideFlags: 0
@@ -20216,7 +20313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -20328,7 +20425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[10].y
-      value: 6.75
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[10].z
@@ -20336,11 +20433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[11].x
-      value: 7
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[11].y
-      value: -0.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[11].z
@@ -24192,6 +24289,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal Platform 3x1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25656,6 +25769,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: lineTrajectory
+      value: 
+      objectReference: {fileID: 719979743}
+    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: <PositionA>k__BackingField.x
       value: -0.5
       objectReference: {fileID: 0}
@@ -25663,9 +25780,33 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 3440614882770939888, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: m_Name
       value: Room 7 Metal Platform 3x1 > Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.075
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25840,6 +25981,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 3.5
       objectReference: {fileID: 0}
@@ -25861,7 +26006,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: -9.25
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Positions.Array.data[3].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Positions.Array.data[3].y
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416072247339365066, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
+      propertyPath: m_Positions.Array.data[3].z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2766460131541335358, guid: e5cf5a8a46c6e284fabb4ac8e1ee861d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26330,8 +26487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefix: Attempt #
-  minNumber: 10
-  maxNumber: 99
+  numberType: 1
   text: {fileID: 1893922436}
 --- !u!1 &1912136863
 GameObject:
@@ -27760,9 +27916,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3440614882770939888, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: m_Name
       value: Room 5 Metal Platform 3x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: -6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27889,9 +28065,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Metal Platform 2x1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35035,9 +35231,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Metal Platform 2x1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35117,9 +35333,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 3388476775980324440, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3643863546733362780, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
       propertyPath: m_Name
       value: Metal Platform 2x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271293824102170687, guid: 3061890c8f0c8f54a95c15b56b1842eb, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35451,6 +35687,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: distance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243025595477279959, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: <PositionA>k__BackingField.x
       value: 11.5
       objectReference: {fileID: 0}
@@ -35458,9 +35706,29 @@ PrefabInstance:
       propertyPath: <PositionA>k__BackingField.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3440614882770939888, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614233514524100596, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
       propertyPath: m_Name
       value: Metal Platform 3x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304863643251128727, guid: 82ebc8d24748bef43bf36e8e2d28c228, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

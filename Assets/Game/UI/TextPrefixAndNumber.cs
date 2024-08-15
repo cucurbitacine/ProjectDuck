@@ -1,26 +1,32 @@
-using System;
+using Game.Core;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Game.UI
 {
     public class TextPrefixAndNumber : MonoBehaviour
     {
         [SerializeField] private string prefix = string.Empty;
+        [SerializeField] private NumberType numberType = NumberType.PlayerId;
         
-        [Space]
-        [SerializeField] private int minNumber = 100;
-        [SerializeField] private int maxNumber = 999;
+        public enum NumberType
+        {
+            PlayerId,
+            AttemptNumber,
+        }
         
         [Space]
         [SerializeField] private TMP_Text text;
 
-        private void UpdateText()
+        private async void UpdateText()
         {
             if (!text) return;
 
-            text.text = $"{prefix}{Random.Range(minNumber, maxNumber + 1)}";
+            var playerData = await GameManager.Instance.GetPlayerDataAsync();
+
+            var number = numberType == NumberType.PlayerId ? playerData.playerId : playerData.attemptNumber;
+            
+            text.text = $"{prefix}{number}";
         }
         
         private void Start()
@@ -30,7 +36,7 @@ namespace Game.UI
 
         private void OnValidate()
         {
-            UpdateText();
+            text.text = $"{prefix}{(numberType == NumberType.PlayerId ? "000" : "00")}";
         }
     }
 }

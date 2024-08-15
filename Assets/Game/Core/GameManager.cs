@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Game.Core
 {
@@ -20,7 +21,8 @@ namespace Game.Core
         {
             return new PlayerData()
             {
-                playerName = "DefaultPlayerName",
+                playerId = Random.Range(100,1000),
+                attemptNumber = Random.Range(10,100),
             };
         }
         
@@ -54,11 +56,11 @@ namespace Game.Core
 
         private PlayerData PlayerData { get; set; }
 
-        public PlayerData GetPlayerData()
+        public async Task<PlayerData> GetPlayerDataAsync()
         {
             if (PlayerData == null)
             {
-                SetPlayerData(CreateNewPlayerData());
+                PlayerData = await LoadPlayerDataAsync();
             }
 
             return PlayerData;
@@ -69,23 +71,31 @@ namespace Game.Core
             PlayerData = newPlayerData;
         }
         
-        public async Task LoadPlayerDataAsync()
+        public async Task<PlayerData> LoadPlayerDataAsync()
         {
+            var jsonData = string.Empty;
+            PlayerData playerData = null;
+            
             try
             {
-                var jsonProfile = PlayerPrefs.GetString(KeyName_PlayerData);
-                PlayerData = JsonUtility.FromJson<PlayerData>(jsonProfile) ?? CreateNewPlayerData();
+                await Task.CompletedTask;
+                
+                jsonData = PlayerPrefs.GetString(KeyName_PlayerData);
+
+                playerData = JsonUtility.FromJson<PlayerData>(jsonData) ?? CreateNewPlayerData();
             }
             catch (Exception e)
             {
                 Debug.LogError($"{e.Message} - {e.StackTrace}");
-                
-                PlayerData = CreateNewPlayerData();
+
+                playerData = CreateNewPlayerData();
             }
             
-            await Task.CompletedTask;
+            SetPlayerData(playerData);
             
-            Debug.Log($"[LOADED PLAYER] {PlayerData}");
+            Debug.Log($"[LOADED PLAYER] {PlayerData} from {jsonData}");
+            
+            return PlayerData;
         }
         
         public async Task SavePlayerDataAsync()
@@ -95,13 +105,13 @@ namespace Game.Core
                 PlayerData = CreateNewPlayerData();
             }
             
-            var jsonProfile = JsonUtility.ToJson(PlayerData);
+            var jsonData = JsonUtility.ToJson(PlayerData);
             
-            PlayerPrefs.SetString(KeyName_PlayerData, jsonProfile);
+            PlayerPrefs.SetString(KeyName_PlayerData, jsonData);
             
             await Task.CompletedTask;
             
-            Debug.Log($"[SAVED PLAYER] {PlayerData}");
+            Debug.Log($"[SAVED PLAYER] {PlayerData} as {jsonData}");
         }
 
         public async void ResetPlayerData()

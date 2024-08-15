@@ -39,11 +39,19 @@ namespace Game.LevelSystem
 
         private void StartGame()
         {
+            newGameButton.gameObject.SetActive(false);
+            continueGameButton.gameObject.SetActive(false);
+            quitGameButton.gameObject.SetActive(false);
+            
             StartCoroutine(StartingGame());
         }
         
         private void QuitGame()
         {
+            newGameButton.gameObject.SetActive(false);
+            continueGameButton.gameObject.SetActive(false);
+            quitGameButton.gameObject.SetActive(false);
+            
             StartCoroutine(QuitingGame());
         }
         
@@ -62,12 +70,7 @@ namespace Game.LevelSystem
             
             GameManager.Instance.Quit();
         }
-
-        private IEnumerator LoadPlayerProfile()
-        {
-            yield return null;
-        }
-
+        
         [ContextMenu(nameof(ResetPlayerProfile))]
         private void ResetPlayerProfile()
         {
@@ -95,12 +98,14 @@ namespace Game.LevelSystem
             fader?.FadeIn();
             
             newGameButton.interactable = false;
-            continueGameButton.interactable = false;
-            
-            yield return new WaitUntil(() => GameManager.Instance.LoadPlayerDataAsync().IsCompleted);
+            continueGameButton.gameObject.SetActive(false);
+
+            var loadingPlayerData = GameManager.Instance.LoadPlayerDataAsync();
+            yield return new WaitUntil(() => loadingPlayerData.IsCompleted);
+            var playerData = loadingPlayerData.Result;
             
             newGameButton.interactable = true;
-            continueGameButton.interactable = !GameManager.Instance.GetPlayerData().newGame;
+            continueGameButton.gameObject.SetActive(!playerData.newGame);
             
             yield return fader?.FadeOut(fadeDuration);
         }

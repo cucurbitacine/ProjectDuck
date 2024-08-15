@@ -41,6 +41,7 @@ namespace Game.LevelSystem
         
         [SerializeField] private bool busy = false;
         [SerializeField] private int levelNumber = 0;
+        [SerializeField] private PlayerData playerData;
         
         [Header("Settings")]
         [SerializeField] private float fadeOutTime = 2f;
@@ -129,7 +130,7 @@ namespace Game.LevelSystem
         }
 
         #endregion
-
+        
         private IEnumerator PreparePlayer()
         {
             yield return new WaitUntil(() => Player);
@@ -138,7 +139,10 @@ namespace Game.LevelSystem
 
             Player.Health.OnDied += HandlePlayerDeath;
 
-            var playerData = GameManager.Instance.GetPlayerData();
+            var loadingPlayerData = GameManager.Instance.GetPlayerDataAsync();
+            yield return new WaitUntil(() => loadingPlayerData.IsCompleted);
+            playerData = loadingPlayerData.Result;
+            
             playerData.levelNumber = levelNumber;
             
             yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
@@ -176,6 +180,10 @@ namespace Game.LevelSystem
         private IEnumerator RestartingLevel()
         {
             yield return ShutdownLevel();
+            
+            playerData.attemptNumber++;
+            var savingPlayerData = GameManager.Instance.SavePlayerDataAsync();
+            yield return new WaitUntil(() => savingPlayerData.IsCompleted);
             
             yield return GameManager.Instance.StartGameAsync();
         }
