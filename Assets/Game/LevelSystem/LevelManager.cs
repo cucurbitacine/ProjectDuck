@@ -38,10 +38,13 @@ namespace Game.LevelSystem
             Won,
             Failed,
         }
-
-        [Header("Settings")]
+        
         [SerializeField] private bool busy = false;
-        [SerializeField] private float fadeTime = 1f;
+        [SerializeField] private int levelNumber = 0;
+        
+        [Header("Settings")]
+        [SerializeField] private float fadeOutTime = 2f;
+        [SerializeField] private float fadeInTime = 4f;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onLevelStarted = new UnityEvent();
@@ -134,6 +137,9 @@ namespace Game.LevelSystem
             Player.Pause(true);
 
             Player.Health.OnDied += HandlePlayerDeath;
+
+            var playerData = GameManager.Instance.GetPlayerData();
+            playerData.levelNumber = levelNumber;
             
             yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
         }
@@ -146,7 +152,7 @@ namespace Game.LevelSystem
             
             OnStopLevel();
             
-            yield return fader?.FadeIn(fadeTime);
+            yield return fader?.FadeIn(fadeInTime);
 
             Player.Pause(true);
             
@@ -192,7 +198,7 @@ namespace Game.LevelSystem
             
             yield return PrepareLevel();
             
-            yield return fader?.FadeOut(fadeTime);
+            yield return fader?.FadeOut(fadeOutTime);
             
             Player.Pause(false);
             
@@ -205,7 +211,7 @@ namespace Game.LevelSystem
 
         private void Update()
         {
-            if (Application.isEditor) // TODO Remove in sometime
+            if (Application.isEditor) // TODO DEVELOPMENT PURPOSE ONLY 
             {
                 if (Input.GetKeyDown(KeyCode.P))
                 {

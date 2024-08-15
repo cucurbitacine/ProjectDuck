@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2117757326512307544}
   - component: {fileID: 7643699215401151193}
   - component: {fileID: 3801748870954854473}
-  - component: {fileID: 6240036033967528862}
+  - component: {fileID: 8829612835406120104}
   m_Layer: 0
   m_Name: Plate Base
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1862251821719304508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -146,8 +146,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d3655b220c4f648565793d0ee4933a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: {fileID: 6917887382316761023}
---- !u!114 &6240036033967528862
+  pressZone: {fileID: 6917887382316761023}
+  onTurnedOn:
+    m_PersistentCalls:
+      m_Calls: []
+  onTurnedOff:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8829612835406120104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,13 +168,19 @@ MonoBehaviour:
   inverse: 0
   toggleValueChanged:
     m_PersistentCalls:
-      m_Calls: []
-  turnedOn:
-    m_PersistentCalls:
-      m_Calls: []
-  turnedOff:
-    m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2063049924239211947}
+        m_TargetAssemblyTypeName: Game.Utils.HighlightLine, Game
+        m_MethodName: Highlight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8370346122353988847
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,8 +190,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3795956467960515190}
-  - component: {fileID: 630318236121245644}
   - component: {fileID: 4940908128914367133}
+  - component: {fileID: 630318236121245644}
+  - component: {fileID: 2063049924239211947}
   m_Layer: 0
   m_Name: Hint Line
   m_TagString: Untagged
@@ -196,12 +209,24 @@ Transform:
   m_GameObject: {fileID: 8370346122353988847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7592381267027633399}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &4940908128914367133
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8370346122353988847}
+  m_Enabled: 1
+  m_SortingLayerID: 1672316835
+  m_SortingLayer: -1
+  m_SortingOrder: -100
+  m_SortAtRoot: 1
 --- !u!120 &630318236121245644
 LineRenderer:
   serializedVersion: 2
@@ -245,9 +270,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 8.75, y: 0, z: 0}
-  - {x: 8.75, y: 0.5, z: 0}
+  - {x: 0, y: 0.25, z: 0}
+  - {x: 1, y: 0.25, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.075
@@ -304,21 +328,24 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!210 &4940908128914367133
-SortingGroup:
+--- !u!114 &2063049924239211947
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8370346122353988847}
   m_Enabled: 1
-  m_SortingLayerID: 1672316835
-  m_SortingLayer: -1
-  m_SortingOrder: -100
-  m_SortAtRoot: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb6bb8e205944469e86e62402a4b48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 0.7924528, g: 0.011213934, b: 0.20007527, a: 1}
+  duration: 0.2
+  onlyOnce: 1
 --- !u!1001 &1239174249685409991
 PrefabInstance:
   m_ObjectHideFlags: 0

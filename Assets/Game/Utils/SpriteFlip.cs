@@ -1,15 +1,16 @@
 using Game.Movements;
+using Game.Player;
 using UnityEngine;
 
 namespace Game.Utils
 {
     [DisallowMultipleComponent]
-    public class SpriteFlip : MonoBehaviour, IMovement2DHandle
+    public class SpriteFlip : MonoBehaviour, IPlayerHandle
     {
         public bool inverse = false;
         
         [Space]
-        public Movement2D movement;
+        public PlayerController player;
         
         public void Flip(float x)
         {
@@ -18,16 +19,16 @@ namespace Game.Utils
             transform.localScale = scale;
         }
 
-        public void SetMovement2D(Movement2D movement2D)
+        public void SetPlayer(PlayerController newPlayer)
         {
-            movement = movement2D;
+            player = newPlayer;
         }
         
         private void LateUpdate()
         {
-            if (movement && movement.isMoving)
+            if (player && player.GetMovement2D().isMoving)
             {
-                Flip(movement.move.x);
+                Flip(player.GetMovement2D().move.x);
             }
         }
     }

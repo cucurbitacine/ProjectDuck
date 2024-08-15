@@ -100,7 +100,7 @@ namespace Game.LevelSystem
             yield return new WaitUntil(() => GameManager.Instance.LoadPlayerDataAsync().IsCompleted);
             
             newGameButton.interactable = true;
-            continueGameButton.interactable = !GameManager.Instance.PlayerData.newGame;
+            continueGameButton.interactable = !GameManager.Instance.GetPlayerData().newGame;
             
             yield return fader?.FadeOut(fadeDuration);
         }

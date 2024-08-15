@@ -2,21 +2,20 @@ using System.Collections.Generic;
 using CucuTools;
 using Game.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.InteractionSystem.Impl
 {
     public class TriggerZone2D : ToggleBase
     {
-        public List<Collider2D> INSIDE = new List<Collider2D>();
-        
         [Header("Trigger Zone")]
         [SerializeField] private bool onlyOnce = false;
         [SerializeField] private LayerMask layerMask = 1;
         [SerializeField] private List<string> whiteList = new List<string>();
 
-        //[Space]
-        //[SerializeField] private UnityEvent<Collider2D> enterEvent = new UnityEvent<Collider2D>();
-        //[SerializeField] private UnityEvent<Collider2D> exitEvent = new UnityEvent<Collider2D>();
+        [Space]
+        [SerializeField] private UnityEvent<Collider2D> onEntered = new UnityEvent<Collider2D>();
+        [SerializeField] private UnityEvent<Collider2D> onExited = new UnityEvent<Collider2D>();
             
         private readonly HashSet<Collider2D> colliderSet = new HashSet<Collider2D>();
 
@@ -36,11 +35,15 @@ namespace Game.InteractionSystem.Impl
             if (colliderSet.Count == 1)
             {
                 TurnOn(true);
+                onEntered.Invoke(other);
             }
-            
-            INSIDE.Add(other);
-            
-            //enterEvent.Invoke(other);
+            else
+            {
+                if (!onlyOnce)
+                {
+                    onEntered.Invoke(other);
+                }  
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -54,10 +57,11 @@ namespace Game.InteractionSystem.Impl
                     TurnOn(false);
                 }
             }
-            
-            INSIDE.Remove(other);
-            
-            //exitEvent.Invoke(other);
+
+            if (!onlyOnce)
+            {
+                onExited.Invoke(other);
+            }
         }
 
         private void OnValidate()

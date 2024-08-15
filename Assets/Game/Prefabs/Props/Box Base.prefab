@@ -12,7 +12,12 @@ GameObject:
   - component: {fileID: 5327644209584754304}
   - component: {fileID: 266879064823166743}
   - component: {fileID: 6098197032019817150}
+  - component: {fileID: 3786811570785392046}
   - component: {fileID: 3119694468542853564}
+  - component: {fileID: 6833966251995542411}
+  - component: {fileID: 5552872169540455200}
+  - component: {fileID: 7071413294294398952}
+  - component: {fileID: 5988323191030251426}
   m_Layer: 0
   m_Name: Box Base
   m_TagString: Untagged
@@ -55,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b4cd59c86246a2740bce454100d6bcac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0.4375, y: 0.4375, z: 0.4375, w: 0.4375}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 0.8828125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,9 +161,26 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &3786811570785392046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78242ff8878d4b458a243d4a358d8470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 586893492787337060}
+  <IsDead>k__BackingField: 0
+  <HealthCurrent>k__BackingField: 30
+  <HealthMax>k__BackingField: 30
+  immortal: 0
 --- !u!114 &3119694468542853564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +197,59 @@ MonoBehaviour:
   kickScale: 0.5
   interactForce: 4
   interactTorque: 0.5
+--- !u!114 &6833966251995542411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cde236cbc3485ab5e2f62df43e8477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteTarget: {fileID: 5327644209584754304}
+  focusSource: {fileID: 586893492787337060}
+--- !u!114 &5552872169540455200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d47b97381f404383b4138ccd6410f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObject: 1
+  deathEffectPrefab: {fileID: 4231454172808684664, guid: 259f7fbef9b2deb47a17a9447cce78ea, type: 3}
+--- !u!114 &7071413294294398952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b12aad4d634f8eb36ae1aa069525f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2
+--- !u!114 &5988323191030251426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a51de17dbc4426dbdf0a3159a23e8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
+  damageReceiver: {fileID: 3786811570785392046}

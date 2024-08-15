@@ -24,7 +24,6 @@ namespace Game.Player
         
         public Health Health { get; private set; }
         public ModelLoader ModelLoader { get; private set; }
-        public DamageReceiver DamageReceiver => Health?.DamageReceiver;
         
         public Vector2 position => _movementController ? _movementController.position : transform.position;
         
@@ -71,22 +70,11 @@ namespace Game.Player
         
         private void HandleModelLoad(GameObject model)
         {
-            SetupMovementController(model);
-        }
-
-        private void SetupMovementController(GameObject root)
-        {
-            _movementController.SetPlayerCollider(_playerCollider);
-            
-            var movement = _movementController.GetMovement2D();
-            
-            if (!movement) return;
-            
-            var handles = root.GetComponentsInChildren<IMovement2DHandle>();
+            var handles = model.GetComponentsInChildren<IPlayerHandle>();
 
             foreach (var handle in handles)
             {
-                handle?.SetMovement2D(movement);
+                handle?.SetPlayer(this);
             }
         }
         
@@ -124,6 +112,8 @@ namespace Game.Player
 
         private void Start()
         {
+            _movementController.SetPlayerCollider(_playerCollider);
+            
             HandleModelLoad(ModelLoader.GetModel());
             
             if (playerInput)

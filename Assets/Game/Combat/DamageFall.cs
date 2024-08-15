@@ -30,7 +30,7 @@ namespace Game.Combat
             
             if (groundedSpeed > maxSpeed)
             {
-                this.SendDamage(player.Health.DamageReceiver);
+                this.SendDamage(player.Health);
             }
         }
 

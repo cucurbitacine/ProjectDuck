@@ -9,7 +9,7 @@ namespace Game.LevelSystem
         [Header("Interactable")]
         [SerializeField] private InteractableBase interactable;
 
-        private void HandleInteraction()
+        private void HandleInteraction(GameObject actor)
         {
             isDone = true;
         }

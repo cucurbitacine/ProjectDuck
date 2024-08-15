@@ -61,10 +61,17 @@ namespace Game.Utils
 
         public Vector2 StartPosition => reverse ? PositionB : PositionA;
         public Vector2 DestinationPosition => reverse ? PositionA : PositionB;
+
+        public Vector2 Velocity => _rigid ? _rigid.velocity : Vector2.zero;
         
         public void Pause(bool value)
         {
             Paused = value;
+        }
+
+        public void Move(PlatformState newState)
+        {
+            state = newState;
         }
         
         [ContextMenu(nameof(MoveOnce))]

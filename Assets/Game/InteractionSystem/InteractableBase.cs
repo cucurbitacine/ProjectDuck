@@ -12,7 +12,7 @@ namespace Game.InteractionSystem
         [SerializeField] private bool onlyOnce = false;
         
         public event Action<bool> OnFocusChanged;
-        public event Action OnInteracted;
+        public event Action<GameObject> OnInteracted;
 
         public void Focus(bool value)
         {
@@ -25,12 +25,12 @@ namespace Game.InteractionSystem
             OnFocusChanged?.Invoke(Focused);
         }
 
-        public void Interact()
+        public void Interact(GameObject actor)
         {
             if (Paused) return;
             
-            OnInteracted?.Invoke();
-
+            OnInteracted?.Invoke(actor);
+            
             if (onlyOnce)
             {
                 Pause(true);

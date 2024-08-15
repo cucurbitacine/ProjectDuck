@@ -17,34 +17,6 @@ PrefabInstance:
       value: Plate Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7592381267027633399, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}

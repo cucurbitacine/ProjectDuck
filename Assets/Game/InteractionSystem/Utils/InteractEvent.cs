@@ -6,13 +6,13 @@ namespace Game.InteractionSystem.Utils
     [RequireComponent(typeof(IInteraction))]
     public sealed class InteractEvent : MonoBehaviour
     {
-        [SerializeField] private UnityEvent interactEvent = new UnityEvent();
+        [SerializeField] private UnityEvent<GameObject> interactEvent = new UnityEvent<GameObject>();
 
         private IInteraction _interaction;
 
-        private void HandleInteract()
+        private void HandleInteract(GameObject actor)
         {
-            interactEvent.Invoke();
+            interactEvent.Invoke(actor);
         }
 
         private void Awake()

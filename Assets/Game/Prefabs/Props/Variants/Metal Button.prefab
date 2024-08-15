@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2509972650712146488}
-  - component: {fileID: 1416072247339365066}
   - component: {fileID: 5015715212001192320}
+  - component: {fileID: 1416072247339365066}
+  - component: {fileID: 4479597350789539424}
   m_Layer: 0
   m_Name: Hint Line
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2766460131541335358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &5015715212001192320
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049531937225342548}
+  m_Enabled: 1
+  m_SortingLayerID: 1672316835
+  m_SortingLayer: -1
+  m_SortingOrder: -100
+  m_SortAtRoot: 1
 --- !u!120 &1416072247339365066
 LineRenderer:
   serializedVersion: 2
@@ -135,21 +148,24 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!210 &5015715212001192320
-SortingGroup:
+--- !u!114 &4479597350789539424
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8049531937225342548}
   m_Enabled: 1
-  m_SortingLayerID: 1672316835
-  m_SortingLayer: -1
-  m_SortingOrder: -100
-  m_SortAtRoot: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb6bb8e205944469e86e62402a4b48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 0.7924528, g: 0.011213934, b: 0.20007527, a: 1}
+  duration: 0.2
+  onlyOnce: 1
 --- !u!1001 &3528217288783884722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,12 +220,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4479597350789539424}
     - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -218,9 +238,45 @@ PrefabInstance:
       propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Highlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.Utils.HighlightLine, Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6366010940915193749, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: onlyOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028555443592378171, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445479627594342012, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445479627594342012, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445479627594342012, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445479627594342012, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4292927488
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -228,10 +284,45 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1626589169802792076, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2509972650712146488}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1900739567575973224, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2169549794812943547}
   m_SourcePrefab: {fileID: 100100000, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
 --- !u!4 &2766460131541335358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1626589169802792076, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
   m_PrefabInstance: {fileID: 3528217288783884722}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3068770482384784602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1900739567575973224, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
+  m_PrefabInstance: {fileID: 3528217288783884722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2169549794812943547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068770482384784602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469e0d62c656453c99e849e1f659d764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4479597350789539424}
+        m_TargetAssemblyTypeName: Game.Utils.HighlightLine, Game
+        m_MethodName: Highlight
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

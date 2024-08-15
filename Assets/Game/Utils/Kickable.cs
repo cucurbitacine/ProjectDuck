@@ -8,7 +8,7 @@ namespace Game.Utils
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Kickable : MonoBehaviour, IInteraction
+    public class Kickable : MonoBehaviour, IInteraction, IFocused
     {
         [SerializeField] private bool paused = false;
         
@@ -44,23 +44,30 @@ namespace Game.Utils
             }
         }
 
-        public event Action OnInteracted;
+        public event Action<GameObject> OnInteracted;
         
         [SerializeField] private float kickScale = 1f;
         [Space]
         [SerializeField] private float interactForce = 1f;
         [SerializeField] private float interactTorque = 1f;
         
-        
-        public void Interact()
+        public void Interact(GameObject actor)
         {
             if (paused) return;
             
-            OnInteracted?.Invoke();
-            
             rigidbody2d.AddForce(Vector2.up * interactForce, ForceMode2D.Impulse);
-            
             rigidbody2d.AddTorque(Mathf.Sign(Random.value - 0.5f) * interactTorque, ForceMode2D.Impulse);
+            
+            OnInteracted?.Invoke(actor);
+        }
+
+        public bool Focused { get; private set; }
+        public event Action<bool> OnFocusChanged;
+        public void Focus(bool value)
+        {
+            Focused = value;
+            
+            OnFocusChanged?.Invoke(value);
         }
     }
 }

@@ -52,7 +52,22 @@ namespace Game.Core
         
         private const string KeyName_PlayerData = nameof(PlayerData);
 
-        public PlayerData PlayerData { get; private set; }
+        private PlayerData PlayerData { get; set; }
+
+        public PlayerData GetPlayerData()
+        {
+            if (PlayerData == null)
+            {
+                SetPlayerData(CreateNewPlayerData());
+            }
+
+            return PlayerData;
+        }
+        
+        public void SetPlayerData(PlayerData newPlayerData)
+        {
+            PlayerData = newPlayerData;
+        }
         
         public async Task LoadPlayerDataAsync()
         {

@@ -6,6 +6,14 @@ namespace Game.Movements
     [RequireComponent(typeof(Ground2D))]
     public class Movement2D : MonoBehaviour
     {
+        public enum MovementState
+        {
+            Grounded,
+            InAir
+        }
+        
+        [field: SerializeField] public MovementState State { get; private set; }
+        
         [Header("Settings")]
         [Min(0f)] [SerializeField] private float speedMax = 5f;
         [Min(0f)] [SerializeField] private float jumpHeight = 2.5f;
@@ -15,7 +23,7 @@ namespace Game.Movements
         [SerializeField] private PhysicsMaterial2D idleFriction;
         [SerializeField] private PhysicsMaterial2D moveFriction;
         
-        private Rigidbody2D _rigid;
+        private Rigidbody2D _rigidbody2d;
         private bool _jumpedOffGround;
         
         public Vector2 move { get; private set; }
@@ -30,17 +38,17 @@ namespace Game.Movements
         
         public Vector2 position => transform.position;
         
-        public float mass => _rigid ? _rigid.mass : 0f;
+        public float mass => _rigidbody2d ? _rigidbody2d.mass : 0f;
         public Vector2 gravity => worldGravity * gravityScale;
         public float gravityPower => gravity.magnitude;
         public float gravityScale
         {
-            get => _rigid ? _rigid.gravityScale : 0f;
+            get => _rigidbody2d ? _rigidbody2d.gravityScale : 0f;
             set
             {
-                if (_rigid)
+                if (_rigidbody2d)
                 {
-                    _rigid.gravityScale = value;
+                    _rigidbody2d.gravityScale = value;
                 }
             }
         }
@@ -59,12 +67,12 @@ namespace Game.Movements
         
         public Vector2 velocity
         {
-            get => _rigid ? _rigid.velocity : Vector2.zero;
+            get => _rigidbody2d ? _rigidbody2d.velocity : Vector2.zero;
             private set
             {
-                if (_rigid)
+                if (_rigidbody2d)
                 {
-                    _rigid.velocity = value;
+                    _rigidbody2d.velocity = value;
                 }
             }
         }
@@ -74,11 +82,11 @@ namespace Game.Movements
 
         public void Warp(Vector2 newPosition)
         {
-            if (_rigid)
+            if (_rigidbody2d)
             {
-                _rigid.position = newPosition;
+                _rigidbody2d.position = newPosition;
                 
-                _rigid.velocity = Vector2.zero;
+                _rigidbody2d.velocity = Vector2.zero;
             }
         }
         
@@ -164,9 +172,9 @@ namespace Game.Movements
             }
         }
         
-        private void UpdateRigid(float deltaTime)
+        private void UpdateRigidbody(float deltaTime)
         {
-            _rigid.sharedMaterial = isGrounded && !isMoving ? idleFriction : moveFriction;
+            _rigidbody2d.sharedMaterial = isGrounded && !isMoving ? idleFriction : moveFriction;
 
             if (isGrounded && !isMoving && !_jumpedOffGround)
             {
@@ -179,18 +187,23 @@ namespace Game.Movements
             if (value) 
             {
                 // Have Landed
+                
+                State = MovementState.Grounded;
             }
             else 
             {
                 // Have Taken Off
 
+                State = MovementState.InAir;
+                
                 if (_jumpedOffGround) _jumpedOffGround = false;
             }
         }
         
         private void Awake()
         {
-            _rigid = GetComponent<Rigidbody2D>();
+            _rigidbody2d = GetComponent<Rigidbody2D>();
+            
             Ground2D = GetComponent<Ground2D>();
 
             SetupFrictions();
@@ -215,7 +228,7 @@ namespace Game.Movements
         {
             UpdateGround(Time.fixedDeltaTime);
             
-            UpdateRigid(Time.fixedDeltaTime);
+            UpdateRigidbody(Time.fixedDeltaTime);
         }
 
         private void OnDrawGizmos()

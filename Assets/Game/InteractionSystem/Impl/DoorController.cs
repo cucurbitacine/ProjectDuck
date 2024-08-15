@@ -35,6 +35,18 @@ namespace Game.InteractionSystem.Impl
         [ContextMenu(nameof(OpenDoor))]
         public void OpenDoor()
         {
+            OpenDoor(true);
+        }
+        
+        [ContextMenu(nameof(CloseDoor))]
+        public void CloseDoor()
+        {
+            OpenDoor(false);
+        }
+        
+        [ContextMenu(nameof(SwitchDoor))]
+        public void SwitchDoor()
+        {
             OpenDoor(!IsOpened);
         }
         

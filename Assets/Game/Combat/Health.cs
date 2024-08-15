@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Game.Combat
 {
-    [RequireComponent(typeof(DamageReceiver))]
-    public class Health : MonoBehaviour
+    public class Health : DamageReceiver
     {
         public const int MinHealthMax = 1;
         public const int DeadlyHealth = 0;
         
+        [field: Header("Health")]
         [field: SerializeField] public bool IsDead { get; private set; }
         [field: Space]
         [field: SerializeField, Min(DeadlyHealth)] public int HealthCurrent { get; private set; } = 90;
@@ -17,8 +17,6 @@ namespace Game.Combat
 
         [Space]
         [SerializeField] private bool immortal = false;
-        
-        public DamageReceiver DamageReceiver { get; private set; }
         
         /// <typeparam name="Current">Health Current</typeparam>
         /// <typeparam name="Max">Health Max</typeparam>
@@ -98,7 +96,7 @@ namespace Game.Combat
             Damage(HealthCurrent);
         }
         
-        private void HandleDamageEvent(DamageEvent damageEvent)
+        public override void HandleDamageEvent(DamageEvent damageEvent)
         {
             if (damageEvent.damage.amount > 0)
             {
@@ -108,21 +106,6 @@ namespace Game.Combat
             {
                 Heal(-damageEvent.damage.amount);
             }
-        }
-
-        private void Awake()
-        {
-            DamageReceiver = GetComponent<DamageReceiver>();
-        }
-
-        private void OnEnable()
-        {
-            DamageReceiver.OnDamageReceived += HandleDamageEvent;
-        }
-
-        private void OnDisable()
-        {
-            DamageReceiver.OnDamageReceived -= HandleDamageEvent;
         }
     }
 }

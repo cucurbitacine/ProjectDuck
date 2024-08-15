@@ -35,8 +35,8 @@ namespace Game.Combat
             {
                 TurnOn(true);
 
-                var dmg = new Damage() { amount = -healAmount };
-                source.SendDamage(dmg, player.Health.DamageReceiver);
+                var healingDamage = new Damage() { amount = -healAmount };
+                source.SendDamage(healingDamage, player.Health);
                 
                 onPicked.Invoke();
                 
