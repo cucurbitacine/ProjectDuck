@@ -14,10 +14,12 @@ GameObject:
   - component: {fileID: 6098197032019817150}
   - component: {fileID: 3786811570785392046}
   - component: {fileID: 3119694468542853564}
-  - component: {fileID: 6833966251995542411}
   - component: {fileID: 5552872169540455200}
   - component: {fileID: 7071413294294398952}
   - component: {fileID: 5988323191030251426}
+  - component: {fileID: 6057856105057971460}
+  - component: {fileID: 6833966251995542411}
+  - component: {fileID: 472197018348812729}
   m_Layer: 0
   m_Name: Box Base
   m_TagString: Untagged
@@ -193,24 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef43fb67686c42099c420a8a380310e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paused: 0
-  kickScale: 0.5
+  kickScale: 0
   interactForce: 4
   interactTorque: 0.5
---- !u!114 &6833966251995542411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586893492787337060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cde236cbc3485ab5e2f62df43e8477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteTarget: {fileID: 5327644209584754304}
-  focusSource: {fileID: 586893492787337060}
+  <Paused>k__BackingField: 0
 --- !u!114 &5552872169540455200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +241,77 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   damageReceiver: {fileID: 3786811570785392046}
+--- !u!114 &6057856105057971460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81635be2a4434708a3435338276bcbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Outlined>k__BackingField: 0
+  outlineColor: {r: 0, g: 1, b: 1, a: 1}
+  outlineAlpha: 0.95
+  outlineWidth: 0.004
+--- !u!114 &6833966251995542411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cde236cbc3485ab5e2f62df43e8477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 6057856105057971460}
+--- !u!114 &472197018348812729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6678ed370c4f49d89bc87018798d8b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Paused>k__BackingField: 0
+  <Applying>k__BackingField: 0
+  <Delay>k__BackingField: 0.1
+  onStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3119694468542853564}
+        m_TargetAssemblyTypeName: Game.Utils.Kickable, Game
+        m_MethodName: Pause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3119694468542853564}
+        m_TargetAssemblyTypeName: Game.Utils.Kickable, Game
+        m_MethodName: Pause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

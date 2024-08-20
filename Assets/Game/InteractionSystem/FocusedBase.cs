@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.InteractionSystem
 {
-    public class FocusedBase : MonoBehaviour, IFocused
+    public sealed class FocusedBase : MonoBehaviour, IFocused
     {
         [field: SerializeField] public bool Focused { get; private set; }
         [field: SerializeField] public bool Paused { get; private set; }

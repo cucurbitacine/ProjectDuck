@@ -18,7 +18,7 @@ namespace Game.Dev
             
             if (pickupAbility && abilityText)
             {
-                var ability = pickupAbility.GetAbility();
+                var ability = pickupAbility.GetAbilityPrefab();
 
                 if (ability)
                 {

@@ -27,13 +27,23 @@ namespace Game.Player
         
         public Vector2 position => _movementController ? _movementController.position : transform.position;
         
-        public void PickAbility(PickupAbility pickupAbility)
+        public bool PickAbility(PickupAbility pickupAbility)
         {
+            if (activeAbility && pickupAbility.AbilityId >= 0)
+            {
+                if (pickupAbility.AbilityId == activeAbility.AbilityId)
+                {
+                    return false;
+                }
+            }
+            
             DropAbility();
             
-            var abilityPrefab = pickupAbility.GetAbility();
+            var abilityPrefab = pickupAbility.GetAbilityPrefab();
             activeAbility = Instantiate(abilityPrefab);
             activeAbility.SetPlayer(this);
+
+            return true;
         }
 
         public void DropAbility()

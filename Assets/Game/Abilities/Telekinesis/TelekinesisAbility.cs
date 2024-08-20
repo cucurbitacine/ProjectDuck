@@ -11,34 +11,48 @@ namespace Game.Abilities.Telekinesis
         [SerializeField] private float outerRadiusTelekinesis = 2f;
         [SerializeField] private float innerRadiusTelekinesis = 0.2f;
         [SerializeField] private LayerMask layerMask = 1;
+        
         [Space]
-        [Min(0)]
-        [SerializeField] private float minForcePower = 10;
-        [Min(0)]
-        [SerializeField] private float maxForcePower = 100;
+        [Min(0)] [SerializeField] private float minForcePower = 10;
+        [Min(0)] [SerializeField] private float maxForcePower = 100;
         [SerializeField] private AnimationCurve forcePowerCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+
+        [Header("FX")]
+        [Min(0f)] [SerializeField] private float particleSpeed = 1f;
+        [SerializeField] private float particleSpeedScale = 1f;
+        [SerializeField] private float effectLifetime = 5f;
+        [SerializeField] private GameObject effectPrefab;
+        
+        private ParticleSystem _effect;
         
         [Header("Input")]
         [SerializeField] private bool primaryFire;
-        [SerializeField] private Vector2 screenPoint;
         
         private ContactFilter2D _filter2D = new ContactFilter2D();
         private PlayerInput _playerInput;
         private readonly List<Collider2D> _overlaps = new List<Collider2D>();
         private readonly HashSet<Rigidbody2D> _usedRigidbody2d = new HashSet<Rigidbody2D>();
         
-        private static Camera CameraMain => Camera.main;
-
-        private Vector2 worldPoint => _playerInput ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
-
+        private Vector2 worldPoint => _playerInput ? _playerInput.WorldPoint : transform.position;
+        
         private void HandlePrimaryFire(bool value)
         {
             primaryFire = value;
-        }
-        
-        private void HandleScreenPoint(Vector2 value)
-        {
-            screenPoint = value;
+
+            if (effectPrefab)
+            {
+                if (_effect)
+                {
+                    _effect.Stop();
+                }
+                
+                if (value)
+                {
+                    _effect = Instantiate(effectPrefab).GetComponent<ParticleSystem>();
+                
+                    _effect.Play();
+                }
+            }
         }
         
         private float EvaluateForcePower(float t)
@@ -55,7 +69,9 @@ namespace Game.Abilities.Telekinesis
         {
             if (rigidbody2d.TryGetComponent<TelekinesisObject>(out var telekinesisObject))
             {
-                if (telekinesisObject.paused) return;
+                if (telekinesisObject.Paused) return;
+
+                telekinesisObject.ApplyForce();
             }
             
             var distance = Vector2.Distance(worldPoint, rigidbody2d.position);
@@ -88,13 +104,12 @@ namespace Game.Abilities.Telekinesis
                 }
             }
         }
-
+        
         protected override void OnSetPlayer()
         {
             _playerInput = Player.GetPlayerInput();
             
             _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
         
         private void OnDestroy()
@@ -102,10 +117,36 @@ namespace Game.Abilities.Telekinesis
             if (_playerInput)
             {
                 _playerInput.PrimaryFireEvent -= HandlePrimaryFire;
-                _playerInput.ScreenPointEvent -= HandleScreenPoint;
+            }
+
+            if (_effect)
+            {
+                _effect.Stop();
             }
         }
-        
+
+        private void Update()
+        {
+            if (_effect)
+            {
+                if (primaryFire)
+                {
+                    _effect.gameObject.transform.SetPositionAndRotation(worldPoint, Quaternion.identity);    
+                }
+
+                var speed = particleSpeedScale * particleSpeed;
+                
+                var shape = _effect.shape;
+                shape.radius = outerRadiusTelekinesis;
+
+                var main = _effect.main;
+                main.startSpeed = -speed;
+                main.startLifetime = (Mathf.Approximately(particleSpeed, 0f)
+                    ? 1f
+                    : (outerRadiusTelekinesis - innerRadiusTelekinesis) / particleSpeed);
+            }
+        }
+
         private void FixedUpdate()
         {
             if (primaryFire)
@@ -118,6 +159,7 @@ namespace Game.Abilities.Telekinesis
         {
             Gizmos.color = primaryFire ? Color.white : Color.grey;
             Gizmos.DrawWireSphere(worldPoint, outerRadiusTelekinesis);
+            
             if (innerRadiusTelekinesis > 0)
             {
                 Gizmos.DrawWireSphere(worldPoint, innerRadiusTelekinesis);

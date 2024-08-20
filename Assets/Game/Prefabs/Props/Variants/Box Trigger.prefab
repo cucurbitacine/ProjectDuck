@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a4b9cd360fd1f49b991ce241aa8503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventOnStart:
+  moment: 2
+  unityEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8396379694606772150}

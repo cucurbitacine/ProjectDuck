@@ -59,7 +59,11 @@ namespace Game.LevelSystem
         {
             yield return fader?.FadeIn(fadeDuration);
 
-            var startingGame = GameManager.Instance.StartGameAsync();
+            var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
+            yield return new WaitUntil(() => gettingPlayerData.IsCompleted);
+            var playerData = gettingPlayerData.Result;
+            
+            var startingGame = GameManager.Instance.StartGameAsync(playerData);
 
             yield return new WaitUntil(() => startingGame.isDone);
         }
@@ -100,9 +104,9 @@ namespace Game.LevelSystem
             newGameButton.interactable = false;
             continueGameButton.gameObject.SetActive(false);
 
-            var loadingPlayerData = GameManager.Instance.LoadPlayerDataAsync();
-            yield return new WaitUntil(() => loadingPlayerData.IsCompleted);
-            var playerData = loadingPlayerData.Result;
+            var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
+            yield return new WaitUntil(() => gettingPlayerData.IsCompleted);
+            var playerData = gettingPlayerData.Result;
             
             newGameButton.interactable = true;
             continueGameButton.gameObject.SetActive(!playerData.newGame);

@@ -8,10 +8,8 @@ namespace Game.Utils
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Kickable : MonoBehaviour, IInteraction, IFocused
+    public class Kickable : MonoBehaviour, IInteraction, IFocused, IPaused
     {
-        [SerializeField] private bool paused = false;
-        
         private Rigidbody2D rigidbody2d; 
         
         private void Awake()
@@ -21,7 +19,7 @@ namespace Game.Utils
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (paused) return;
+            if (Paused) return;
             
             var source = other.collider.attachedRigidbody
                 ? other.collider.attachedRigidbody.gameObject
@@ -53,7 +51,7 @@ namespace Game.Utils
         
         public void Interact(GameObject actor)
         {
-            if (paused) return;
+            if (Paused) return;
             
             rigidbody2d.AddForce(Vector2.up * interactForce, ForceMode2D.Impulse);
             rigidbody2d.AddTorque(Mathf.Sign(Random.value - 0.5f) * interactTorque, ForceMode2D.Impulse);
@@ -65,9 +63,23 @@ namespace Game.Utils
         public event Action<bool> OnFocusChanged;
         public void Focus(bool value)
         {
+            if (Paused) return;
+                
             Focused = value;
             
             OnFocusChanged?.Invoke(value);
+        }
+
+        [field: SerializeField] public bool Paused { get; private set; }
+        
+        public void Pause(bool value)
+        {
+            if (value && Focused)
+            {
+                Focus(false);
+            }
+            
+            Paused = value;
         }
     }
 }

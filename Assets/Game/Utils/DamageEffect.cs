@@ -1,4 +1,5 @@
 using CucuTools.DamageSystem;
+using Game.VFX;
 using UnityEngine;
 
 namespace Game.Utils

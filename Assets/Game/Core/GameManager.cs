@@ -19,6 +19,8 @@ namespace Game.Core
 
         private static PlayerData CreateNewPlayerData()
         {
+            Debug.LogWarning($"[CREATE PLAYER] NEW");
+            
             return new PlayerData()
             {
                 playerId = Random.Range(100,1000),
@@ -26,129 +28,135 @@ namespace Game.Core
             };
         }
         
-        private static int GetSceneBuildIndexByLevelNumber(int currentLevel)
+        private static bool TryGetSceneBuildIndexByLevelNumber(int levelNumber, out int buildIndex)
         {
-            var buildIndex = -1;
+            if (0 <= levelNumber && levelNumber < TotalNumberLevels)
+            {
+                buildIndex = SceneBuildIndex_FirstLevel + levelNumber;
+                return true;
+            }
 
-            if (currentLevel < 0)
+            if (levelNumber < 0)
             {
                 buildIndex = SceneBuildIndex_FirstLevel;
-            }
-            else
-            {
-                buildIndex = currentLevel + SceneBuildIndex_FirstLevel;
+                return true;
             }
 
-            if (buildIndex < 0 || SceneManager.sceneCountInBuildSettings <= buildIndex)
+            if (TotalNumberLevels <= levelNumber)
             {
-                buildIndex = SceneBuildIndex_MainMenu;
+                buildIndex = SceneBuildIndex_CreditsScene;
+                return true;
             }
-
-            return buildIndex;
+            
+            buildIndex = SceneBuildIndex_MainMenu;
+            return false;
         }
         
         #endregion
         
         private const int SceneBuildIndex_MainMenu = 0;
+        private const int SceneBuildIndex_CreditsScene = SceneBuildIndex_FirstLevel + TotalNumberLevels;
         private const int SceneBuildIndex_FirstLevel = 1;
-        
+        private const int TotalNumberLevels = 2;
+
+        #region PlayerData Logic
+
         private const string KeyName_PlayerData = nameof(PlayerData);
 
         private PlayerData PlayerData { get; set; }
-
+        
         public async Task<PlayerData> GetPlayerDataAsync()
         {
             if (PlayerData == null)
             {
+                Debug.LogWarning($"[GET PLAYER] NULL");
+                
                 PlayerData = await LoadPlayerDataAsync();
             }
 
+            Debug.Log($"[GET PLAYER] \"{PlayerData}\"");
+            
             return PlayerData;
-        }
-        
-        public void SetPlayerData(PlayerData newPlayerData)
-        {
-            PlayerData = newPlayerData;
         }
         
         public async Task<PlayerData> LoadPlayerDataAsync()
         {
-            var jsonData = string.Empty;
-            PlayerData playerData = null;
+            PlayerData playerData;
             
             try
             {
                 await Task.CompletedTask;
                 
-                jsonData = PlayerPrefs.GetString(KeyName_PlayerData);
+                var jsonData = PlayerPrefs.GetString(KeyName_PlayerData);
 
                 playerData = JsonUtility.FromJson<PlayerData>(jsonData) ?? CreateNewPlayerData();
+                
+                Debug.Log($"[LOADED PLAYER] \"{playerData}\" from \"{jsonData}\"");
             }
             catch (Exception e)
             {
-                Debug.LogError($"{e.Message} - {e.StackTrace}");
+                Debug.LogError($"[Message: \"{e.Message}\"]\n[StackTrace: \"{e.StackTrace}\"]");
 
                 playerData = CreateNewPlayerData();
+                
+                Debug.Log($"[LOADED PLAYER] \"{playerData}\"");
             }
             
-            SetPlayerData(playerData);
-            
-            Debug.Log($"[LOADED PLAYER] {PlayerData} from {jsonData}");
-            
-            return PlayerData;
+            return playerData;
         }
         
-        public async Task SavePlayerDataAsync()
+        public async Task SavePlayerDataAsync(PlayerData playerData)
         {
-            if (PlayerData == null)
-            {
-                PlayerData = CreateNewPlayerData();
-            }
-            
-            var jsonData = JsonUtility.ToJson(PlayerData);
+            var jsonData = JsonUtility.ToJson(playerData);
             
             PlayerPrefs.SetString(KeyName_PlayerData, jsonData);
             
+            Debug.Log($"[SAVED PLAYER] \"{playerData}\" as \"{jsonData}\"");
+            
             await Task.CompletedTask;
-            
-            Debug.Log($"[SAVED PLAYER] {PlayerData} as {jsonData}");
         }
 
-        public async void ResetPlayerData()
+        public void ResetPlayerData()
         {
-            PlayerData = CreateNewPlayerData();
-
-            Debug.Log($"[RESET PLAYER] {PlayerData}");
+            PlayerPrefs.DeleteKey(KeyName_PlayerData);
             
-            await SavePlayerDataAsync();
+            PlayerData = null;
+
+            Debug.Log($"[RESET PLAYER]");
         }
 
-        public AsyncOperation StartGameAsync()
+        #endregion
+
+        public AsyncOperation StartGameAsync(PlayerData playerData)
         {
-            if (PlayerData.levelNumber < 0)
+            if (playerData.levelNumber < 0)
             {
-                PlayerData.levelNumber = 0;
+                playerData.levelNumber = 0;
             }
+
+            var sceneBuildIndex = TryGetSceneBuildIndexByLevelNumber(playerData.levelNumber, out var buildIndex)
+                ? buildIndex
+                : SceneBuildIndex_MainMenu;
             
-            var buildIndex = GetSceneBuildIndexByLevelNumber(PlayerData.levelNumber);
-            
-            return LoadSceneAsync(buildIndex);
+            return LoadSceneAsync(sceneBuildIndex);
         }
         
-        public AsyncOperation LoadNextLevelAsync()
+        public AsyncOperation LoadNextLevelAsync(PlayerData playerData)
         {
-            if (PlayerData.levelNumber < 0)
+            if (playerData.levelNumber < 0)
             {
-                PlayerData.levelNumber = 0;
+                playerData.levelNumber = 0;
             }
             else
             {
-                PlayerData.levelNumber++;
+                playerData.levelNumber++;
             }
             
-            var buildIndex = GetSceneBuildIndexByLevelNumber(PlayerData.levelNumber);
+            var sceneBuildIndex = TryGetSceneBuildIndexByLevelNumber(playerData.levelNumber, out var buildIndex)
+                ? buildIndex
+                : SceneBuildIndex_MainMenu;
             
-            return LoadSceneAsync(buildIndex);
+            return LoadSceneAsync(sceneBuildIndex);
         }
         
         public AsyncOperation LoadMainMenuAsync()

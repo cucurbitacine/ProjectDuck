@@ -66,7 +66,7 @@ namespace Inputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Point"",
+                    ""name"": ""ScreenPoint"",
                     ""type"": ""Value"",
                     ""id"": ""a042deaf-c90e-4264-800d-71df0d2a4437"",
                     ""expectedControlType"": ""Vector2"",
@@ -330,7 +330,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Point"",
+                    ""action"": ""ScreenPoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1010,7 +1010,7 @@ namespace Inputs
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_PrimaryFire = m_Player.FindAction("PrimaryFire", throwIfNotFound: true);
             m_Player_SecondaryFire = m_Player.FindAction("SecondaryFire", throwIfNotFound: true);
-            m_Player_Point = m_Player.FindAction("Point", throwIfNotFound: true);
+            m_Player_ScreenPoint = m_Player.FindAction("ScreenPoint", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
@@ -1091,7 +1091,7 @@ namespace Inputs
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_PrimaryFire;
         private readonly InputAction m_Player_SecondaryFire;
-        private readonly InputAction m_Player_Point;
+        private readonly InputAction m_Player_ScreenPoint;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Zoom;
         private readonly InputAction m_Player_Interact;
@@ -1103,7 +1103,7 @@ namespace Inputs
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @PrimaryFire => m_Wrapper.m_Player_PrimaryFire;
             public InputAction @SecondaryFire => m_Wrapper.m_Player_SecondaryFire;
-            public InputAction @Point => m_Wrapper.m_Player_Point;
+            public InputAction @ScreenPoint => m_Wrapper.m_Player_ScreenPoint;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
@@ -1128,9 +1128,9 @@ namespace Inputs
                 @SecondaryFire.started += instance.OnSecondaryFire;
                 @SecondaryFire.performed += instance.OnSecondaryFire;
                 @SecondaryFire.canceled += instance.OnSecondaryFire;
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
+                @ScreenPoint.started += instance.OnScreenPoint;
+                @ScreenPoint.performed += instance.OnScreenPoint;
+                @ScreenPoint.canceled += instance.OnScreenPoint;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -1156,9 +1156,9 @@ namespace Inputs
                 @SecondaryFire.started -= instance.OnSecondaryFire;
                 @SecondaryFire.performed -= instance.OnSecondaryFire;
                 @SecondaryFire.canceled -= instance.OnSecondaryFire;
-                @Point.started -= instance.OnPoint;
-                @Point.performed -= instance.OnPoint;
-                @Point.canceled -= instance.OnPoint;
+                @ScreenPoint.started -= instance.OnScreenPoint;
+                @ScreenPoint.performed -= instance.OnScreenPoint;
+                @ScreenPoint.canceled -= instance.OnScreenPoint;
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
@@ -1354,7 +1354,7 @@ namespace Inputs
             void OnLook(InputAction.CallbackContext context);
             void OnPrimaryFire(InputAction.CallbackContext context);
             void OnSecondaryFire(InputAction.CallbackContext context);
-            void OnPoint(InputAction.CallbackContext context);
+            void OnScreenPoint(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnZoom(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);

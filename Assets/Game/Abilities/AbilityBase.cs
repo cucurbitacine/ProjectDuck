@@ -6,6 +6,8 @@ namespace Game.Abilities
     [DisallowMultipleComponent]
     public abstract class AbilityBase : MonoBehaviour
     {
+        [field: SerializeField] public int AbilityId { get; private set; } = -1;
+        
         public PlayerController Player { get; private set; }
         
         public void SetPlayer(PlayerController newPlayer)

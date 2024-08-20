@@ -139,13 +139,13 @@ namespace Game.LevelSystem
 
             Player.Health.OnDied += HandlePlayerDeath;
 
-            var loadingPlayerData = GameManager.Instance.GetPlayerDataAsync();
-            yield return new WaitUntil(() => loadingPlayerData.IsCompleted);
-            playerData = loadingPlayerData.Result;
+            var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
+            yield return new WaitUntil(() => gettingPlayerData.IsCompleted);
+            playerData = gettingPlayerData.Result;
             
             playerData.levelNumber = levelNumber;
             
-            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync().IsCompleted);
+            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
         }
 
         private IEnumerator ShutdownLevel()
@@ -174,7 +174,7 @@ namespace Game.LevelSystem
         {
             yield return ShutdownLevel();
             
-            yield return GameManager.Instance.LoadNextLevelAsync();
+            yield return GameManager.Instance.LoadNextLevelAsync(playerData);
         }
 
         private IEnumerator RestartingLevel()
@@ -182,10 +182,10 @@ namespace Game.LevelSystem
             yield return ShutdownLevel();
             
             playerData.attemptNumber++;
-            var savingPlayerData = GameManager.Instance.SavePlayerDataAsync();
-            yield return new WaitUntil(() => savingPlayerData.IsCompleted);
+
+            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
             
-            yield return GameManager.Instance.StartGameAsync();
+            yield return GameManager.Instance.StartGameAsync(playerData);
         }
         
         private void HandlePlayerDeath()
@@ -196,6 +196,8 @@ namespace Game.LevelSystem
         private void Awake()
         {
             Busy = true;
+
+            if (fader == null) fader = FindObjectOfType<Fader>();
         }
 
         private IEnumerator Start()

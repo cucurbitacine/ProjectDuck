@@ -1,3 +1,4 @@
+using System;
 using CucuTools.DamageSystem;
 using Game.InteractionSystem;
 using Game.Player;
@@ -7,69 +8,46 @@ using UnityEngine.Events;
 
 namespace Game.Combat
 {
-    public class HealPickup : ToggleBase
+    public class HealPickup : PickupBase, IInteraction
     {
-        [Header("Pickup")]
+        [Header("Healing")]
         [Min(0)]
         [SerializeField] private int healAmount = 50;
-        
-        [Space]
-        [SerializeField] private bool destroyAfterPick = false;
-        [SerializeField] private bool disableAfterPick = false;
-        [SerializeField] private float enableTimeAfterDisabled = 0f;
-
         [Space]
         [SerializeField] private UnityEvent onPicked = new UnityEvent();
 
         [Header("References")]
         [SerializeField] private DamageSource source;
-        
-        private void SetActive()
-        {
-            gameObject.SetActive(true);
-        }
-        
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.TryGet<PlayerController>(out var player))
-            {
-                TurnOn(true);
 
-                var healingDamage = new Damage() { amount = -healAmount };
-                source.SendDamage(healingDamage, player.Health);
+        public event Action<GameObject> OnInteracted;
+        
+        public void Interact(GameObject actor)
+        {
+            if (!actor.TryGetComponent<PlayerController>(out var player)) return;
+            
+            HealPlayer(player);
                 
-                onPicked.Invoke();
-                
-                if (destroyAfterPick)
-                {
-                    Destroy(gameObject);
-                }
-                else if (disableAfterPick)
-                {
-                    gameObject.SetActive(false);
-
-                    if (enableTimeAfterDisabled > 0f)
-                    {
-                        Invoke(nameof(SetActive), enableTimeAfterDisabled);
-                    }
-                }
-            }
-        }
-
-        private void Awake()
-        {
-            if (TryGetComponent<Collider2D>(out var cld2d))
-            {
-                cld2d.isTrigger = true;
-            }
+            AfterPick();
+            
+            OnInteracted?.Invoke(actor);
         }
         
-        private void OnValidate()
+        public void HealPlayer(PlayerController player)
         {
-            if (TryGetComponent<Collider2D>(out var cld2d))
-            {
-                cld2d.isTrigger = true;
-            }
+            var healingDamage = new Damage() { amount = -healAmount };
+            
+            source.SendDamage(healingDamage, player.Health);
+                
+            onPicked.Invoke();
+        }
+
+        protected override bool TryPickup(Collider2D other)
+        {
+            if (!other.TryGet<PlayerController>(out var player)) return false;
+            
+            HealPlayer(player);
+
+            return true;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Game.Abilities.Laser;
 using Game.InteractionSystem.Impl;
 using UnityEngine;
 

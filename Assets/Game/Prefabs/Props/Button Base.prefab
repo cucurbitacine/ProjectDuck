@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 541616161059797719}
   - component: {fileID: 4363529517824485524}
   - component: {fileID: 5118950859724530267}
+  - component: {fileID: 5082107507474844284}
   m_Layer: 0
   m_Name: Button Base
   m_TagString: Untagged
@@ -140,6 +141,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5082107507474844284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900739567575973224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cde236cbc3485ab5e2f62df43e8477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 7851283427793647447}
 --- !u!1 &7761616148240934548
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768719791968980753}
   - component: {fileID: 5084168663553799349}
-  - component: {fileID: 6864376802993212113}
+  - component: {fileID: 7851283427793647447}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -225,7 +239,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6864376802993212113
+--- !u!114 &7851283427793647447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,11 +248,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7761616148240934548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46cde236cbc3485ab5e2f62df43e8477, type: 3}
+  m_Script: {fileID: 11500000, guid: 81635be2a4434708a3435338276bcbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteTarget: {fileID: 5084168663553799349}
-  focusSource: {fileID: 1900739567575973224}
+  <Outlined>k__BackingField: 0
+  outlineColor: {r: 0, g: 1, b: 1, a: 1}
+  outlineAlpha: 0.95
+  outlineWidth: 0.004
 --- !u!1001 &7402656189384809506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +279,14 @@ PrefabInstance:
       propertyPath: m_SortAtRoot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306769844715931416, guid: 35906a85a1149144591ee0be13132c90, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 306769844715931416, guid: 35906a85a1149144591ee0be13132c90, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -911753163
+      objectReference: {fileID: 0}
     - target: {fileID: 1393901848151630873, guid: 35906a85a1149144591ee0be13132c90, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0.5
@@ -270,6 +294,10 @@ PrefabInstance:
     - target: {fileID: 3250065563697676222, guid: 35906a85a1149144591ee0be13132c90, type: 3}
       propertyPath: m_Name
       value: Hint Text Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444228669820589201, guid: 35906a85a1149144591ee0be13132c90, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -911753163
       objectReference: {fileID: 0}
     - target: {fileID: 3613508599291912157, guid: 35906a85a1149144591ee0be13132c90, type: 3}
       propertyPath: m_LocalPosition.x

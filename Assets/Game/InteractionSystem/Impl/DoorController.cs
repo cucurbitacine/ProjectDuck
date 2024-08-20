@@ -72,10 +72,13 @@ namespace Game.InteractionSystem.Impl
             var timer = 0f;
             while (timer < timeBlend)
             {
-                var t = Mathf.SmoothStep(0f, 1f, timer / timeBlend);
-                progressBlend = Mathf.Lerp(originBlend, targetBlend, t);
+                if (!Paused)
+                {
+                    var t = Mathf.SmoothStep(0f, 1f, timer / timeBlend);
+                    progressBlend = Mathf.Lerp(originBlend, targetBlend, t);
                 
-                SetAnchorPosition(progressBlend);
+                    SetAnchorPosition(progressBlend);
+                }
                 
                 timer += Time.deltaTime;
                 yield return null;

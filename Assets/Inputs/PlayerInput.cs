@@ -7,7 +7,6 @@ namespace Inputs
     [CreateAssetMenu(menuName = "Game/Inputs/Create Player Input", fileName = nameof(PlayerInput), order = 0)]
     public class PlayerInput : ScriptableObject, GameInput.IPlayerActions
     {
-        public Vector2 ScreenPoint { get; private set; }
         
         public event Action<Vector2> MoveEvent;
         public event Action<Vector2> LookEvent;
@@ -21,6 +20,11 @@ namespace Inputs
         public event Action<float> ZoomEvent;
         
         private GameInput _gameInput;
+        
+        public Vector2 ScreenPoint => _gameInput != null ? _gameInput.Player.ScreenPoint.ReadValue<Vector2>() : Vector2.zero;
+        public Vector2 WorldPoint => CameraMain ? CameraMain.ScreenToWorldPoint(ScreenPoint) : Vector2.zero;
+        
+        private static Camera CameraMain => Camera.main;
         
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -56,11 +60,9 @@ namespace Inputs
             }
         }
 
-        public void OnPoint(InputAction.CallbackContext context)
+        public void OnScreenPoint(InputAction.CallbackContext context)
         {
-            ScreenPoint = context.ReadValue<Vector2>();
-            
-            ScreenPointEvent?.Invoke(ScreenPoint);
+            ScreenPointEvent?.Invoke(context.ReadValue<Vector2>());
         }
 
         public void OnJump(InputAction.CallbackContext context)
