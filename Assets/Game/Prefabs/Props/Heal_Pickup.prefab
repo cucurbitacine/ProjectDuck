@@ -112,12 +112,11 @@ GameObject:
   - component: {fileID: 7155164344162050147}
   - component: {fileID: 4242594797107207641}
   - component: {fileID: 7723535036734950062}
-  - component: {fileID: 838150181417328329}
   - component: {fileID: 9008736836147164960}
-  - component: {fileID: 5876737096563059063}
+  - component: {fileID: 838150181417328329}
   - component: {fileID: 6517539557108183642}
   m_Layer: 0
-  m_Name: Pickup Heal
+  m_Name: Heal_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +195,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &9008736836147164960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414085597789081600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622fdcbecfea4b63b3183f7a786b3b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TurnedOn>k__BackingField: 0
+  <Paused>k__BackingField: 0
+  <Focused>k__BackingField: 0
+  destroyAfterPick: 0
+  enableTimeAfterDisabled: 0
+  healAmount: 100
+  onPicked:
+    m_PersistentCalls:
+      m_Calls: []
+  source: {fileID: 838150181417328329}
 --- !u!114 &838150181417328329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,41 +233,6 @@ MonoBehaviour:
   <DamageAmount>k__BackingField: 0
   <CriticalChance>k__BackingField: 0
   <CriticalBonusPercentage>k__BackingField: 0
---- !u!114 &9008736836147164960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414085597789081600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 622fdcbecfea4b63b3183f7a786b3b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <TurnedOn>k__BackingField: 0
-  <Paused>k__BackingField: 0
-  destroyAfterPick: 0
-  enableTimeAfterDisabled: 0
-  healAmount: 100
-  onPicked:
-    m_PersistentCalls:
-      m_Calls: []
-  source: {fileID: 838150181417328329}
---- !u!114 &5876737096563059063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414085597789081600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20bf7ad68dd74ea4a348ad57ab7ea04e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Focused>k__BackingField: 0
-  <Paused>k__BackingField: 0
 --- !u!114 &6517539557108183642
 MonoBehaviour:
   m_ObjectHideFlags: 0

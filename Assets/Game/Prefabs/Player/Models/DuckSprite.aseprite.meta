@@ -77,8 +77,8 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
-    spritePadding: 0
+    mosaicPadding: 0
+    spritePadding: 4
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -90,14 +90,14 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
-    spritePadding: 0
+    mosaicPadding: 0
+    spritePadding: 4
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638592313710327017
+  platformSettingsDirtyTick: 638597561166465742
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: DuckSprite_Frame_0
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.09090909}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 55
-      y: 4
-      width: 15
-      height: 18
+      x: 0
+      y: 71
+      width: 19
+      height: 22
     spriteID: f2a59dbf1342cd84f9cd6024f8ab28f5
     spriteBone: []
     spriteOutline: []
@@ -140,18 +140,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 55, y: 4}
+    uvTransform: {x: 0, y: 71}
   - name: DuckSprite_Frame_1
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.09090909}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 78
-      y: 4
-      width: 15
-      height: 18
+      x: 0
+      y: 93
+      width: 19
+      height: 22
     spriteID: d37127805ae7b1643b1c4547684d4d4a
     spriteBone: []
     spriteOutline: []
@@ -160,18 +160,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 78, y: 4}
+    uvTransform: {x: 0, y: 93}
   - name: DuckSprite_Frame_2
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.095238104}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 71
-      y: 31
-      width: 15
-      height: 17
+      x: 24
+      y: 68
+      width: 19
+      height: 21
     spriteID: c92c08b135687844b86667d767063d59
     spriteBone: []
     spriteOutline: []
@@ -180,18 +180,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 71, y: 31}
+    uvTransform: {x: 24, y: 68}
   - name: DuckSprite_Frame_3
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.09090909}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 101
-      y: 4
-      width: 15
-      height: 18
+      x: 24
+      y: 0
+      width: 19
+      height: 22
     spriteID: 6ec6256f9b75b014696cfbb4e35ca5f3
     spriteBone: []
     spriteOutline: []
@@ -200,18 +200,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 101, y: 4}
+    uvTransform: {x: 24, y: 0}
   - name: DuckSprite_Frame_4
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.095238104}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 94
-      y: 31
-      width: 15
-      height: 17
+      x: 24
+      y: 89
+      width: 19
+      height: 21
     spriteID: 9d98bccea0f3206459afbe42caff7d45
     spriteBone: []
     spriteOutline: []
@@ -220,18 +220,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 94, y: 31}
+    uvTransform: {x: 24, y: 89}
   - name: DuckSprite_Frame_5
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.09090909}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 27
-      y: 31
-      width: 15
-      height: 18
+      x: 24
+      y: 22
+      width: 19
+      height: 22
     spriteID: be9ab55c2a0c0ca479e62279860d655a
     spriteBone: []
     spriteOutline: []
@@ -240,18 +240,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 31}
+    uvTransform: {x: 24, y: 22}
   - name: DuckSprite_Frame_6
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.095238104}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 60
-      width: 15
-      height: 17
+      x: 43
+      y: 0
+      width: 19
+      height: 21
     spriteID: c62f3053ede78914bbe87566e2437da1
     spriteBone: []
     spriteOutline: []
@@ -260,18 +260,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 60}
+    uvTransform: {x: 43, y: 0}
   - name: DuckSprite_Frame_7
     originalName: 
-    pivot: {x: 0.4, y: 0}
+    pivot: {x: 0.4166667, y: 0.08695652}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 20
-      height: 19
+      x: 0
+      y: 0
+      width: 24
+      height: 23
     spriteID: a12eb943c155e39418ce99c90917233c
     spriteBone: []
     spriteOutline: []
@@ -280,18 +280,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 0, y: 0}
   - name: DuckSprite_Frame_8
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.08}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 31
-      width: 15
-      height: 21
+      x: 0
+      y: 23
+      width: 19
+      height: 25
     spriteID: 3d6b571717b3c8b458bf097a81e166b7
     spriteBone: []
     spriteOutline: []
@@ -300,18 +300,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 31}
+    uvTransform: {x: 0, y: 23}
   - name: DuckSprite_Frame_9
     originalName: 
-    pivot: {x: 0.5333333, y: -0.05263158}
+    pivot: {x: 0.5263158, y: 0.04347826}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
-      y: 4
-      width: 15
-      height: 19
+      x: 0
+      y: 48
+      width: 19
+      height: 23
     spriteID: 3961af986bccb474db32e1484657ef61
     spriteBone: []
     spriteOutline: []
@@ -320,18 +320,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 32, y: 4}
+    uvTransform: {x: 0, y: 48}
   - name: DuckSprite_Frame_10
     originalName: 
-    pivot: {x: 0.5333333, y: 0}
+    pivot: {x: 0.5263158, y: 0.11111112}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 27
-      y: 60
-      width: 15
-      height: 14
+      x: 24
+      y: 110
+      width: 19
+      height: 18
     spriteID: baac3ae0abefb52418c561ce51150d8a
     spriteBone: []
     spriteOutline: []
@@ -340,18 +340,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 27, y: 60}
+    uvTransform: {x: 24, y: 110}
   - name: DuckSprite_Frame_11
     originalName: 
-    pivot: {x: 0.6153846, y: 0}
+    pivot: {x: 0.5882353, y: 0.083333336}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
-      y: 31
-      width: 13
-      height: 20
+      x: 24
+      y: 44
+      width: 17
+      height: 24
     spriteID: c752017486bd33f4a9e0dd2d267deecb
     spriteBone: []
     spriteOutline: []
@@ -360,7 +360,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 31}
+    uvTransform: {x: 24, y: 44}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0

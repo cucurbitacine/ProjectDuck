@@ -178,7 +178,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4778496787071578823, guid: 1ad0cc2fa7050ee4d9d91e3ec726e4d9, type: 3}
       propertyPath: m_Name
-      value: Metal Platform 2x1
+      value: Platform_Metal_2x1
       objectReference: {fileID: 0}
     - target: {fileID: 4943696844776448631, guid: 1ad0cc2fa7050ee4d9d91e3ec726e4d9, type: 3}
       propertyPath: m_Size.x

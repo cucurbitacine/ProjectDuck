@@ -15,13 +15,21 @@ namespace Game.Player
         [Space]
         [SerializeField] private PlayerController player;
         
+        [Space]
+        [SerializeField] private Vector2 offsetCheckBox = Vector2.zero;
+        [SerializeField] private Vector2 sizeCheckBox = Vector2.one;
+
+        [SerializeField] private float direction = 1f;
+
+        private float _time;
+        
         private PlayerInput _playerInput;
         private ContactFilter2D _filter2D = default;
         private int _countColliders;
         private readonly List<Collider2D> _colliders = new List<Collider2D>();
         
-        private readonly HashSet<IFocused> _activeFocusedSet = new HashSet<IFocused>();
-        private readonly HashSet<IFocused> _foundFocusedSet = new HashSet<IFocused>();
+        private readonly HashSet<IInteraction> _activeFocusedSet = new HashSet<IInteraction>();
+        private readonly HashSet<IInteraction> _foundFocusedSet = new HashSet<IInteraction>();
 
         public event Action OnInteracted; 
         
@@ -45,13 +53,6 @@ namespace Game.Player
                 }
             }
         }
-
-        [SerializeField] private Vector2 offsetCheckBox = Vector2.zero;
-        [SerializeField] private Vector2 sizeCheckBox = Vector2.one;
-
-        [SerializeField] private float direction = 1f;
-
-        private float _time;
         
         private void Overlap(float deltaTime)
         {
@@ -91,7 +92,7 @@ namespace Game.Player
             {
                 var cld2d = _colliders[i];
 
-                if (!cld2d.TryGetComponent<IFocused>(out var focused)) continue;
+                if (!cld2d.TryGetComponent<IInteraction>(out var focused)) continue;
                 
                 // if found item is new, set focus true
                 if (_foundFocusedSet.Add(focused) && !_activeFocusedSet.Contains(focused))

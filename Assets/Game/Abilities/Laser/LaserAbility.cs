@@ -14,19 +14,16 @@ namespace Game.Abilities.Laser
         [Header("Settings")]
         [Min(0)]
         [SerializeField] private float laserPower = 1f;
-        [Min(0)] [SerializeField] private float laserStartWidth = 0.01f;
-        [Min(0)] [SerializeField] private float laserEndWidth = 0.1f;
+        [Min(0f)] [SerializeField] private float laserStartWidth = 0.01f;
+        [Min(0f)] [SerializeField] private float laserEndWidth = 0.1f;
         [Min(0f)] [SerializeField] private float pushPower = 0f;
         
         [Space]
         [SerializeField] private Vector2 offset = Vector2.up * 0.5f;
-        [Min(0)]
-        [SerializeField] private float nearPlane = 0.5f;
-        [Min(0)]
-        [SerializeField] private float laserDistance = 10f;
+        [Min(0f)] [SerializeField] private float nearPlane = 0.5f;
+        [Min(0f)] [SerializeField] private float laserDistance = 10f;
         [SerializeField] private LayerMask layerMask = 1;
-        [Min(0)]
-        [SerializeField] private float threshold = 0.001f;
+        [Min(0f)] [SerializeField] private float threshold = 0.001f;
         
         [Header("FX")]
         [SerializeField] private GameObject hitEffectPrefab;
@@ -199,7 +196,17 @@ namespace Game.Abilities.Laser
         {
             Pause(true);
         }
-        
+
+        #region MonoBehaviour
+
+        private void OnEnable()
+        {
+            if (line)
+            {
+                line.enabled = false;
+            }
+        }
+
         private void OnDestroy()
         {
             if (_playerInput)
@@ -213,14 +220,6 @@ namespace Game.Abilities.Laser
             }
         }
         
-        private void OnEnable()
-        {
-            if (line)
-            {
-                line.enabled = false;
-            }
-        }
-
         private void FixedUpdate()
         {
             EvaluateLaserPoints(laserPoints, Time.fixedDeltaTime);
@@ -258,6 +257,8 @@ namespace Game.Abilities.Laser
                 Gizmos.DrawWireSphere(laserCenter, nearPlane);
             }
         }
+
+        #endregion
     }
 
     public struct Transform2D

@@ -13,23 +13,22 @@ namespace Game.Abilities.Telekinesis
         [SerializeField] private LayerMask layerMask = 1;
         
         [Space]
-        [Min(0)] [SerializeField] private float minForcePower = 10;
-        [Min(0)] [SerializeField] private float maxForcePower = 100;
+        [Min(0f)] [SerializeField] private float minForcePower = 10f;
+        [Min(0f)] [SerializeField] private float maxForcePower = 100f;
         [SerializeField] private AnimationCurve forcePowerCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
 
         [Header("FX")]
         [Min(0f)] [SerializeField] private float particleSpeed = 1f;
         [SerializeField] private float particleSpeedScale = 1f;
-        [SerializeField] private float effectLifetime = 5f;
         [SerializeField] private GameObject effectPrefab;
-        
-        private ParticleSystem _effect;
         
         [Header("Input")]
         [SerializeField] private bool primaryFire;
         
+        private ParticleSystem _effect;
         private ContactFilter2D _filter2D = new ContactFilter2D();
         private PlayerInput _playerInput;
+        
         private readonly List<Collider2D> _overlaps = new List<Collider2D>();
         private readonly HashSet<Rigidbody2D> _usedRigidbody2d = new HashSet<Rigidbody2D>();
         
@@ -39,6 +38,8 @@ namespace Game.Abilities.Telekinesis
         {
             primaryFire = value;
 
+            Cursor.visible = !primaryFire;
+            
             if (effectPrefab)
             {
                 if (_effect)
@@ -123,6 +124,8 @@ namespace Game.Abilities.Telekinesis
             {
                 _effect.Stop();
             }
+            
+            Cursor.visible = true;
         }
 
         private void Update()

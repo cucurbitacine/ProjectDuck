@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.InteractionSystem
 {
-    public interface IInteraction
+    public interface IInteraction : IFocused
     {
         public event Action<GameObject> OnInteracted; 
         

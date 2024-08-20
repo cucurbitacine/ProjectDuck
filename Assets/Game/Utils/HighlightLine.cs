@@ -4,9 +4,12 @@ using UnityEngine;
 namespace Game.Utils
 {
     [RequireComponent(typeof(LineRenderer))]
-    public class HighlightLine : MonoBehaviour
+    public class HighlightLine : MonoBehaviour, IPaused
     {
+        [field: SerializeField] public bool Paused { get; private set; }
+        
         [SerializeField] private Color highlightColor = Color.red;
+        
         [Space]
         [Min(0f)] [SerializeField] private float duration = 0.2f;
         [SerializeField] private bool onlyOnce = false;
@@ -18,6 +21,8 @@ namespace Game.Utils
         
         public void Highlight(bool isOn)
         {
+            if (Paused) return;
+            
             _line.startColor = isOn ? highlightColor : _baseColor;
             _line.endColor = isOn ? highlightColor : _baseColor;
 
@@ -41,6 +46,11 @@ namespace Game.Utils
             _line = GetComponent<LineRenderer>();
 
             _baseColor = _line.startColor;
+        }
+        
+        public void Pause(bool value)
+        {
+            Paused = value;
         }
     }
 }

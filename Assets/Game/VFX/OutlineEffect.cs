@@ -22,13 +22,13 @@ namespace Game.VFX
         private static readonly int OutlineAlpha = Shader.PropertyToID("_OutlineAlpha");
         private static readonly int OutlineWidth = Shader.PropertyToID("_OutlineWidth");
 
-        public void Outline(bool value)
+        public void Outline(bool value, Color color)
         {
             Outlined = value;
             
             if (Outlined)
             {
-                _material.SetColor(OutlineColor, outlineColor);
+                _material.SetColor(OutlineColor, color);
                 _material.SetFloat(OutlineAlpha, outlineAlpha);
                 _material.SetFloat(OutlineWidth, outlineWidth);
             }
@@ -37,6 +37,11 @@ namespace Game.VFX
                 _material.SetFloat(OutlineAlpha, 0f);
                 _material.SetFloat(OutlineWidth, 0f);
             }
+        }
+        
+        public void Outline(bool value)
+        {
+            Outline(value, outlineColor);
         }
 
         public void SwitchOutline()
@@ -54,12 +59,8 @@ namespace Game.VFX
         {
             if (Application.isPlaying)
             {
-                if (_sprite == null) _sprite = GetComponent<SpriteRenderer>();
-
                 if (_sprite)
                 {
-                    if (_material == null) _material = _sprite.material;
-
                     if (_material)
                     {
                         Outline(Outlined);

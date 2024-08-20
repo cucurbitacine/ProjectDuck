@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1019554057816088606}
   - component: {fileID: 3270849156841900861}
   m_Layer: 0
-  m_Name: Trigger Base
+  m_Name: Trigger_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2402223942288339361}
   - component: {fileID: 3905442355844785004}
   - component: {fileID: 5011915099573655822}
+  - component: {fileID: 8809898224459737974}
   m_Layer: 6
-  m_Name: PlayerModel_Duck
+  m_Name: Player_Model_Duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7464602997983997133, guid: 2c03d42aaebf91d4fb6058f1fb7b59fb, type: 3}
+  m_Sprite: {fileID: 2048075474266119785, guid: 2c03d42aaebf91d4fb6058f1fb7b59fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 0.9375, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &9181649775386289205
@@ -166,3 +167,19 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   damageReceiver: {fileID: 0}
+--- !u!114 &8809898224459737974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939070595343837984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81635be2a4434708a3435338276bcbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Outlined>k__BackingField: 0
+  outlineColor: {r: 0, g: 1, b: 1, a: 1}
+  outlineAlpha: 0.95
+  outlineWidth: 0.004

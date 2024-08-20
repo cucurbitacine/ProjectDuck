@@ -1,5 +1,5 @@
-using CucuTools.DamageSystem;
 using Game.Abilities;
+using Game.Abilities.Electricity;
 using Game.Combat;
 using Game.LevelSystem;
 using Game.Movements;
@@ -76,6 +76,14 @@ namespace Game.Player
             if (Health.IsDead) return;
             
             _movementController.Pause(value);
+        }
+
+        public void SetElectricityCharge(int amount)
+        {
+            if (activeAbility && activeAbility is ElectricityAbility electricity)
+            {
+                electricity.ElectricityCharge = amount;
+            }
         }
         
         private void HandleModelLoad(GameObject model)

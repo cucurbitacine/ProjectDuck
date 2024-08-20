@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4129223778375417921}
   - component: {fileID: 4838069054172984167}
   - component: {fileID: 4948371523113763646}
+  - component: {fileID: 958208275968437582}
   m_Layer: 0
   m_Name: ModelDefault
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -841819565
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2048075474266119785, guid: 2c03d42aaebf91d4fb6058f1fb7b59fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -166,6 +167,22 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
   damageReceiver: {fileID: 0}
+--- !u!114 &958208275968437582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388325576794444619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81635be2a4434708a3435338276bcbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Outlined>k__BackingField: 0
+  outlineColor: {r: 0, g: 1, b: 1, a: 1}
+  outlineAlpha: 0.95
+  outlineWidth: 0.004
 --- !u!1 &3881053207049479297
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +231,7 @@ SortingGroup:
   m_GameObject: {fileID: 3881053207049479297}
   m_Enabled: 1
   m_SortingLayerID: -841819565
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!70 &7503182785522936500

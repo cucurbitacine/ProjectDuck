@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6735552302269477348}
   - component: {fileID: 2151308860935924234}
   m_Layer: 0
-  m_Name: Platform Base
+  m_Name: Platform_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ SortingGroup:
   m_GameObject: {fileID: 4778496787071578823}
   m_Enabled: 1
   m_SortingLayerID: 1672316835
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 50
   m_SortAtRoot: 0
 --- !u!61 &4943696844776448631
@@ -219,7 +219,7 @@ SortingGroup:
   m_GameObject: {fileID: 6901611091139336899}
   m_Enabled: 1
   m_SortingLayerID: -421625677
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 50
   m_SortAtRoot: 1
 --- !u!120 &4172126393806900388

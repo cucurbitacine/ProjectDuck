@@ -38,10 +38,15 @@ namespace Game.Utils
 
             return false;
         }
-
+        
         public static string GetName(this Component component)
         {
             return $"{component.name} ({component.GetType().Name})";
+        }
+        
+        public static string GetName(this object obj)
+        {
+            return obj is Component component ? component.GetName() : obj.GetType().Name;
         }
     }
 }

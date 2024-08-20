@@ -1,13 +1,37 @@
+using System;
 using UnityEngine;
 
 namespace Game.InteractionSystem
 {
     [DisallowMultipleComponent]
-    public class PickupBase : ToggleBase
+    public class PickupBase : ToggleBase, IFocused
     {
+        [field: SerializeField] public bool Focused { get; private set; }
+        
         [Header("Pickup")]
         [SerializeField] private bool destroyAfterPick = false;
         [Min(0f)] [SerializeField] private float enableTimeAfterDisabled = 0f;
+        
+        public event Action<bool> OnFocusChanged;
+        
+        public void Focus(bool value)
+        {
+            if (Paused) return;
+            
+            Focused = value;
+            
+            OnFocusChanged?.Invoke(value);
+        }
+
+        public override void Pause(bool value)
+        {
+            if (value && Focused)
+            {
+                Focus(false);
+            }
+            
+            base.Pause(value);
+        }
 
         public void Pickup(Collider2D other)
         {

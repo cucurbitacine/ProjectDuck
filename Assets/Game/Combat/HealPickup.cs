@@ -11,8 +11,7 @@ namespace Game.Combat
     public class HealPickup : PickupBase, IInteraction
     {
         [Header("Healing")]
-        [Min(0)]
-        [SerializeField] private int healAmount = 50;
+        [Min(0)] [SerializeField] private int healAmount = 50;
         [Space]
         [SerializeField] private UnityEvent onPicked = new UnityEvent();
 

@@ -22,7 +22,7 @@ namespace Game.InteractionSystem
             OnValueChanged?.Invoke(value);
         }
         
-        public void Pause(bool value)
+        public virtual void Pause(bool value)
         {
             Paused = value;
         }
