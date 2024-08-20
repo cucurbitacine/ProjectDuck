@@ -93,6 +93,8 @@ namespace Game.Abilities.Electricity
         private void OnEnable()
         {
             _storage.OnChargeChanged += HandleCharge;
+            
+            HandleCharge(_storage.ElectricityCharge);
         }
 
         private void OnDisable()
@@ -102,7 +104,7 @@ namespace Game.Abilities.Electricity
 
         private void Start()
         {
-            HandleCharge(_storage.ElectricityCharge);
+            //HandleCharge(_storage.ElectricityCharge);
         }
     }
 }

@@ -43,7 +43,7 @@ SortingGroup:
   m_GameObject: {fileID: 8049531937225342548}
   m_Enabled: 1
   m_SortingLayerID: 1672316835
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: -100
   m_SortAtRoot: 1
 --- !u!120 &1416072247339365066
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb6bb8e205944469e86e62402a4b48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Paused>k__BackingField: 0
   highlightColor: {r: 0.7924528, g: 0.011213934, b: 0.20007527, a: 1}
   duration: 0.2
   onlyOnce: 1
@@ -216,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900739567575973224, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: m_Name
-      value: Metal Button
+      value: Button_Metal
       objectReference: {fileID: 0}
     - target: {fileID: 2027286340340534913, guid: cce6bdc0bc2988d409b746719f268c8e, type: 3}
       propertyPath: interactEvent.m_PersistentCalls.m_Calls.Array.size

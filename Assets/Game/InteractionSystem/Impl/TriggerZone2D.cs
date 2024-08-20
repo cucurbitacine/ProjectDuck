@@ -21,6 +21,8 @@ namespace Game.InteractionSystem.Impl
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (onlyOnce && TurnedOn) return;
+            
             if (!other.gameObject.layer.Contains(layerMask)) return;
 
             if (whiteList.Count > 0)
@@ -35,33 +37,23 @@ namespace Game.InteractionSystem.Impl
             if (colliderSet.Count == 1)
             {
                 TurnOn(true);
-                onEntered.Invoke(other);
             }
-            else
-            {
-                if (!onlyOnce)
-                {
-                    onEntered.Invoke(other);
-                }  
-            }
+            
+            onEntered.Invoke(other);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (onlyOnce && TurnedOn) return;
+            
             if (!colliderSet.Remove(other)) return;
 
             if (colliderSet.Count == 0)
             {
-                if (!onlyOnce)
-                {
-                    TurnOn(false);
-                }
+                TurnOn(false);
             }
 
-            if (!onlyOnce)
-            {
-                onExited.Invoke(other);
-            }
+            onExited.Invoke(other);
         }
 
         private void OnValidate()

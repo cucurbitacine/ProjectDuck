@@ -45,6 +45,7 @@ namespace Game.Abilities.Electricity
         private readonly List<RaycastHit2D> _hits = new List<RaycastHit2D>();
         
         private IElectricityStorage _selected;
+        private IElectricityStorage _lastUsed;
         
         private Vector2 raycastOrigin => (Player ? Player.position : transform.position) + raycastOffset;
         private Vector2 raycastDirection => (worldPoint - raycastOrigin).normalized;
@@ -105,7 +106,7 @@ namespace Game.Abilities.Electricity
             
             return amount;
         }
-
+        
         private void ReceiveChargeFrom(IElectricityStorage source, int chargeAmount)
         {
             var sourceAbleToSend = source.HowMuchAbleToSend(chargeAmount);
@@ -115,6 +116,11 @@ namespace Game.Abilities.Electricity
             var received = ReceiveCharge(sent);
                     
             //Debug.Log($"-{sent} {source.GetName()} ==> +{received} {this.GetName()}");
+
+            if (received > 0)
+            {
+                _lastUsed = source;
+            }
             
             if (strikeEffect && received > 0)
             {
@@ -133,6 +139,11 @@ namespace Game.Abilities.Electricity
                     
             //Debug.Log($"-{sent} {this.GetName()} ==> +{received} {destination.GetName()}");
 
+            if (received > 0)
+            {
+                _lastUsed = destination;
+            }
+            
             if (strikeEffect && received > 0)
             {
                 strikeEffect.Play();
@@ -263,6 +274,14 @@ namespace Game.Abilities.Electricity
             HandlePlayerModel(_modelLoader.GetModel());
             
             electricityDamageSource.SetOwner(Player.gameObject);
+        }
+
+        public override void Drop()
+        {
+            if (ElectricityCharge > 0 && _lastUsed != null)
+            {
+                SendChargeTo(_lastUsed, chargeAmountPerTime);
+            }
         }
 
         private void OnDestroy()

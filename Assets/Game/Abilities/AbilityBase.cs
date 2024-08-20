@@ -20,5 +20,9 @@ namespace Game.Abilities
         }
 
         protected abstract void OnSetPlayer();
+
+        public virtual void Drop()
+        {
+        }
     }
 }

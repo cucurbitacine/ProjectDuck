@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3613508599291912157}
   - component: {fileID: 306769844715931416}
   m_Layer: 0
-  m_Name: Hint Text Base
+  m_Name: Text_Hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ SortingGroup:
   m_GameObject: {fileID: 3250065563697676222}
   m_Enabled: 1
   m_SortingLayerID: -421625677
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 100
   m_SortAtRoot: 0
 --- !u!1 &4909651534136192583

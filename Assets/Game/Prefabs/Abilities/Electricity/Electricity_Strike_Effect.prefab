@@ -77,12 +77,12 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 5, z: 0}
-  - {x: 0.52521765, y: 3.9836113, z: 0}
-  - {x: -0.043813005, y: 3.9370499, z: 0}
-  - {x: 0.043413226, y: 3.3561065, z: 0}
-  - {x: 0.4966327, y: 2.0041957, z: 0}
-  - {x: 0.15873325, y: 0.72099364, z: 0}
-  - {x: -0.40170598, y: 0.8151539, z: 0}
+  - {x: -0.18744664, y: 3.7909837, z: 0}
+  - {x: -0.048173197, y: 2.8361237, z: 0}
+  - {x: -0.0923516, y: 3.5633807, z: 0}
+  - {x: 0.02637231, y: 2.0725222, z: 0}
+  - {x: -0.22505853, y: 1.4050431, z: 0}
+  - {x: 0.014636995, y: 0.9642782, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -167,6 +167,7 @@ MonoBehaviour:
   <IsPlaying>k__BackingField: 0
   origin: {x: 0, y: 5}
   target: {x: 0, y: 0}
+  generateMode: 0
   positionCount: 8
   startWidth: 0.05
   endWidth: 0.01
