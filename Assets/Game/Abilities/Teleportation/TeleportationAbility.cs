@@ -7,6 +7,7 @@ namespace Game.Abilities.Teleportation
     public class TeleportationAbility : AbilityBase
     {
         [Header("Settings")]
+        [Min(0f)] [SerializeField] private float maxDistance = 8f;
         [Min(0f)] [SerializeField] private float timeout = 1f;
         [SerializeField] private LayerMask obstacleLayerMask = 1;
 
@@ -30,30 +31,7 @@ namespace Game.Abilities.Teleportation
         
         private Vector2 worldPoint => _playerInput ? _playerInput.WorldPoint : transform.position;
 
-        private bool CanTeleport()
-        {
-            return timeout > 0 && Time.time - _lastTimeTeleportation > timeout;
-        }
-        
-        private bool IsValidWorldPosition(Vector2 teleportPosition)
-        {
-            _playerBounds = Player ? Player.GetBounds() : default;
-            
-            _filter.useTriggers = true;
-            _filter.useLayerMask = true;
-            _filter.layerMask = obstacleLayerMask;
-
-            var count = Physics2D.OverlapBox(teleportPosition, _playerBounds.size, 0f, _filter, overlap);
-
-            return count == 0;
-        }
-        
-        private Vector2 GetValidTeleportPosition(Vector2 teleportPosition)
-        {
-            return teleportPosition + Vector2.down * (_playerBounds.size.y * 0.5f);
-        }
-        
-        private void Teleport(Vector2 teleportPosition)
+        public void Teleport(Vector2 teleportPosition)
         {
             var movement2d = Player.GetMovement2D();
                 
@@ -73,11 +51,38 @@ namespace Game.Abilities.Teleportation
             }
         }
         
+        private bool CanTeleport()
+        {
+            return timeout > 0 && Time.time - _lastTimeTeleportation > timeout;
+        }
+        
+        private bool IsValidWorldPosition(Vector2 teleportPosition)
+        {
+            var playerPosition = Player ? Player.position : (Vector2)transform.position;
+            if (Vector2.Distance(playerPosition, teleportPosition) > maxDistance)
+            {
+                return false;
+            }
+            
+            _playerBounds = Player ? Player.GetBounds() : default;
+            
+            _filter.useTriggers = true;
+            _filter.useLayerMask = true;
+            _filter.layerMask = obstacleLayerMask;
+
+            var count = Physics2D.OverlapBox(teleportPosition, _playerBounds.size, 0f, _filter, overlap);
+
+            return count == 0;
+        }
+        
+        private Vector2 GetValidTeleportPosition(Vector2 teleportPosition)
+        {
+            return teleportPosition + Vector2.down * (_playerBounds.size.y * 0.5f);
+        }
+        
         private void HandlePrimaryFire(bool value)
         {
             primaryFire = value;
-
-            Cursor.visible = !primaryFire;
             
             if (primaryFire) return;
             
@@ -100,6 +105,11 @@ namespace Game.Abilities.Teleportation
             if (teleportReady)
             {
                 teleportEffect.gameObject.SetActive(true);
+                teleportEffect.Play();
+            }
+            else
+            {
+                teleportEffect.Stop();
             }
             
             var model = Player.ModelLoader.GetModel();
@@ -125,6 +135,8 @@ namespace Game.Abilities.Teleportation
 
             var emission = teleportEffect.emission;
             emission.rateOverTime = primaryFire && teleportReady ? maxEmissionRateOverTime : minEmissionRateOverTime;
+            
+            Cursor.visible = !(primaryFire && teleportReady);
         }
         
         protected override void OnSetPlayer()
@@ -153,6 +165,8 @@ namespace Game.Abilities.Teleportation
 
         private void OnDrawGizmos()
         {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(Player ? Player.position : (Vector2)transform.position, maxDistance);
             Gizmos.color = CanTeleport() ? (IsValidWorldPosition(worldPoint) ? Color.green : Color.yellow) : Color.red;
             Gizmos.DrawWireCube(worldPoint, _playerBounds.size);
         }

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AbilityId>k__BackingField: 3
+  maxDistance: 8
   timeout: 1
   obstacleLayerMask:
     serializedVersion: 2

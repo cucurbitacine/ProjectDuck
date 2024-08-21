@@ -1,9 +1,9 @@
 using System;
-using Game.Abilities.Electricity;
+using Game.InteractionSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.InteractionSystem.Impl
+namespace Game.Abilities.Electricity
 {
     public class ElectricitySocket : ToggleBase, IElectricityStorage
     {

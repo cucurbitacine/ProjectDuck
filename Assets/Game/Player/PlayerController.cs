@@ -79,6 +79,11 @@ namespace Game.Player
             
             _movementController.Pause(value);
         }
+
+        public AbilityBase GetAbility()
+        {
+            return activeAbility;
+        }
         
         private void HandleModelLoad(GameObject model)
         {
