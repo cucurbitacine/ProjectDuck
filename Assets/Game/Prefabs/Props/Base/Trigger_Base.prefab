@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019554057816088606}
   - component: {fileID: 3270849156841900861}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,3 +51,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   whiteList: []
+  onEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  onExited:
+    m_PersistentCalls:
+      m_Calls: []

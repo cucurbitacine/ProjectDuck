@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102727552138404233}
   - component: {fileID: 5093629268286632215}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.302, g: 1, b: 0.4224392, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6306784635443967792}
   - component: {fileID: 4089550133973749040}
   - component: {fileID: 5104121968419525446}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Ability_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,6 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TurnedOn>k__BackingField: 0
   <Paused>k__BackingField: 0
+  <Focused>k__BackingField: 0
   destroyAfterPick: 0
   enableTimeAfterDisabled: 0
   abilityPrefab: {fileID: 0}
@@ -205,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593231287895648749}
   - component: {fileID: 6919064874800578322}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2670741849105546180}
   - component: {fileID: 3900970940596876336}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

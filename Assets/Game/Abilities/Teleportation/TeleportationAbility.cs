@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Inputs;
 using UnityEngine;
 
@@ -6,20 +7,28 @@ namespace Game.Abilities.Teleportation
     public class TeleportationAbility : AbilityBase
     {
         [Header("Settings")]
-        [Min(0)]
-        [SerializeField] private float timeout = 1f;
+        [Min(0f)] [SerializeField] private float timeout = 1f;
+        [SerializeField] private LayerMask obstacleLayerMask = 1;
+
+        [Header("FX")]
+        [Min(0)] [SerializeField] private int minEmissionRateOverTime = 1000;
+        [Min(0)] [SerializeField] private int maxEmissionRateOverTime = 4000;
+        [SerializeField] private ParticleSystem teleportEffect;
+        
+        [Space]
+        [SerializeField] private GameObject teleportHitEffectPrefab;
         
         [Header("Input")]
         [SerializeField] private bool primaryFire;
-        [SerializeField] private Vector2 screenPoint;
         
         private PlayerInput _playerInput;
         private Bounds _playerBounds;
         private float _lastTimeTeleportation;
+        private ContactFilter2D _filter = new ContactFilter2D();
         
-        private static Camera CameraMain => Camera.main;
+        private readonly List<Collider2D> overlap = new List<Collider2D>();
         
-        private Vector2 worldPoint => _playerInput ? CameraMain.ScreenToWorldPoint(screenPoint) : transform.position;
+        private Vector2 worldPoint => _playerInput ? _playerInput.WorldPoint : transform.position;
 
         private bool CanTeleport()
         {
@@ -28,14 +37,20 @@ namespace Game.Abilities.Teleportation
         
         private bool IsValidWorldPosition(Vector2 teleportPosition)
         {
-            _playerBounds = Player.GetBounds();
+            _playerBounds = Player ? Player.GetBounds() : default;
+            
+            _filter.useTriggers = true;
+            _filter.useLayerMask = true;
+            _filter.layerMask = obstacleLayerMask;
 
-            return !Physics2D.OverlapBox(teleportPosition, _playerBounds.size, 0f);
+            var count = Physics2D.OverlapBox(teleportPosition, _playerBounds.size, 0f, _filter, overlap);
+
+            return count == 0;
         }
         
         private Vector2 GetValidTeleportPosition(Vector2 teleportPosition)
         {
-            return teleportPosition + Vector2.down * _playerBounds.size.y * 0.5f;
+            return teleportPosition + Vector2.down * (_playerBounds.size.y * 0.5f);
         }
         
         private void Teleport(Vector2 teleportPosition)
@@ -45,26 +60,71 @@ namespace Game.Abilities.Teleportation
             movement2d.Warp(teleportPosition);
 
             _lastTimeTeleportation = Time.time;
+            
+            if (teleportEffect && teleportEffect.isPlaying)
+            {
+                teleportEffect.gameObject.SetActive(false);
+            }
+            
+            if (teleportHitEffectPrefab)
+            {
+                Instantiate(teleportHitEffectPrefab, Player.position, Quaternion.identity);
+                Instantiate(teleportHitEffectPrefab, teleportPosition, Quaternion.identity);
+            }
         }
         
         private void HandlePrimaryFire(bool value)
         {
             primaryFire = value;
 
-            if (!primaryFire)
+            Cursor.visible = !primaryFire;
+            
+            if (primaryFire) return;
+            
+            if (CanTeleport() && IsValidWorldPosition(worldPoint))
             {
-                if (CanTeleport() && IsValidWorldPosition(worldPoint))
-                {
-                    var teleportPosition = GetValidTeleportPosition(worldPoint);
+                var teleportPosition = GetValidTeleportPosition(worldPoint);
                     
-                    Teleport(teleportPosition);
-                }
+                Teleport(teleportPosition);
             }
         }
-        
-        private void HandleScreenPoint(Vector2 value)
+
+        private void UpdateEffect()
         {
-            screenPoint = value;
+            if (!teleportEffect) return;
+            
+            if (!Player) return;
+            
+            var teleportReady = CanTeleport() && IsValidWorldPosition(worldPoint);
+
+            if (teleportReady)
+            {
+                teleportEffect.gameObject.SetActive(true);
+            }
+            
+            var model = Player.ModelLoader.GetModel();
+            if (model.TryGetComponent<SpriteRenderer>(out var playerSprite))
+            {
+                var shape = teleportEffect.shape;
+                        
+                shape.shapeType = ParticleSystemShapeType.SpriteRenderer;
+                shape.meshShapeType = ParticleSystemMeshShapeType.Triangle;
+                shape.spriteRenderer = playerSprite;
+                shape.texture = playerSprite.sprite.texture;
+                        
+                shape.position = teleportEffect.transform.InverseTransformPoint(GetValidTeleportPosition(worldPoint));
+                if (Player.GetMovement2D().move.x > 0f)
+                {
+                    shape.scale = new Vector3(1f, 1f, 1f);
+                }
+                else if (Player.GetMovement2D().move.x < 0f)
+                {
+                    shape.scale = new Vector3(-1f, 1f, 1f);
+                }
+            }
+
+            var emission = teleportEffect.emission;
+            emission.rateOverTime = primaryFire && teleportReady ? maxEmissionRateOverTime : minEmissionRateOverTime;
         }
         
         protected override void OnSetPlayer()
@@ -74,7 +134,6 @@ namespace Game.Abilities.Teleportation
             _playerInput = Player.GetPlayerInput();
             
             _playerInput.PrimaryFireEvent += HandlePrimaryFire;
-            _playerInput.ScreenPointEvent += HandleScreenPoint;
         }
 
         private void OnDestroy()
@@ -82,8 +141,14 @@ namespace Game.Abilities.Teleportation
             if (_playerInput)
             {
                 _playerInput.PrimaryFireEvent -= HandlePrimaryFire;
-                _playerInput.ScreenPointEvent -= HandleScreenPoint;
             }
+            
+            Cursor.visible = true;
+        }
+        
+        private void Update()
+        {
+            UpdateEffect();
         }
 
         private void OnDrawGizmos()

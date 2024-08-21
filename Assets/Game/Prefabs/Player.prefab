@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 385
   timeout: 0.25
   player: {fileID: 5909778122338099259}
   offsetCheckBox: {x: 0.2, y: 0.6}
