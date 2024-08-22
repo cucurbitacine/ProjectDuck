@@ -231,6 +231,11 @@ namespace Game.Utils
             {
                 size = box.size;
                 offset = box.offset;
+
+                if (box.autoTiling && TryGetComponent<SpriteRenderer>(out var sprite) && sprite.drawMode != SpriteDrawMode.Simple)
+                {
+                    size = Vector2.Scale(size, sprite.size);
+                }
             }
             
             Gizmos.color = Color.magenta;

@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 6439920324073622815}
   - component: {fileID: 4884150094186727299}
   m_Layer: 0
-  m_Name: Menu Controller
+  m_Name: MenuInGame_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,6 +21,7 @@ namespace Game.UI
             if (health)
             {
                 health.OnHealthChanged += HandleHealth;
+                
                 HandleHealth(health.HealthCurrent, health.HealthMax);
             }
         }
