@@ -1,5 +1,5 @@
 using System;
-using Game.InteractionSystem;
+using Game.Interactions;
 
 namespace Game.Abilities.Electricity
 {

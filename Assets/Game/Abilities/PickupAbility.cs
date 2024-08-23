@@ -1,6 +1,6 @@
-using Game.InteractionSystem;
+using Game.Core;
+using Game.Interactions;
 using Game.Player;
-using Game.Utils;
 using UnityEngine;
 
 namespace Game.Abilities
@@ -13,14 +13,29 @@ namespace Game.Abilities
 
         public int AbilityId => abilityPrefab ? abilityPrefab.AbilityId : -1;
         
-        public AbilityBase GetAbilityPrefab()
+        public GameObject GetAbilityPrefab()
         {
-            return abilityPrefab;
+            return abilityPrefab.gameObject;
         }
 
         protected override bool TryPickup(Collider2D other)
         {
-            return other.TryGet<PlayerController>(out var player) && player.PickAbility(this);
+            if (other.TryGet<PlayerController>(out var player))
+            {
+                var abilityObject = player.GetAbility();
+
+                if (abilityObject && abilityObject.TryGetComponent<AbilityBase>(out var activeAbility))
+                {
+                    if (activeAbility.AbilityId == AbilityId) return false;
+                }
+                
+                activeAbility = Instantiate(abilityPrefab);
+                activeAbility.SetPlayer(player);
+
+                return true;
+            }
+            
+            return false;
         }
     }
 }

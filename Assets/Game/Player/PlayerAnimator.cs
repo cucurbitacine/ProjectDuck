@@ -1,11 +1,9 @@
 using CucuTools.DamageSystem;
-using Game.InteractionSystem;
-using Game.Movements;
 using UnityEngine;
 
 namespace Game.Player
 {
-    public class PlayerAnimator : MonoBehaviour, IPlayerHandle
+    public class PlayerAnimator : MonoBehaviour, IPlayerHandler
     {
         [SerializeField] private PlayerController player;
         [SerializeField] private Animator animator;

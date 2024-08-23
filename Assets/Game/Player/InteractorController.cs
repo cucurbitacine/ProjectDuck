@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Game.InteractionSystem;
+using Game.Interactions;
 using Inputs;
 using UnityEngine;
 
@@ -8,18 +8,17 @@ namespace Game.Player
 {
     public class InteractorController : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private LayerMask layerMask = 1;
-        [Min(0f)]
-        [SerializeField] private float timeout = 0.5f;
-        
-        [Space]
-        [SerializeField] private PlayerController player;
-        
+        [SerializeField] [Min(0f)] private float timeout = 0.5f;
         [Space]
         [SerializeField] private Vector2 offsetCheckBox = Vector2.zero;
         [SerializeField] private Vector2 sizeCheckBox = Vector2.one;
-
-        [SerializeField] private float direction = 1f;
+        
+        [Header("References")]
+        [SerializeField] private PlayerController player;
+        
+        private float _direction = 1f;
 
         private float _time;
         
@@ -39,8 +38,6 @@ namespace Game.Player
 
             if (_time > 0f) return;
             
-            OnInteracted?.Invoke();
-            
             _time = timeout;
             
             for (var i = 0; i < _countColliders; i++)
@@ -52,6 +49,8 @@ namespace Game.Player
                     interaction.Interact(player.gameObject);
                 }
             }
+            
+            OnInteracted?.Invoke();
         }
         
         private void Overlap(float deltaTime)
@@ -73,15 +72,15 @@ namespace Game.Player
             {
                 if (movement2d.move.x > 0)
                 {
-                    direction = 1f;
+                    _direction = 1f;
                 }
                 else if (movement2d.move.x < 0)
                 {
-                    direction = -1f;
+                    _direction = -1f;
                 }
             }
 
-            var offset = Vector2.Scale(offsetCheckBox, Vector2.up + Vector2.right * direction);
+            var offset = Vector2.Scale(offsetCheckBox, Vector2.up + Vector2.right * _direction);
             var checkPosition = player.position + (Vector2)player.transform.TransformVector(offset);
 
             _countColliders = Physics2D.OverlapBox(checkPosition, sizeCheckBox, 0f, _filter2D, _colliders);
@@ -148,13 +147,13 @@ namespace Game.Player
         {
             if (player == null) player = GetComponent<PlayerController>();
 
-            if (Mathf.Approximately(direction, 0f))
+            if (Mathf.Approximately(_direction, 0f))
             {
-                direction = 1f;
+                _direction = 1f;
             }
             
             //Gizmos.DrawWireSphere(player ? player.position : transform.position, radiusAccess);
-            var offset = Vector2.Scale(offsetCheckBox, Vector2.up + Vector2.right * direction);
+            var offset = Vector2.Scale(offsetCheckBox, Vector2.up + Vector2.right * _direction);
             var checkPosition = player.position + (Vector2)player.transform.TransformVector(offset);
             Gizmos.DrawWireCube(checkPosition, sizeCheckBox);
         }

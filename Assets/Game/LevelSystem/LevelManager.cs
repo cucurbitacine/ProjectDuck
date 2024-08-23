@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Game.Core;
 using Game.Player;
-using Game.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -51,7 +50,7 @@ namespace Game.LevelSystem
         [SerializeField] private UnityEvent onLevelStarted = new UnityEvent();
         
         [Header("References")]
-        [SerializeField] private Fader fader;
+        [SerializeField] private ScreenFader fader;
 
         public bool Busy
         {
@@ -197,7 +196,7 @@ namespace Game.LevelSystem
         {
             Busy = true;
 
-            if (fader == null) fader = FindObjectOfType<Fader>();
+            if (fader == null) fader = FindObjectOfType<ScreenFader>();
         }
 
         private IEnumerator Start()

@@ -1,3 +1,4 @@
+using Game.SFX;
 using UnityEngine;
 
 namespace Game.Combat
@@ -7,6 +8,7 @@ namespace Game.Combat
     {
         [Header("Settings")]
         [SerializeField] private bool destroyObject = false;
+        [SerializeField] private SoundProfile destroySound;
         
         [Header("References")]
         [SerializeField] private GameObject deathEffectPrefab;
@@ -17,7 +19,17 @@ namespace Game.Combat
         {
             if (deathEffectPrefab)
             {
-                Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+                var deathEffect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+
+                if (destroySound)
+                {
+                    var sfx = deathEffect.GetComponentInChildren<SoundFX>();
+                    if (sfx)
+                    {
+                        sfx.SetSoundProfile(destroySound);
+                        sfx.PlaySfx();
+                    }
+                }
             }
 
             if (destroyObject)

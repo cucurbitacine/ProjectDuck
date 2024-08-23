@@ -1,0 +1,22 @@
+{
+    "name": "Game.Abilities",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ae963c2085b110c4d8c867ec0f839788",
+        "GUID:47be5fa475de5c94c8a6fb17fc330727",
+        "GUID:20a9fb15c8a32b94cbc82afedf0d9c87",
+        "GUID:14e745cc4e3b7634c833a5be59cccba4",
+        "GUID:cb74fd98cd406ff4bb6f8084002eaba1",
+        "GUID:0db4852bac411944bb69be845b8730e0",
+        "GUID:0110767ef3e2ced44b387254932daf43"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

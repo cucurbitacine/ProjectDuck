@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CucuTools.DamageSystem;
-using Game.Utils;
+using Game.Core;
+using Game.Player;
 using Inputs;
 using UnityEngine;
 
@@ -286,6 +287,8 @@ namespace Game.Abilities.Electricity
 
         private void OnDestroy()
         {
+            Drop();
+            
             if (_playerInput)
             {
                 _playerInput.PrimaryFireEvent -= HandlePrimaryFire;

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Game.Utils;
+using Game.Core;
 using UnityEngine;
 
 namespace Game.Movements

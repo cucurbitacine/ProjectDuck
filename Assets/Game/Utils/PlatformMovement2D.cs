@@ -1,3 +1,4 @@
+using Game.Core;
 using UnityEngine;
 
 namespace Game.Utils
@@ -73,26 +74,31 @@ namespace Game.Utils
         {
             Paused = value;
         }
-
-        public void Move(PlatformState newState)
-        {
-            state = newState;
-        }
         
         [ContextMenu(nameof(MoveOnce))]
         public void MoveOnce()
         {
-            if (state != PlatformState.Idle) return;
-
-            state = PlatformState.Moving;
+            if (state == PlatformState.Moving)
+            {
+                reverse = !reverse;
+            }
+            else 
+            {
+                state = PlatformState.Moving;
+            }
         }
 
         [ContextMenu(nameof(MoveLooped))]
         public void MoveLooped()
         {
-            if (state != PlatformState.Idle) return;
-
-            state = PlatformState.Looped;
+            if (state == PlatformState.Looped)
+            {
+                reverse = !reverse;
+            }
+            else
+            {
+                state = PlatformState.Looped;
+            }
         }
 
         [ContextMenu(nameof(StopLoop))]

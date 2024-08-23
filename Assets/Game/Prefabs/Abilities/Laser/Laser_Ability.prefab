@@ -204,6 +204,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65
   threshold: 0.001
+  sfx: {fileID: 0}
   hitEffectPrefab: {fileID: 8643370622187706231, guid: 57122e31d4c03484f8eb749d5da12c59, type: 3}
   line: {fileID: 5464102718704201642}
   source: {fileID: 3557279880140907758}

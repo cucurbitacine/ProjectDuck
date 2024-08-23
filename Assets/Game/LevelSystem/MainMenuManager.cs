@@ -1,6 +1,5 @@
 using System.Collections;
 using Game.Core;
-using Game.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,7 @@ namespace Game.LevelSystem
         [SerializeField] private float fadeDuration = 1f;
         
         [Header("References")]
-        [SerializeField] private Fader fader;
+        [SerializeField] private ScreenFader fader;
         
         [Header("UI")]
         [SerializeField] private Button newGameButton;

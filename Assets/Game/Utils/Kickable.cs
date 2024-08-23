@@ -1,5 +1,6 @@
 using System;
-using Game.InteractionSystem;
+using Game.Core;
+using Game.Interactions;
 using Game.Movements;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,7 +9,7 @@ namespace Game.Utils
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Kickable : MonoBehaviour, IInteraction, IFocused, IPaused
+    public class Kickable : MonoBehaviour, IInteraction, IPaused
     {
         private Rigidbody2D rigidbody2d; 
         

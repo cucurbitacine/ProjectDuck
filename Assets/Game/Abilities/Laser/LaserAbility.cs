@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CucuTools.DamageSystem;
-using Game.Utils;
+using Game.Core;
 using Inputs;
 using UnityEngine;
 
@@ -12,20 +12,19 @@ namespace Game.Abilities.Laser
         [field: SerializeField] public bool Paused { get; private set; }
         
         [Header("Settings")]
-        [Min(0)]
-        [SerializeField] private float laserPower = 1f;
-        [Min(0f)] [SerializeField] private float laserStartWidth = 0.01f;
-        [Min(0f)] [SerializeField] private float laserEndWidth = 0.1f;
-        [Min(0f)] [SerializeField] private float pushPower = 0f;
+        [SerializeField] [Min(0)] private float laserPower = 1f;
+        [SerializeField] [Min(0f)] private float laserStartWidth = 0.01f;
+        [SerializeField] [Min(0f)] private float laserEndWidth = 0.1f;
+        [SerializeField] [Min(0f)] private float pushPower = 0f;
         
         [Space]
         [SerializeField] private Vector2 offset = Vector2.up * 0.5f;
-        [Min(0f)] [SerializeField] private float nearPlane = 0.5f;
-        [Min(0f)] [SerializeField] private float laserDistance = 10f;
+        [SerializeField] [Min(0f)] private float nearPlane = 0.5f;
+        [SerializeField] [Min(0f)] private float laserDistance = 10f;
         [SerializeField] private LayerMask layerMask = 1;
-        [Min(0f)] [SerializeField] private float threshold = 0.001f;
+        [SerializeField] [Min(0f)] private float threshold = 0.001f;
         
-        [Header("FX")]
+        [Header("VFX")]
         [SerializeField] private GameObject hitEffectPrefab;
         
         [Header("References")]

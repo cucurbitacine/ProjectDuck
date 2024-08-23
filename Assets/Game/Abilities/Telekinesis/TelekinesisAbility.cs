@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Game.Utils;
+using Game.Core;
 using Inputs;
 using UnityEngine;
 

@@ -1,9 +1,5 @@
-using Game.Abilities;
-using Game.Abilities.Electricity;
 using Game.Combat;
-using Game.LevelSystem;
 using Game.Movements;
-using Game.Utils;
 using Inputs;
 using UnityEngine;
 
@@ -14,7 +10,7 @@ namespace Game.Player
     [RequireComponent(typeof(Health))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private AbilityBase activeAbility;
+        [SerializeField] private GameObject activeAbility;
         
         [Header("References")]
         [SerializeField] private PlayerInput playerInput;
@@ -26,32 +22,23 @@ namespace Game.Player
         public ModelLoader ModelLoader { get; private set; }
         
         public Vector2 position => _movementController ? _movementController.position : transform.position;
-        
-        public bool PickAbility(PickupAbility pickupAbility)
-        {
-            if (activeAbility && pickupAbility.AbilityId >= 0)
-            {
-                if (pickupAbility.AbilityId == activeAbility.AbilityId)
-                {
-                    return false;
-                }
-            }
-            
-            DropAbility();
-            
-            var abilityPrefab = pickupAbility.GetAbilityPrefab();
-            activeAbility = Instantiate(abilityPrefab);
-            activeAbility.SetPlayer(this);
 
-            return true;
+        public void SetAbility(GameObject newAbility)
+        {
+            DropAbility();
+
+            activeAbility = newAbility;
+        }
+        
+        public GameObject GetAbility()
+        {
+            return activeAbility;
         }
 
         public void DropAbility()
         {
             if (activeAbility)
             {
-                activeAbility.Drop();
-                
                 Destroy(activeAbility.gameObject);
 
                 activeAbility = null;
@@ -79,15 +66,10 @@ namespace Game.Player
             
             _movementController.Pause(value);
         }
-
-        public AbilityBase GetAbility()
-        {
-            return activeAbility;
-        }
         
         private void HandleModelLoad(GameObject model)
         {
-            var handles = model.GetComponentsInChildren<IPlayerHandle>();
+            var handles = model.GetComponentsInChildren<IPlayerHandler>();
 
             foreach (var handle in handles)
             {
@@ -114,14 +96,10 @@ namespace Game.Player
             ModelLoader.OnModelLoaded += HandleModelLoad;
             
             Health.OnDied += HandleDeath;
-            
-            LevelManager.SetPlayer(this);
         }
 
         private void OnDisable()
         {
-            LevelManager.RemovePlayer();
-            
             ModelLoader.OnModelLoaded -= HandleModelLoad;
             
             Health.OnDied -= HandleDeath;

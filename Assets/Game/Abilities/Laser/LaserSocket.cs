@@ -1,4 +1,4 @@
-using Game.InteractionSystem;
+using Game.Interactions;
 using UnityEngine;
 using UnityEngine.Events;
 

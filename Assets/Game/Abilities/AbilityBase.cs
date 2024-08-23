@@ -13,9 +13,10 @@ namespace Game.Abilities
         public void SetPlayer(PlayerController newPlayer)
         {
             Player = newPlayer;
-
+            
             transform.SetParent(Player.transform, false);
-
+            Player.SetAbility(gameObject);
+            
             OnSetPlayer();
         }
 
