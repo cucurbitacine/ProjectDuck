@@ -7,13 +7,13 @@ namespace Game.Scripts.Combat
     public class HealthSfx : MonoBehaviour
     {
         [SerializeField] private float timeout = 0.5f;
+                
+        [Header("References")]
+        [SerializeField] private Health health;
         
         [Header("SFX")]
         [SerializeField]  private SoundFX damageSfx;
         [SerializeField]  private SoundFX deathSfx;
-        
-        [Header("References")]
-        [SerializeField] private Health health;
         
         private float _lastTime;
         
@@ -25,7 +25,7 @@ namespace Game.Scripts.Combat
             
             if (damageEvent.damage.amount > 0 && time - _lastTime > timeout)
             {
-                damageSfx.PlaySfx();
+                damageSfx.Play();
 
                 _lastTime = time;
             }
@@ -35,7 +35,7 @@ namespace Game.Scripts.Combat
         {
             if (deathSfx)
             {
-                deathSfx.PlaySfx();
+                deathSfx.Play();
             }
         }
         

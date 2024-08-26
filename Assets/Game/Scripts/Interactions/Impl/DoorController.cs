@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ namespace Game.Scripts.Interactions.Impl
         
         public Vector2 ClosedPosition => transform.position;
         public Vector2 OpenedPosition => ClosedPosition + Trajectory;
+        
+        public event Action<bool> OnMoved;
         
         public void OpenDoor(bool value)
         {
@@ -63,6 +66,8 @@ namespace Game.Scripts.Interactions.Impl
         
         private IEnumerator Opening(bool value)
         {
+            OnMoved?.Invoke(true);
+            
             var originBlend = progressBlend;
             var targetBlend = value ? 1f : 0f;
 
@@ -85,6 +90,8 @@ namespace Game.Scripts.Interactions.Impl
             }
 
             SetAnchorPosition(targetBlend);
+            
+            OnMoved?.Invoke(false);
         }
         
         private void OnEnable()

@@ -6,13 +6,13 @@ namespace Game.Scripts.Movements
     public class MovementSfx : MonoBehaviour
     {
         [SerializeField] [Min(0.01f)] private float rate = 1f;
-
-        [Header("SFX")]
-        [SerializeField] private SoundFX stepSfx;
         
         [Header("References")]
         [SerializeField] private Movement2D movement2D;
         [SerializeField] private Ground2D ground2D;
+        
+        [Header("SFX")]
+        [SerializeField] private SoundFX stepSfx;
         
         private float _timer;
         private float _lastTime;
@@ -21,7 +21,7 @@ namespace Game.Scripts.Movements
 
         private void Step(float time)
         {
-            stepSfx.PlaySfx();
+            stepSfx.Play();
 
             _lastTime = time;
         }
@@ -45,11 +45,14 @@ namespace Game.Scripts.Movements
         
         private void HandleGround(bool grounded)
         {
-            var time = Time.time;
-            
-            if (grounded && time - _lastTime > timeout)
+            if (grounded)
             {
-                Step(time);
+                var time = Time.time;
+
+                if (time - _lastTime > timeout)
+                {
+                    Step(time);
+                }
             }
         }
         

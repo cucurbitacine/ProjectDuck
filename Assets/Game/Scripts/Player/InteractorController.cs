@@ -27,8 +27,8 @@ namespace Game.Scripts.Player
         private int _countColliders;
         private readonly List<Collider2D> _colliders = new List<Collider2D>();
         
-        private readonly HashSet<IInteraction> _activeFocusedSet = new HashSet<IInteraction>();
-        private readonly HashSet<IInteraction> _foundFocusedSet = new HashSet<IInteraction>();
+        private readonly HashSet<IInteractable> _activeFocusedSet = new HashSet<IInteractable>();
+        private readonly HashSet<IInteractable> _foundFocusedSet = new HashSet<IInteractable>();
 
         public event Action OnInteracted; 
         
@@ -44,7 +44,7 @@ namespace Game.Scripts.Player
             {
                 var cld2d = _colliders[i];
 
-                if (cld2d && cld2d.TryGetComponent<IInteraction>(out var interaction))
+                if (cld2d && cld2d.TryGetComponent<IInteractable>(out var interaction))
                 {
                     interaction.Interact(player.gameObject);
                 }
@@ -91,7 +91,7 @@ namespace Game.Scripts.Player
             {
                 var cld2d = _colliders[i];
 
-                if (!cld2d.TryGetComponent<IInteraction>(out var focused)) continue;
+                if (!cld2d.TryGetComponent<IInteractable>(out var focused)) continue;
                 
                 // if found item is new, set focus true
                 if (_foundFocusedSet.Add(focused) && !_activeFocusedSet.Contains(focused))

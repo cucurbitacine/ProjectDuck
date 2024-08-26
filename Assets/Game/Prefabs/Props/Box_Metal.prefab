@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 266879064823166743}
   - component: {fileID: 6098197032019817150}
   - component: {fileID: 5127881803431529726}
+  - component: {fileID: 655346929266313402}
   - component: {fileID: 3786811570785392046}
   - component: {fileID: 3119694468542853564}
   - component: {fileID: 5552872169540455200}
@@ -182,7 +183,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -191,8 +192,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 8
-  MaxDistance: 16
+  MinDistance: 5
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -242,7 +243,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.4
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -267,6 +268,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &655346929266313402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586893492787337060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundGroup: {fileID: 0}
+  spatialType: 1
+  spreadBlend: 0.8
+  rolloffType: 0
+  dopplerLevel: 0
+  minDistance: 5
+  maxDistance: 20
 --- !u!114 &3786811570785392046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyObject: 0
-  destroySound: {fileID: 11400000, guid: aeb90c96c9f4bff4488b4f1f407bc97c, type: 2}
   deathEffectPrefab: {fileID: 4231454172808684664, guid: 259f7fbef9b2deb47a17a9447cce78ea, type: 3}
 --- !u!114 &7071413294294398952
 MonoBehaviour:
@@ -342,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
-  damageReceiver: {fileID: 3786811570785392046}
+  health: {fileID: 3786811570785392046}
 --- !u!114 &6057856105057971460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,9 +465,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeout: 0.5
+  health: {fileID: 3786811570785392046}
   damageSfx: {fileID: 1171429515805391416}
   deathSfx: {fileID: 0}
-  health: {fileID: 3786811570785392046}
 --- !u!1 &4017548516102129133
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,14 +513,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5127881803431529726}
-  playOneShot: 1
-  volume: 0.1
-  loop: 0
-  playOnEnable: 0
-  stopOnDisable: 0
   soundProfile: {fileID: 11400000, guid: aeb90c96c9f4bff4488b4f1f407bc97c, type: 2}
-  playMode: 2
+  soundType: 0
   defaultAudioClip: {fileID: 0}
+  volume: 0.1
+  playOnEnable: 0
+  loop: 0
+  easeInOut: 0.5
+  <State>k__BackingField: 0
 --- !u!1 &4390718778437926631
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,11 +566,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5127881803431529726}
-  playOneShot: 1
-  volume: 0.05
-  loop: 0
-  playOnEnable: 0
-  stopOnDisable: 0
-  soundProfile: {fileID: 11400000, guid: aeb90c96c9f4bff4488b4f1f407bc97c, type: 2}
-  playMode: 2
+  soundProfile: {fileID: 11400000, guid: a0345ddc5204022459615d2babc7644d, type: 2}
+  soundType: 0
   defaultAudioClip: {fileID: 0}
+  volume: 0.05
+  playOnEnable: 0
+  loop: 0
+  easeInOut: 0.5
+  <State>k__BackingField: 0

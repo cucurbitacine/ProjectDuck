@@ -31,7 +31,7 @@ namespace Game.Scripts.Abilities.Electricity
                     
                     OnChargeChanged?.Invoke(electricityCharge);
                     
-                    TurnOn(ElectricityCharge >= electricityChargeMax);
+                    TurnOn(ElectricityCharge >= ElectricityChargeMax);
 
                     if (TurnedOn)
                     {
@@ -44,6 +44,8 @@ namespace Game.Scripts.Abilities.Electricity
                 }
             }
         }
+
+        public int ElectricityChargeMax => electricityChargeMax;
         
         public void Focus(bool value)
         {
@@ -71,7 +73,7 @@ namespace Game.Scripts.Abilities.Electricity
 
         public int HowMuchAbleToReceive(int amount)
         {
-            var available = electricityChargeMax - ElectricityCharge;
+            var available = ElectricityChargeMax - ElectricityCharge;
             
             return Mathf.Min(amount, available);
         }
@@ -96,7 +98,7 @@ namespace Game.Scripts.Abilities.Electricity
 
         private void Start()
         {
-            TurnOn(ElectricityCharge >= electricityChargeMax);
+            TurnOn(ElectricityCharge >= ElectricityChargeMax);
         }
 
         private void OnValidate()

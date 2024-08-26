@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game.Scripts.Core;
 using Game.Scripts.Player;
+using Game.Scripts.SFX;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -51,6 +52,7 @@ namespace Game.Scripts.LevelSystem
         
         [Header("References")]
         [SerializeField] private ScreenFader fader;
+        [SerializeField] private SoundFX ambient;
 
         public bool Busy
         {
@@ -155,6 +157,8 @@ namespace Game.Scripts.LevelSystem
             
             OnStopLevel();
             
+            ambient?.Stop(fadeInTime);
+            
             yield return fader?.FadeIn(fadeInTime);
 
             Player.Pause(true);
@@ -206,6 +210,8 @@ namespace Game.Scripts.LevelSystem
             yield return PreparePlayer();
             
             yield return PrepareLevel();
+            
+            ambient?.Play(fadeInTime);
             
             yield return fader?.FadeOut(fadeOutTime);
             

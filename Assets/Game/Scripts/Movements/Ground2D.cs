@@ -215,7 +215,7 @@ namespace Game.Scripts.Movements
                 Gizmos.color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
                 if (BoxCasting)
                 {
-                    Tools.DrawBox(boxRaycastOrigin + Direction.normalized * groundHit.raycastHit.distance, boxRaycastSize, boxRaycastAngle);
+                    Tools.DrawBox2D(boxRaycastOrigin + Direction.normalized * groundHit.raycastHit.distance, boxRaycastSize, boxRaycastAngle);
                 }
                 else
                 {
@@ -233,7 +233,7 @@ namespace Game.Scripts.Movements
                 Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
                 if (BoxCasting)
                 {
-                    Tools.DrawBox(boxRaycastOrigin + Direction.normalized * boxRaycastDistance, boxRaycastSize, boxRaycastAngle);
+                    Tools.DrawBox2D(boxRaycastOrigin + Direction.normalized * boxRaycastDistance, boxRaycastSize, boxRaycastAngle);
                 }
                 else
                 {

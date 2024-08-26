@@ -4,7 +4,7 @@ namespace Game.Scripts.Core
 {
     public static class Tools
     {
-        public static void DrawBox(Vector2 center, Vector2 size, float angle)
+        public static void DrawBox2D(Vector2 center, Vector2 size, float angle = 0f)
         {
             var rotor = Quaternion.Euler(0, 0, angle);
 
@@ -24,6 +24,30 @@ namespace Game.Scripts.Core
             Gizmos.DrawLine(d, a);
         }
 
+        public static void DrawCircle2D(Vector2 center, float radius, int number = 36)
+        {
+            var first = Vector2.zero;
+            var last = Vector2.zero;
+            for (var i = 0; i < number; i++)
+            {
+                var phi = 2f * Mathf.PI * i / number;
+                var point = center + new Vector2(Mathf.Sin(phi), Mathf.Cos(phi)) * radius;
+                
+                if (i > 0)
+                {
+                    Gizmos.DrawLine(last, point);
+                }
+                else
+                {
+                    first = point;
+                }
+
+                last = point;
+            }
+            
+            Gizmos.DrawLine(last, first);
+        }
+        
         public static bool TryGet<T>(this Collider2D collider2D, out T component)
         {
             if (collider2D.TryGetComponent(out component))

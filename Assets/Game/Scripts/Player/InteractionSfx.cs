@@ -5,15 +5,14 @@ namespace Game.Scripts.Player
 {
     public class InteractionSfx : MonoBehaviour
     {
-        [Header("SFX")]
-        [SerializeField] private SoundFX quackSfx;
-        
-        [Header("References")]
         [SerializeField] private InteractorController interactor;
+        
+        [Header("SFX")]
+        [SerializeField] private SoundFX sfx;
         
         private void HandleInteraction()
         {
-            quackSfx.PlaySfx();
+            sfx.Play();
         }
         
         private void OnEnable()

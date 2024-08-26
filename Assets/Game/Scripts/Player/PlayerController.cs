@@ -1,4 +1,5 @@
 using Game.Scripts.Combat;
+using Game.Scripts.Interactions;
 using Game.Scripts.Movements;
 using Inputs;
 using UnityEngine;
@@ -39,6 +40,11 @@ namespace Game.Scripts.Player
         {
             if (activeAbility)
             {
+                if (activeAbility.TryGetComponent<IDroppable>(out var droppable))
+                {
+                    droppable.Drop();
+                }
+                
                 Destroy(activeAbility.gameObject);
 
                 activeAbility = null;

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace Game.Scripts.Player
 {
-    public class PlayerHealPickup : PickupBase, IInteraction
+    public class PlayerHealPickup : PickupBase, IInteractable
     {
         [Header("Healing")]
         [SerializeField] [Min(0)] private int healAmount = 50;

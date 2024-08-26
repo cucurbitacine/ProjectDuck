@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Scripts.SFX;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,16 +21,19 @@ namespace Game.Scripts.Abilities.Electricity
 
         [Space]
         [SerializeField] private GenerateMode generateMode = GenerateMode.Performance;
-        [Min(2)] [SerializeField] private int positionCount = 2;
-        [Min(0f)] [SerializeField] private float startWidth = 0.1f;
-        [Min(0f)] [SerializeField] private float endWidth = 0.02f;
+        [SerializeField] [Min(2)] private int positionCount = 2;
+        [SerializeField] [Min(0f)] private float startWidth = 0.1f;
+        [SerializeField] [Min(0f)] private float endWidth = 0.02f;
         
         [Space]
-        [Min(0f)] [SerializeField] private float randomRadius = 0.5f;
+        [SerializeField] [Min(0f)] private float randomRadius = 0.5f;
 
+        [Header("SFX")]
+        [SerializeField] private SoundFX sfx;
+        
         [Header("Time")]
-        [Min(0.001f)] [SerializeField] private float rateUpdate = 1f;
-        [Min(0f)] [SerializeField] private float delay = 0.25f;
+        [SerializeField] [Min(0.001f)] private float rateUpdate = 1f;
+        [SerializeField] [Min(0f)] private float delay = 0.25f;
         
         [Header("References")]
         [SerializeField] private LineRenderer line;
@@ -43,12 +47,25 @@ namespace Game.Scripts.Abilities.Electricity
         {
             _timerDelay = delay;
 
+            if (sfx)
+            {
+                if (!IsPlaying)
+                {
+                    sfx.Play(); 
+                }
+            }
+            
             IsPlaying = true;
         }
 
         public void Stop()
         {
             IsPlaying = false;
+            
+            if (sfx)
+            {
+                sfx.Stop();
+            }
         }
 
         public void SetPositions(Vector2 positionA, Vector2 positionB)
@@ -77,7 +94,7 @@ namespace Game.Scripts.Abilities.Electricity
                 points.Add(target);
 
                 line.positionCount = points.Count;
-                for (int i = 0; i < line.positionCount; i++)
+                for (var i = 0; i < line.positionCount; i++)
                 {
                     line.SetPosition(i, points[i]);
                 }
@@ -115,6 +132,11 @@ namespace Game.Scripts.Abilities.Electricity
                 if (_timerDelay < 0)
                 {
                     IsPlaying = false;
+                    
+                    if (sfx)
+                    {
+                        sfx.Stop();
+                    }
                 }
                 else
                 {

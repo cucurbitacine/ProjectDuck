@@ -24,8 +24,8 @@ namespace Game.Scripts.Abilities.Electricity
         [Min(0f)] [SerializeField] private float raycastRadius = 0.5f;
         [SerializeField] private Vector2 raycastOffset = Vector2.zero;
         [SerializeField] private LayerMask layerMask = 1;
-
-        [Header("FX")]
+        
+        [Header("VFX")]
         [SerializeField] private ElectricityEffect electricityEffect;
         [SerializeField] private ElectricityStrikeEffect strikeEffect;
         [SerializeField] private GameObject hitEffect;
@@ -33,7 +33,7 @@ namespace Game.Scripts.Abilities.Electricity
         [Header("Damage")]
         [Min(0f)] [SerializeField] private float forcePower = 0f;
         [SerializeField] private DamageSource electricityDamageSource;
-        
+            
         [Header("Input")]
         [SerializeField] private bool sendCharge;
         [SerializeField] private bool receiveCharge;
@@ -53,7 +53,7 @@ namespace Game.Scripts.Abilities.Electricity
         private float raycastDistance => Mathf.Min(Vector2.Distance(worldPoint, raycastOrigin), distanceMax);
         
         private Vector2 worldPoint => _playerInput ? _playerInput.WorldPoint : transform.position;
-        
+ 
         public event Action<bool> OnFocusChanged;
         public event Action<int> OnChargeChanged; 
         
@@ -70,6 +70,8 @@ namespace Game.Scripts.Abilities.Electricity
                 }
             }
         }
+
+        public int ElectricityChargeMax => electricityChargeMax;
         
         public void Focus(bool value)
         {
@@ -85,7 +87,7 @@ namespace Game.Scripts.Abilities.Electricity
 
         public int HowMuchAbleToReceive(int amount)
         {
-            var available = electricityChargeMax - ElectricityCharge;
+            var available = ElectricityChargeMax - ElectricityCharge;
             
             return Mathf.Min(amount, available);
         }
@@ -279,15 +281,20 @@ namespace Game.Scripts.Abilities.Electricity
 
         public override void Drop()
         {
+            base.Drop();
+            
             if (ElectricityCharge > 0 && _lastUsed != null)
             {
                 SendChargeTo(_lastUsed, chargeAmountPerTime);
             }
         }
-
+        
         private void OnDestroy()
         {
-            Drop();
+            if (ElectricityCharge > 0 && _lastUsed != null)
+            {
+                SendChargeTo(_lastUsed, chargeAmountPerTime);
+            }
             
             if (_playerInput)
             {

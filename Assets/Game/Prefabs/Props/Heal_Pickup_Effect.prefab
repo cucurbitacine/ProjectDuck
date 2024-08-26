@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2187067653268471677
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421986503273155070, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684490132947615609, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: m_Name
+      value: Heal_Pickup_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975007505279067373, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975007505279067373, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572435250544804343, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112978269220891501, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      propertyPath: defaultAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ea61e89b2748784da7cbab46f3ea8a4, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2684490132947615609, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6740704272881964779}
+  m_SourcePrefab: {fileID: 100100000, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+--- !u!1 &4259068228026908676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2684490132947615609, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
+  m_PrefabInstance: {fileID: 2187067653268471677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6740704272881964779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259068228026908676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672149e35b5a41b98d406163ae75d91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 10

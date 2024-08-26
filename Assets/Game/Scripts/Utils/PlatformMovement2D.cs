@@ -1,3 +1,4 @@
+using System;
 using Game.Scripts.Core;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Game.Scripts.Utils
         [field: SerializeField] public bool Paused { get; private set; }
 
         [SerializeField] private PlatformState state = PlatformState.Idle;
+        [SerializeField] private bool isMoving;
         
         [field: Space]
         [field: SerializeField] public Vector2 PositionA { get; set; }
@@ -54,7 +56,7 @@ namespace Game.Scripts.Utils
 
         private Rigidbody2D _rigid;
         private float _waitingTime;
-        
+
         public Vector2 PositionB
         {
             get => PositionA + direction.normalized * distance;
@@ -70,50 +72,97 @@ namespace Game.Scripts.Utils
 
         public Vector2 Velocity => _rigid ? _rigid.velocity : Vector2.zero;
         
+        public PlatformState State
+        {
+            get => state;
+            private set
+            {
+                if (state == value) return;
+
+                var prevState = state;
+                
+                state = value;
+                
+                OnStateChanged?.Invoke(prevState, state);
+            } 
+        }
+
+        public bool IsMoving
+        {
+            get => isMoving;
+            private set
+            {
+                if (isMoving == value) return;
+                
+                isMoving = value;
+                
+                OnMoved?.Invoke(isMoving);
+            }
+        }
+
+        public event Action<PlatformState, PlatformState> OnStateChanged; 
+        public event Action<bool> OnMoved; 
+        
         public void Pause(bool value)
         {
+            if (Paused == value) return;
+            
             Paused = value;
+
+            if (Paused && IsMoving)
+            {
+                IsMoving = false;
+            }
+            
+            if (!Paused && State != PlatformState.Idle)
+            {
+                IsMoving = true;
+            }
         }
         
         [ContextMenu(nameof(MoveOnce))]
         public void MoveOnce()
         {
-            if (state == PlatformState.Moving)
+            if (State == PlatformState.Moving)
             {
                 reverse = !reverse;
             }
             else 
             {
-                state = PlatformState.Moving;
+                State = PlatformState.Moving;
+
+                IsMoving = true;
             }
         }
 
         [ContextMenu(nameof(MoveLooped))]
         public void MoveLooped()
         {
-            if (state == PlatformState.Looped)
+            if (State == PlatformState.Looped)
             {
                 reverse = !reverse;
             }
             else
             {
-                state = PlatformState.Looped;
+                State = PlatformState.Looped;
+                
+                IsMoving = true;
             }
         }
 
         [ContextMenu(nameof(StopLoop))]
         public void StopLoop()
         {
-            if (state == PlatformState.Looped)
+            if (State == PlatformState.Looped)
             {
-                state = PlatformState.Moving;
+                State = PlatformState.Moving;
             }
         }
 
         [ContextMenu(nameof(SwitchLoop))]
         public void SwitchLoop()
         {
-            if (state == PlatformState.Looped)
+            if (State == PlatformState.Looped)
             {
                 StopLoop();
             }
@@ -147,9 +196,14 @@ namespace Game.Scripts.Utils
             PositionA = transform.position;
         }
 
+        private void Start()
+        {
+            IsMoving = !Paused && State != PlatformState.Idle;
+        }
+
         private void FixedUpdate()
         {
-            if (Paused || state == PlatformState.Idle)
+            if (Paused || State == PlatformState.Idle)
             {
                 _rigid.velocity = Vector2.zero;
                 
@@ -183,14 +237,16 @@ namespace Game.Scripts.Utils
              * if is looped, start wait
              */
 
-            if (state == PlatformState.Moving)
+            if (State == PlatformState.Moving)
             {
                 _rigid.velocity = velocity;
                 _rigid.MovePosition(nextPosition);
                 
                 if (destinationReached)
                 {
-                    state = PlatformState.Idle;
+                    State = PlatformState.Idle;
+                    
+                    IsMoving = false;
                 }
             }
             else
@@ -200,13 +256,18 @@ namespace Game.Scripts.Utils
                  * else Check waiting time
                  */
 
-                if (_waitingTime > 0) 
+                if (_waitingTime > 0f) 
                 {
                     // Is waiting
                     
                     _waitingTime -= Time.fixedDeltaTime;
                     
                     _rigid.velocity = Vector2.zero;
+
+                    if (_waitingTime <= 0f)
+                    {
+                        IsMoving = true;
+                    }
                 }
                 else
                 {
@@ -219,6 +280,13 @@ namespace Game.Scripts.Utils
                     {
                         // Start wait
                         _waitingTime = waitTime;
+                        
+                        IsMoving = false;
+                        
+                        if (_waitingTime <= 0f)
+                        {
+                            IsMoving = true;
+                        }
                     }
                 }
             }

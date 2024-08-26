@@ -10,7 +10,10 @@ namespace Game.Scripts.Interactions
         
         [Header("Pickup")]
         [SerializeField] private bool destroyAfterPick = false;
-        [Min(0f)] [SerializeField] private float enableTimeAfterDisabled = 0f;
+        [SerializeField] [Min(0f)] private float enableTimeAfterDisabled = 0f;
+
+        [Header("VFX")]
+        [SerializeField] private GameObject pickupEffectPrefab;
         
         public event Action<bool> OnFocusChanged;
         
@@ -47,6 +50,11 @@ namespace Game.Scripts.Interactions
         [ContextMenu(nameof(AfterPick))]
         public void AfterPick()
         {
+            if (pickupEffectPrefab)
+            {
+                Instantiate(pickupEffectPrefab, transform.position, Quaternion.identity);
+            }
+            
             if (destroyAfterPick)
             {
                 Destroy(gameObject);

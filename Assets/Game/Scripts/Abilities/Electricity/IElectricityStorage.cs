@@ -7,7 +7,8 @@ namespace Game.Scripts.Abilities.Electricity
     {
         public event Action<int> OnChargeChanged;
         
-        public int ElectricityCharge { get; set; }
+        public int ElectricityCharge { get; }
+        public int ElectricityChargeMax { get; }
 
         public int HowMuchAbleToSend(int amount);
         public int HowMuchAbleToReceive(int amount);

@@ -1,126 +1,153 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-using Random = UnityEngine.Random;
 
 namespace Game.Scripts.SFX
 {
     public sealed class SoundFX : MonoBehaviour
     {
+        /*
+         * Two Modes: SFX and Ambient
+         *
+         * SFX
+         * Use only PlayOneShot
+         * Stop do not work
+         *
+         * Ambient
+         * Can be looped
+         * Ease In Out
+         * 
+         */
+        
+        public enum SoundType
+        {
+            PlayOneShot,
+            Continuous, 
+        }
+        
+        private enum SoundState
+        {
+            Stopped,
+            Playing,
+        }
+        
         [SerializeField] private AudioSource audioSource;
-        [Space]
-        [SerializeField] private AudioMixerGroup audioMixerGroup;
-        
-        [Header("Settings")]
-        [SerializeField] private bool playOneShot = true;
-        [SerializeField] [Range(0f, 1f)] private float volume = 1f;
-        
-        [Header("Background")]
-        [SerializeField] private bool loop;
-        [Space]
-        [SerializeField] private bool playOnEnable;
-        [SerializeField] private bool stopOnDisable;
-        [Space]
-        [SerializeField] [Min(0f)] private float easeInOut = 0.5f;
         
         [Header("Sound")]
         [SerializeField] private SoundProfile soundProfile;
-        [SerializeField] private PlayMode playMode = PlayMode.Random;
-        
         [Space]
+        [SerializeField] private SoundType soundType = SoundType.PlayOneShot;
         [SerializeField] private AudioClip defaultAudioClip;
-
-        public bool IsPlaying => audioSource && audioSource.isPlaying;
-        public bool OnPause { get; private set; }
         
-        private int _index = 0;
-        private Coroutine _easing;
+        [Header("Settings")]
+        [SerializeField] [Range(0f, 1f)] private float volume = 1f;
+        [SerializeField] private bool playOnEnable;
         
-        [ContextMenu(nameof(PlaySfx))]
-        public void PlaySfx()
+        [Header("Continuous Settings Only")]
+        [SerializeField] private bool loop;
+        [SerializeField] [Min(0f)] private float easeInOut = 0.5f;
+        
+        private Coroutine _playingContinuous;
+        
+        [field: SerializeField, Space] private SoundState State { get; set; }
+        
+        public bool IsPlaying
         {
-            if (playOneShot)
-            {
-                audioSource.PlayOneShot(GetAudioClip(), volume);
-            }
-            else
-            {
-                if (OnPause)
-                {
-                    OnPause = false;
-                    audioSource.UnPause();
-                }
-                else
-                {
-                    PlayOrStop(true);
-                }
-            }
-        }
-
-        [ContextMenu(nameof(PauseSfx))]
-        public void PauseSfx()
-        {
-            if (playOneShot) return;
-
-            OnPause = true;
-            audioSource.Pause();
-        }
-
-        [ContextMenu(nameof(StopSfx))]
-        public void StopSfx()
-        {
-            if (OnPause)
-            {
-                OnPause = false;
-                audioSource.Stop();
-            }
-            else
-            {
-                PlayOrStop(false);
-            }
-        }
-
-        public void SetSoundProfile(SoundProfile profile)
-        {
-            soundProfile = profile;
-        }
-
-        private void PlayOrStop(bool play)
-        {
-            if (gameObject.activeInHierarchy)
-            {
-                if (_easing != null) StopCoroutine(_easing);
-                _easing = StartCoroutine(EasePlayOrStop(play));
-            }
-            else
-            {
-                if (play)
-                {
-                    audioSource.volume = volume;
-                    audioSource.clip = GetAudioClip();
-                    audioSource.Play();
-                }
-                else
-                {
-                    audioSource.Stop();
-                }
-            }
+            get => State == SoundState.Playing;
+            private set => State = value ? SoundState.Playing : SoundState.Stopped;
         }
         
-        private IEnumerator EasePlayOrStop(bool play)
+        public Coroutine Play(float inOut)
         {
-            var origin = audioSource.isPlaying ? audioSource.volume : (play ? 0f : volume);
-            var target = play ? volume : 0f;
+            if (soundType == SoundType.Continuous)
+            {
+                return PlayContinuous(SoundState.Playing, easeInOut);
+            }
             
-            var speed = volume / easeInOut;
+            if (soundType == SoundType.PlayOneShot)
+            {
+                PlayOneShot();
+            }
+            
+            return null;
+        }
+
+        public Coroutine Stop(float inOut)
+        {
+            if (soundType == SoundType.Continuous)
+            {
+                return PlayContinuous(SoundState.Stopped, easeInOut);
+            }
+
+            return null;
+        }
+        
+        [ContextMenu(nameof(Play))]
+        public Coroutine Play()
+        {
+            return Play(easeInOut);
+        }
+
+        [ContextMenu(nameof(Stop))]
+        public Coroutine Stop()
+        {
+            return Stop(easeInOut);
+        }
+        
+        public Coroutine Play(bool play)
+        {
+            if (play && !IsPlaying)
+            {
+                return Play();
+            }
+            
+            if (!play && IsPlaying)
+            {
+                return Stop();
+            }
+
+            return null;
+        }
+        
+        private Coroutine PlayContinuous(SoundState state, float inOut)
+        {
+            State = state;
+            
+            if (_playingContinuous != null) StopCoroutine(_playingContinuous);
+            
+            if (inOut > 0f)
+            {
+                _playingContinuous = StartCoroutine(PlayingContinuous(state, inOut));
+
+                return _playingContinuous;
+            }
+            
+            if (state == SoundState.Playing)
+            {
+                PlayAudioSource();
+            }
+                
+            if (state == SoundState.Stopped)
+            {
+                StopAudioSource();
+            }
+
+            return null;
+        }
+        
+        private IEnumerator PlayingContinuous(SoundState soundState, float easeDuration)
+        {
+            var origin = audioSource.isPlaying ? audioSource.volume : (soundState == SoundState.Playing ? 0f : volume);
+            var target = soundState == SoundState.Playing ? volume : 0f;
+            
+            if (soundState == SoundState.Playing)
+            {
+                PlayAudioSource();
+            }
+            
+            var speed = volume / easeDuration;
             var distance = Mathf.Abs(target - origin);
             var duration = distance / speed;
-            
-            if (play)
-            {
-                audioSource.clip = GetAudioClip();
-                audioSource.Play();
-            }
             
             var timer = 0f;
             while (timer < duration)
@@ -134,38 +161,54 @@ namespace Game.Scripts.SFX
             
             audioSource.volume = target;
 
-            if (!play)
+            if (soundState == SoundState.Stopped)
             {
-                audioSource.Stop();
+                StopAudioSource();
             }
+            
+            audioSource.volume = volume;
+        }
+
+        private void PlayOneShot()
+        {
+            var clip = GetAudioClip();
+
+            if (!clip)
+            {
+                Debug.LogWarning($"\"{name} ({nameof(SoundFX)})\" Clip is Null");
+                return;
+            }
+            
+            audioSource.PlayOneShot(clip, volume);
+        }
+        
+        private void PlayAudioSource()
+        {
+            var clip = GetAudioClip();
+
+            if (!clip)
+            {
+                Debug.LogWarning($"\"{name} ({nameof(SoundFX)})\" Clip is Null");
+                return;
+            }
+
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+
+        private void StopAudioSource()
+        {
+            audioSource.Stop();
         }
         
         private AudioClip GetAudioClip()
         {
             if (soundProfile)
             {
-                _index = EvaluateIndex(_index, soundProfile.Count, playMode);
-                return soundProfile.GetAudioClip(_index);
+                return soundProfile.GetAudioClip();
             }
 
             return defaultAudioClip;
-        }
-
-        private static int EvaluateIndex(int index, int count, PlayMode playMode)
-        {
-            if (count <= 0) return -1;
-
-            if (playMode == PlayMode.Sequence)
-            {
-                return (index + 1) % count;
-            }
-
-            if (playMode == PlayMode.Random)
-            {
-                return Random.Range(0, count);
-            }
-
-            return index;
         }
         
         private void Awake()
@@ -173,18 +216,14 @@ namespace Game.Scripts.SFX
             if (audioSource == null) audioSource = GetComponent<AudioSource>();
             if (audioSource == null) audioSource = GetComponentInParent<AudioSource>();
 
-            if (audioMixerGroup)
-            {
-                audioSource.outputAudioMixerGroup = audioMixerGroup;
-            }
+            audioSource.playOnAwake = false;
             
-            if (playOneShot)
+            if (soundType == SoundType.PlayOneShot)
             {
                 loop = false;
-                playOnEnable = false;
-                stopOnDisable = false;
             }
-            else 
+            
+            if (soundType == SoundType.Continuous)
             {
                 audioSource.loop = loop;
                 audioSource.volume = volume;
@@ -201,37 +240,67 @@ namespace Game.Scripts.SFX
             if (audioSource == null) audioSource = GetComponent<AudioSource>();
             if (audioSource == null) audioSource = GetComponentInParent<AudioSource>();
 
-            if (Application.isPlaying && audioSource)
+            if (audioSource)
             {
-                if (playOneShot)
+                audioSource.playOnAwake = false;
+                
+                if (Application.isPlaying)
                 {
-                    
-                }
-                else
-                {
-                    audioSource.loop = loop;
-                    audioSource.volume = volume;
+                    if (soundType == SoundType.Continuous)
+                    {
+                        audioSource.loop = loop;
+                        audioSource.volume = volume;
+                    }
                 }
             }
         }
 
         private void OnEnable()
         {
+            Register(this);
+            
             if (playOnEnable)
             {
-                PlaySfx();
+                Play();
             }
         }
 
         private void OnDisable()
         {
-            if (_easing != null) StopCoroutine(_easing);
+            State = SoundState.Stopped;
+
+            Unregister(this);
+        }
+
+        private static readonly Dictionary<AudioSource, HashSet<SoundFX>> Dict = new Dictionary<AudioSource, HashSet<SoundFX>>();
+
+        private static HashSet<SoundFX> GetSet(AudioSource source)
+        {
+            if (Dict.TryGetValue(source, out var set)) return set;
             
-            if (stopOnDisable)
+            set = new HashSet<SoundFX>();
+            Dict.Add(source, set);
+
+            return set;
+        }
+
+        private static bool Register(SoundFX sfx)
+        {
+            var set = GetSet(sfx.audioSource);
+
+            if (sfx.soundType == SoundType.Continuous && set.Count > 0)
             {
-                OnPause = false;
-                audioSource.Stop();
+                Debug.LogWarning($"\"{sfx.name}\" with [{nameof(SoundType)}.{sfx.soundType.ToString()}] cannot be attached to \"{sfx.audioSource.name}\" {nameof(AudioSource)}");
             }
+
+            return set.Add(sfx);
+        }
+
+        private static bool Unregister(SoundFX sfx)
+        {
+            var set = GetSet(sfx.audioSource);
+
+            return set.Remove(sfx);
         }
     }
 }

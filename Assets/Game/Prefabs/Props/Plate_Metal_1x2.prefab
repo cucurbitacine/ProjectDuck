@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1862251821719304508, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
       propertyPath: m_Name
-      value: Metal Plate 1x2
+      value: Plate_Metal_1x2
       objectReference: {fileID: 0}
     - target: {fileID: 6089744828222781908, guid: 26b563b7ac9983744b98eba4b1e690d2, type: 3}
       propertyPath: m_Name

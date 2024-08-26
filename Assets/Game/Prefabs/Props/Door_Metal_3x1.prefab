@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229820779864223450, guid: 132aa9643e7318746a7657481a5ac21c, type: 3}
       propertyPath: m_Name
-      value: Metal Door 3x1
+      value: Door_Metal_3x1
       objectReference: {fileID: 0}
     - target: {fileID: 9021815205201229479, guid: 132aa9643e7318746a7657481a5ac21c, type: 3}
       propertyPath: m_LocalPosition.x

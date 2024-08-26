@@ -108,7 +108,7 @@ namespace Game.Scripts.LevelSystem
             var playerData = gettingPlayerData.Result;
             
             newGameButton.interactable = true;
-            continueGameButton.gameObject.SetActive(!playerData.newGame);
+            continueGameButton.gameObject.SetActive(!playerData.isNewGame);
             
             yield return fader?.FadeOut(fadeDuration);
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.Scripts.SFX;
 using Inputs;
 using UnityEngine;
 
@@ -11,7 +12,11 @@ namespace Game.Scripts.Abilities.Teleportation
         [Min(0f)] [SerializeField] private float timeout = 1f;
         [SerializeField] private LayerMask obstacleLayerMask = 1;
 
-        [Header("FX")]
+        [Header("SFX")]
+        [SerializeField] private SoundFX aimSfx;
+        [SerializeField] private SoundFX teleportSfx;
+        
+        [Header("VFX")]
         [Min(0)] [SerializeField] private int minEmissionRateOverTime = 1000;
         [Min(0)] [SerializeField] private int maxEmissionRateOverTime = 4000;
         [SerializeField] private ParticleSystem teleportEffect;
@@ -48,6 +53,11 @@ namespace Game.Scripts.Abilities.Teleportation
             {
                 Instantiate(teleportHitEffectPrefab, Player.position, Quaternion.identity);
                 Instantiate(teleportHitEffectPrefab, teleportPosition, Quaternion.identity);
+            }
+
+            if (teleportSfx)
+            {
+                teleportSfx.Play();
             }
         }
         
@@ -137,6 +147,13 @@ namespace Game.Scripts.Abilities.Teleportation
             emission.rateOverTime = primaryFire && teleportReady ? maxEmissionRateOverTime : minEmissionRateOverTime;
             
             Cursor.visible = !(primaryFire && teleportReady);
+
+            if (aimSfx)
+            {
+                var shouldPlay = primaryFire && teleportReady;
+
+                aimSfx.Play(shouldPlay);
+            }
         }
         
         protected override void OnSetPlayer()

@@ -26,7 +26,7 @@ namespace Game.Scripts.SFX.Impl
             
             if (timeSinceLast < spreadTimeout) return;
             
-            sfx.PlaySfx();
+            sfx.Play();
             _lastTime = time;
         }
     }

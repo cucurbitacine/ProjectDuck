@@ -3,12 +3,12 @@ using UnityEngine.Events;
 
 namespace Game.Scripts.Interactions.Utils
 {
-    [RequireComponent(typeof(IInteraction))]
+    [RequireComponent(typeof(IInteractable))]
     public sealed class InteractEvent : MonoBehaviour
     {
         [SerializeField] private UnityEvent<GameObject> interactEvent = new UnityEvent<GameObject>();
 
-        private IInteraction _interaction;
+        private IInteractable _interactable;
 
         private void HandleInteract(GameObject actor)
         {
@@ -17,17 +17,17 @@ namespace Game.Scripts.Interactions.Utils
 
         private void Awake()
         {
-            _interaction = GetComponent<IInteraction>();
+            _interactable = GetComponent<IInteractable>();
         }
 
         private void OnEnable()
         {
-            _interaction.OnInteracted += HandleInteract;
+            _interactable.OnInteracted += HandleInteract;
         }
 
         private void OnDisable()
         {
-            _interaction.OnInteracted -= HandleInteract;
+            _interactable.OnInteracted -= HandleInteract;
         }
     }
 }

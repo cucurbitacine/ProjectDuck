@@ -9,7 +9,7 @@ namespace Game.Scripts.Utils
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Kickable : MonoBehaviour, IInteraction, IPaused
+    public class Kickable : MonoBehaviour, IInteractable, IPaused
     {
         private Rigidbody2D rigidbody2d; 
         

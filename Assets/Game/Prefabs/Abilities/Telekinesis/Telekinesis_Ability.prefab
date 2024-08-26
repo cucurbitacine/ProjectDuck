@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AbilityId>k__BackingField: 1
+  dropEffectPrefab: {fileID: 2684490132947615609, guid: e06fa92fc64202143944daa396fa6aea, type: 3}
   outerRadiusTelekinesis: 3
   innerRadiusTelekinesis: 0.2
   layerMask:
@@ -78,6 +79,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   particleSpeed: 2
   particleSpeedScale: 4
-  effectLifetime: 5
   effectPrefab: {fileID: 4594184442408015976, guid: 17adcbb7f384ff24a9483d1d6c93b605, type: 3}
   primaryFire: 0

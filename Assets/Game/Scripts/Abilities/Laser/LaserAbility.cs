@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CucuTools.DamageSystem;
 using Game.Scripts.Core;
+using Game.Scripts.SFX;
 using Inputs;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Game.Scripts.Abilities.Laser
 {
     public class LaserAbility : AbilityBase, IPaused
     {
-        [field: SerializeField] public bool Paused { get; private set; }
+        [field: SerializeField, Space] public bool Paused { get; private set; }
         
         [Header("Settings")]
         [SerializeField] [Min(0)] private float laserPower = 1f;
@@ -23,7 +24,10 @@ namespace Game.Scripts.Abilities.Laser
         [SerializeField] [Min(0f)] private float laserDistance = 10f;
         [SerializeField] private LayerMask layerMask = 1;
         [SerializeField] [Min(0f)] private float threshold = 0.001f;
-        
+
+        [Header("SFX")]
+        [SerializeField] private SoundFX emittingSfx;
+            
         [Header("VFX")]
         [SerializeField] private GameObject hitEffectPrefab;
         
@@ -156,7 +160,8 @@ namespace Game.Scripts.Abilities.Laser
 
             line.startWidth = laserStartWidth;
             line.endWidth = laserEndWidth;
-            
+
+            var lastLine = line.enabled;
             line.enabled = points.Count > 1;
 
             line.positionCount = points.Count;
@@ -177,6 +182,14 @@ namespace Game.Scripts.Abilities.Laser
             for (var i = points.Count; i < _hitEffects.Count; i++)
             {
                 _hitEffects[i]?.SetActive(false);
+            }
+            
+            if (emittingSfx)
+            {
+                if (lastLine != line.enabled)
+                {
+                    emittingSfx.Play(line.enabled);
+                }
             }
         }
         

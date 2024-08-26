@@ -1,12 +1,15 @@
+using Game.Scripts.Interactions;
 using Game.Scripts.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Abilities
 {
     [DisallowMultipleComponent]
-    public abstract class AbilityBase : MonoBehaviour
+    public abstract class AbilityBase : MonoBehaviour, IDroppable
     {
         [field: SerializeField] public int AbilityId { get; private set; } = -1;
+
+        [SerializeField] private GameObject dropEffectPrefab;
         
         public PlayerController Player { get; private set; }
         
@@ -24,6 +27,10 @@ namespace Game.Scripts.Abilities
 
         public virtual void Drop()
         {
+            if (dropEffectPrefab)
+            {
+                Instantiate(dropEffectPrefab, Player.GetBounds().center, Quaternion.identity);
+            }
         }
     }
 }
