@@ -1,4 +1,4 @@
-using Game.Movements;
+using Game.Scripts.Movements;
 using UnityEngine;
 
 namespace Game.Dev
