@@ -1,5 +1,5 @@
 using System;
-using Game.Abilities;
+using Game.Scripts.Abilities;
 using TMPro;
 using UnityEngine;
 

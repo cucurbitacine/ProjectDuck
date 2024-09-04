@@ -182,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -212,6 +212,7 @@ MonoBehaviour:
   <Focused>k__BackingField: 0
   destroyAfterPick: 0
   enableTimeAfterDisabled: 0
+  pickupEffectPrefab: {fileID: 4259068228026908676, guid: 0a5e30bf5e520894998db8e7e887cfd3, type: 3}
   healAmount: 100
   onPicked:
     m_PersistentCalls:

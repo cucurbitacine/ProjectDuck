@@ -195,6 +195,7 @@ MonoBehaviour:
   <Focused>k__BackingField: 0
   destroyAfterPick: 0
   enableTimeAfterDisabled: 0
+  pickupEffectPrefab: {fileID: 2684490132947615609, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
   abilityPrefab: {fileID: 0}
 --- !u!1 &6872473835955946558
 GameObject:

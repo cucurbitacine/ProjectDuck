@@ -1,0 +1,16 @@
+{
+    "name": "Game.SFX",
+    "rootNamespace": "",
+    "references": [
+        "GUID:20a9fb15c8a32b94cbc82afedf0d9c87"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

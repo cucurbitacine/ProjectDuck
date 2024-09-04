@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CucuTools.StateMachines;
-using Game.Player;
+using Game.Scripts.Player;
 using UnityEngine;
 
 namespace Game.Dev
