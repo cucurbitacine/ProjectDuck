@@ -10,6 +10,7 @@ namespace Game.Scripts.Abilities.Electricity
 {
     public class ElectricityAbility : AbilityBase, IElectricityStorage
     {
+        [field: Header("Electricity")]
         [field: SerializeField] public bool Focused { get; private set; }
         
         [Header("Settings")]

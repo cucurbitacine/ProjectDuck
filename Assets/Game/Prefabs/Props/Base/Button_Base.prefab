@@ -142,13 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &4579753061913702408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: c1112f306229aac4689f880cef304da7, type: 2}
   soundType: 0
   defaultAudioClip: {fileID: 0}
-  volume: 1
+  volumeScale: 1
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
@@ -479,10 +481,6 @@ PrefabInstance:
     - target: {fileID: 3250065563697676222, guid: 35906a85a1149144591ee0be13132c90, type: 3}
       propertyPath: m_Name
       value: Hint Text Base
-      objectReference: {fileID: 0}
-    - target: {fileID: 3444228669820589201, guid: 35906a85a1149144591ee0be13132c90, type: 3}
-      propertyPath: m_Camera
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3444228669820589201, guid: 35906a85a1149144591ee0be13132c90, type: 3}
       propertyPath: m_SortingLayerID

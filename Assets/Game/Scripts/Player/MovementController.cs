@@ -92,7 +92,6 @@ namespace Game.Scripts.Player
                 {
                     _movement2d.Jump();
                 }
-                
             }
 
             _lastJump = jump;

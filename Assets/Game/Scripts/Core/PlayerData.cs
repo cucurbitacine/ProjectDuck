@@ -12,8 +12,6 @@ namespace Game.Scripts.Core
         public int attemptNumber;
         public int levelNumber = -1;
         
-        public bool isNewGame => levelNumber < 0;
-
         public override string ToString()
         {
             return $"[{playerId}:{attemptNumber}] Level: {levelNumber}";

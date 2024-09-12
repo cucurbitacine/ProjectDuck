@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AbilityId>k__BackingField: 2
   dropEffectPrefab: {fileID: 2684490132947615609, guid: e06fa92fc64202143944daa396fa6aea, type: 3}
+  uiPrefab: {fileID: 8208860479322328807, guid: 3d1af889860d3f94781975ebcc763f1c, type: 3}
   <Focused>k__BackingField: 0
   chargeAmountPerTime: 1
   electricityCharge: 0
@@ -236,9 +237,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -332,13 +333,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &7059818377000551857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +358,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: 57c6b75fbc8bf804999ca99367cc79a8, type: 2}
   soundType: 1
   defaultAudioClip: {fileID: 0}
-  volume: 0.1
+  volumeScale: 1
   playOnEnable: 0
   loop: 1
   easeInOut: 0.5
@@ -592,51 +595,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: -0.22708738
+      value: 0.28294683
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 4.5863476
+      value: 4.0718365
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[2].x
-      value: -0.5482667
+      value: -0.5924476
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[2].y
-      value: 3.942615
+      value: 4.021182
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[3].x
-      value: 0.6476244
+      value: -0.45587808
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[3].y
-      value: 2.662835
+      value: 3.1314168
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[4].x
-      value: 0.25304073
+      value: 0.38356948
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[4].y
-      value: 2.1343858
+      value: 2.3916354
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[5].x
-      value: 0.6635418
+      value: -0.6800906
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[5].y
-      value: 1.6027014
+      value: 1.586099
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[6].x
-      value: -0.4515853
+      value: 0.5115765
       objectReference: {fileID: 0}
     - target: {fileID: 5904765285714910831, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: m_Positions.Array.data[6].y
-      value: 0.54115546
+      value: 0.5105705
       objectReference: {fileID: 0}
     - target: {fileID: 6724284570214697209, guid: 014af578daad6b6418feafc5a827ef08, type: 3}
       propertyPath: rateUpdate
@@ -711,6 +714,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7502622744347257837}
     m_Modifications:
+    - target: {fileID: 194480295847405910, guid: d13b656e6e54e504081f4b49cf990f05, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 194480295847405910, guid: d13b656e6e54e504081f4b49cf990f05, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240943013071186291, guid: d13b656e6e54e504081f4b49cf990f05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

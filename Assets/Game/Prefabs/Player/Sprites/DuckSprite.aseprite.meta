@@ -2,7 +2,37 @@ fileFormatVersion: 2
 guid: 2c03d42aaebf91d4fb6058f1fb7b59fb
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Dead
+    second: {fileID: 7400000, guid: 2786a88463cffbe4daf8f5b095a5e41e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Hit
+    second: {fileID: 7400000, guid: aa0fd3838ca921e439880e1766a49e8e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle
+    second: {fileID: 7400000, guid: 2503c5b7d2acf4446b30666b44ed746b, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: InAir
+    second: {fileID: 7400000, guid: 87859b7ff1a2d63458fe23f7842dcc88, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Quack
+    second: {fileID: 7400000, guid: bfc72c0628a5f3646af6d40f239df612, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Walk
+    second: {fileID: 7400000, guid: 0d969b49238b9b145b017d80d359bcda, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -23,7 +53,7 @@ ScriptedImporter:
     normalMapFilter: 0
     flipGreenChannel: 0
     swizzle: 50462976
-    isReadable: 0
+    isReadable: 1
     streamingMipmaps: 0
     streamingMipmapsPriority: 0
     vTOnly: 0
@@ -97,7 +127,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638597561166465742
+  platformSettingsDirtyTick: 638617470820158115
   textureAssetName: 
   singleSpriteImportData:
   - name: 

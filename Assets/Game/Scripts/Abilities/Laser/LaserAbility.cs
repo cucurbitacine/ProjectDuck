@@ -10,6 +10,7 @@ namespace Game.Scripts.Abilities.Laser
 {
     public class LaserAbility : AbilityBase, IPaused
     {
+        [field: Header("Laser")]
         [field: SerializeField, Space] public bool Paused { get; private set; }
         
         [Header("Settings")]

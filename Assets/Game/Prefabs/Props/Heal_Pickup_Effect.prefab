@@ -58,16 +58,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5975007505279067373, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6572435250544804343, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
       propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7112978269220891501, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
-      propertyPath: defaultAudioClip
+      propertyPath: soundProfile
       value: 
-      objectReference: {fileID: 8300000, guid: 9ea61e89b2748784da7cbab46f3ea8a4, type: 3}
+      objectReference: {fileID: 11400000, guid: dba99039a57bc1d4db5d20d7586c0a7a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -46,5 +46,11 @@ namespace Game.Scripts.Interactions
             
             Paused = value;
         }
+
+        [ContextMenu(nameof(Interact))]
+        private void Interact()
+        {
+            Interact(gameObject);
+        }
     }
 }

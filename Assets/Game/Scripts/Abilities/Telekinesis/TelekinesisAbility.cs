@@ -7,7 +7,7 @@ namespace Game.Scripts.Abilities.Telekinesis
 {
     public class TelekinesisAbility : AbilityBase
     {
-        [Header("Settings")]
+        [Header("Telekinesis")]
         [SerializeField] private float outerRadiusTelekinesis = 2f;
         [SerializeField] private float innerRadiusTelekinesis = 0.2f;
         [SerializeField] private LayerMask layerMask = 1;

@@ -256,13 +256,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &2699227269615361292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +281,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: 23c5c521a3a192449b19f87dbb3213fb, type: 2}
   soundType: 0
   defaultAudioClip: {fileID: 0}
-  volume: 0.4
+  volumeScale: 1
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
@@ -330,9 +332,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -426,13 +428,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &3398894878839819571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +453,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: d646e539250d4dd48b8d76e942b6e630, type: 2}
   soundType: 1
   defaultAudioClip: {fileID: 0}
-  volume: 0.25
+  volumeScale: 1
   playOnEnable: 0
   loop: 1
   easeInOut: 0

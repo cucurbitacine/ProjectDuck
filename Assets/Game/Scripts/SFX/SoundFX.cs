@@ -40,7 +40,7 @@ namespace Game.Scripts.SFX
         [SerializeField] private AudioClip defaultAudioClip;
         
         [Header("Settings")]
-        [SerializeField] [Range(0f, 1f)] private float volume = 1f;
+        [SerializeField] [Range(0f, 1f)] private float volumeScale = 1f;
         [SerializeField] private bool playOnEnable;
         
         [Header("Continuous Settings Only")]
@@ -76,7 +76,7 @@ namespace Game.Scripts.SFX
         {
             if (soundType == SoundType.Continuous)
             {
-                return PlayContinuous(SoundState.Stopped, easeInOut);
+                return PlayContinuous(SoundState.Stopped, inOut);
             }
 
             return null;
@@ -137,6 +137,8 @@ namespace Game.Scripts.SFX
         
         private IEnumerator PlayingContinuous(SoundState soundState, float easeDuration)
         {
+            var volume = GetVolume();
+            
             var origin = audioSource.isPlaying ? audioSource.volume : (soundState == SoundState.Playing ? 0f : volume);
             var target = soundState == SoundState.Playing ? volume : 0f;
             
@@ -179,7 +181,7 @@ namespace Game.Scripts.SFX
                 return;
             }
             
-            audioSource.PlayOneShot(clip, volume);
+            audioSource.PlayOneShot(clip, GetVolume());
         }
         
         private void PlayAudioSource()
@@ -199,6 +201,16 @@ namespace Game.Scripts.SFX
         private void StopAudioSource()
         {
             audioSource.Stop();
+        }
+
+        private float GetVolume()
+        {
+            if (soundProfile)
+            {
+                return soundProfile.Volume * volumeScale;
+            }
+            
+            return volumeScale;
         }
         
         private AudioClip GetAudioClip()
@@ -226,7 +238,7 @@ namespace Game.Scripts.SFX
             if (soundType == SoundType.Continuous)
             {
                 audioSource.loop = loop;
-                audioSource.volume = volume;
+                audioSource.volume = GetVolume();
             }
 
             if (soundProfile && soundProfile.Count == 0)
@@ -249,7 +261,7 @@ namespace Game.Scripts.SFX
                     if (soundType == SoundType.Continuous)
                     {
                         audioSource.loop = loop;
-                        audioSource.volume = volume;
+                        audioSource.volume = GetVolume();
                     }
                 }
             }

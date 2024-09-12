@@ -4878,9 +4878,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4974,13 +4974,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &133350285580824972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4997,7 +4999,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: 3d0577cc2d5d5c341a7fca24e8632651, type: 2}
   soundType: 1
   defaultAudioClip: {fileID: 0}
-  volume: 0.5
+  volumeScale: 1
   playOnEnable: 1
   loop: 1
   easeInOut: 0.2

@@ -7,12 +7,14 @@ namespace Game.Scripts.SFX
     [CreateAssetMenu(menuName = "Game/Sound/Create Sound Profile", fileName = nameof(SoundProfile), order = 0)]
     public class SoundProfile : ScriptableObject
     {
+        [SerializeField] [Range(0f, 1f)] private float volume = 0.5f; 
         [SerializeField] private PlayMode playMode = PlayMode.Random;
         
         [Space]
         [SerializeField] private int index = 0;
         [SerializeField] private List<AudioClip> clips = new List<AudioClip>();
 
+        public float Volume => volume;
         public int Count => clips?.Count ?? 0;
         
         public AudioClip GetAudioClip()

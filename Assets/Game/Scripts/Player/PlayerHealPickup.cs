@@ -23,6 +23,8 @@ namespace Game.Scripts.Player
         {
             if (!actor.TryGetComponent<PlayerController>(out var player)) return;
             
+            TurnOn(true);
+            
             HealPlayer(player);
                 
             AfterPick();

@@ -46,9 +46,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -105,7 +105,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.4
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -142,13 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 1
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &7261580220981943275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: 7a78ee56fff898b418467734e640fb4c, type: 2}
   soundType: 1
   defaultAudioClip: {fileID: 0}
-  volume: 0.05
+  volumeScale: 1
   playOnEnable: 0
   loop: 1
   easeInOut: 0.1
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AbilityId>k__BackingField: 0
   dropEffectPrefab: {fileID: 2684490132947615609, guid: e06fa92fc64202143944daa396fa6aea, type: 3}
+  uiPrefab: {fileID: 8208860479322328807, guid: a7a7668e265fb004a83f42aee3a1c402, type: 3}
   <Paused>k__BackingField: 0
   laserPower: 1
   laserStartWidth: 0.02

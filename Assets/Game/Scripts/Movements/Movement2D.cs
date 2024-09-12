@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Scripts.Movements
@@ -15,9 +16,9 @@ namespace Game.Scripts.Movements
         [field: SerializeField] public MovementState State { get; private set; }
         
         [Header("Settings")]
-        [Min(0f)] [SerializeField] private float speedMax = 5f;
-        [Min(0f)] [SerializeField] private float jumpHeight = 2.5f;
-        [Range(0f, 1f)] [SerializeField] private float dragDecay = 0.5f;
+        [SerializeField] [Min(0f)] private float speedMax = 5f;
+        [SerializeField] [Min(0f)] private float jumpHeight = 2.5f;
+        [SerializeField] [Range(0f, 1f)] private float dragDecay = 0.5f;
         
         [Header("Frictions")]
         [SerializeField] private PhysicsMaterial2D idleFriction;
@@ -25,6 +26,8 @@ namespace Game.Scripts.Movements
         
         private Rigidbody2D _rigidbody2d;
         private bool _jumpedOffGround;
+
+        public event Action OnJumped;
         
         public Vector2 move { get; private set; }
         public Vector2 groundUp => isGrounded ? Ground2D.groundNormal : worldUp;
@@ -112,6 +115,8 @@ namespace Game.Scripts.Movements
             }
             
             velocity = jumpVelocity + (Vector2)Vector3.Project(velocity, groundRight);
+            
+            OnJumped?.Invoke();
         }
         
         private void SetupFrictions()

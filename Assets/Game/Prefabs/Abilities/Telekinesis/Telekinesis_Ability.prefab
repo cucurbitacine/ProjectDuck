@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AbilityId>k__BackingField: 1
   dropEffectPrefab: {fileID: 2684490132947615609, guid: e06fa92fc64202143944daa396fa6aea, type: 3}
+  uiPrefab: {fileID: 8208860479322328807, guid: 997a408f95728a449a71db167d419057, type: 3}
   outerRadiusTelekinesis: 3
   innerRadiusTelekinesis: 0.2
   layerMask:

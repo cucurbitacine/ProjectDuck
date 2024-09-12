@@ -46,6 +46,11 @@ namespace Game.Scripts.LevelSystem
             mainMenuButton.gameObject.SetActive(false);
             
             fader?.FadeIn();
+
+            var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
+            yield return new WaitUntil(() => gettingPlayerData.IsCompleted);
+            var savingPlayerData = GameManager.Instance.SavePlayerDataAsync(gettingPlayerData.Result);
+            yield return new WaitUntil(() => savingPlayerData.IsCompleted);
             
             yield return fader?.FadeOut(fadeOutTime);
             

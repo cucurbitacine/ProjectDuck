@@ -46,9 +46,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -142,13 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a8e57a737f4cd3856b8240ce2d2052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundGroup: {fileID: 0}
-  spatialType: 1
-  spreadBlend: 0.8
-  rolloffType: 0
-  dopplerLevel: 0
-  minDistance: 5
-  maxDistance: 20
+  soundGroup: {fileID: 11400000, guid: 28618f7626afca84ea42768c5b2edd20, type: 2}
+  useCustomSettings: 0
+  customSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20
 --- !u!114 &4373369084730267436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   soundProfile: {fileID: 11400000, guid: 5674fdba31456804baba1a8e5ebcdfd4, type: 2}
   soundType: 1
   defaultAudioClip: {fileID: 0}
-  volume: 0.2
+  volumeScale: 1
   playOnEnable: 0
   loop: 1
   easeInOut: 0.1
@@ -248,12 +250,12 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 5, z: 0}
-  - {x: 0.42833585, y: 4.3980412, z: 0}
-  - {x: 0.27272102, y: 4.188183, z: 0}
-  - {x: 0.6622671, y: 3.0457149, z: 0}
-  - {x: -0.025825877, y: 2.3987806, z: 0}
-  - {x: 0.20075619, y: 1.8517988, z: 0}
-  - {x: -0.094821736, y: 1.4290546, z: 0}
+  - {x: 0.11353308, y: 3.6907103, z: 0}
+  - {x: 0.4529013, y: 3.7011583, z: 0}
+  - {x: 0.3120059, y: 2.296234, z: 0}
+  - {x: 0.04985293, y: 1.5746083, z: 0}
+  - {x: -0.28830212, y: 1.1900989, z: 0}
+  - {x: 0.34626868, y: 0.15741527, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3

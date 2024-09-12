@@ -7,7 +7,7 @@ namespace Game.Scripts.Abilities.Teleportation
 {
     public class TeleportationAbility : AbilityBase
     {
-        [Header("Settings")]
+        [Header("Teleportation")]
         [Min(0f)] [SerializeField] private float maxDistance = 8f;
         [Min(0f)] [SerializeField] private float timeout = 1f;
         [SerializeField] private LayerMask obstacleLayerMask = 1;

@@ -9,7 +9,11 @@ namespace Game.Scripts.Abilities
     {
         [field: SerializeField] public int AbilityId { get; private set; } = -1;
 
+        [Header("Prefabs")]
         [SerializeField] private GameObject dropEffectPrefab;
+        [SerializeField] private GameObject uiPrefab;
+
+        private IAbilityUI _abilityUI;
         
         public PlayerController Player { get; private set; }
         
@@ -19,6 +23,16 @@ namespace Game.Scripts.Abilities
             
             transform.SetParent(Player.transform, false);
             Player.SetAbility(gameObject);
+
+            if (uiPrefab)
+            {
+                var ui = Instantiate(uiPrefab);
+                
+                if (ui.TryGetComponent(out _abilityUI))
+                {
+                    _abilityUI.SetAbility(this);
+                }
+            }
             
             OnSetPlayer();
         }
@@ -31,6 +45,8 @@ namespace Game.Scripts.Abilities
             {
                 Instantiate(dropEffectPrefab, Player.GetBounds().center, Quaternion.identity);
             }
+
+            _abilityUI?.ResetAbility();
         }
     }
 }
