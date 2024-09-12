@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Characters
-  - 
-  - 
+  - Pickup
+  - Interaction
   - 
   - 
   - 
@@ -44,11 +44,23 @@ TagManager:
   - name: Environment
     uniqueID: 1672316835
     locked: 0
+  - name: FX Back
+    uniqueID: 386604553
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pickup
+    uniqueID: 3353028471
+    locked: 0
   - name: Character
     uniqueID: 3453147731
+    locked: 0
+  - name: FX
+    uniqueID: 598805723
+    locked: 0
+  - name: Default Front
+    uniqueID: 623152807
     locked: 0
   - name: UI
     uniqueID: 3383214133

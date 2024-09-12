@@ -1,4 +1,4 @@
-using Game.Abilities.Electricity;
+using Game.Scripts.Abilities.Electricity;
 using TMPro;
 using UnityEngine;
 

@@ -1,5 +1,5 @@
 using System;
-using Game.Abilities;
+using Game.Scripts.Abilities;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ namespace Game.Dev
             
             if (pickupAbility && abilityText)
             {
-                var ability = pickupAbility.GetAbility();
+                var ability = pickupAbility.GetAbilityPrefab();
 
                 if (ability)
                 {

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b01892763d84175b917ae7aaa543901, type: 3}
+  m_Name: Box_Damaged_Sound
+  m_EditorClassIdentifier: 
+  volume: 0.1
+  playMode: 2
+  index: 1
+  clips:
+  - {fileID: 8300000, guid: d6755b81a75939b4681681585eb00c81, type: 3}
+  - {fileID: 8300000, guid: 8e4bfeba410240347927e01b7099fca5, type: 3}
+  - {fileID: 8300000, guid: 5bda30c4c3ac76f4b834aebb5be8d6e1, type: 3}
+  - {fileID: 8300000, guid: 6b78961d6f9fefc49aac41487815e25b, type: 3}
+  - {fileID: 8300000, guid: 98f048aa4d589b84888dd22d6ccfe207, type: 3}

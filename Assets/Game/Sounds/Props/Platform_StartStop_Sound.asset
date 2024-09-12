@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b01892763d84175b917ae7aaa543901, type: 3}
+  m_Name: Platform_StartStop_Sound
+  m_EditorClassIdentifier: 
+  volume: 0.2
+  playMode: 2
+  index: 0
+  clips:
+  - {fileID: 8300000, guid: 5b73971656b643d4ab88a9c24fb39f73, type: 3}
+  - {fileID: 8300000, guid: 08a5c32118dbd0a44b4dc9cd90e4117a, type: 3}
+  - {fileID: 8300000, guid: 845412865ba5bc14e9392c61f7018267, type: 3}
+  - {fileID: 8300000, guid: eed80bfe11eb98f4db9525de2e6a6024, type: 3}
+  - {fileID: 8300000, guid: e5cb835a518bb8f4a8cf1ee9e1cf8325, type: 3}
+  - {fileID: 8300000, guid: 5ede7081bd203da46aafbf77a9e1434b, type: 3}
+  - {fileID: 8300000, guid: 47ec8502ce616a94286f34973e657564, type: 3}
+  - {fileID: 8300000, guid: 097d30a060cff7c41814fa97ae75c81d, type: 3}
+  - {fileID: 8300000, guid: 1a228158e025a0740864928cf531bba8, type: 3}
+  - {fileID: 8300000, guid: 7d9d92eb9c577694a84b4be25e518c76, type: 3}
+  - {fileID: 8300000, guid: 91e3fdf672a5f8d4f9625177ed779483, type: 3}
+  - {fileID: 8300000, guid: aba089e3af35440499490540cbf2868c, type: 3}

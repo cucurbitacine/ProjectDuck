@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b01892763d84175b917ae7aaa543901, type: 3}
+  m_Name: DamageSource_Sound
+  m_EditorClassIdentifier: 
+  volume: 0.3
+  playMode: 2
+  index: 0
+  clips:
+  - {fileID: 8300000, guid: de0261198f2e00b49a679efc4f964f7c, type: 3}
+  - {fileID: 8300000, guid: ac6f7766413bea341a1f1ca265909da3, type: 3}
+  - {fileID: 8300000, guid: 54f084d3ff7a1554f8e3f7369bf5415d, type: 3}
+  - {fileID: 8300000, guid: 8109098ce6e368d47b8b53c9be6d0de5, type: 3}
+  - {fileID: 8300000, guid: 27a3c8a84e32bd64495806d5b16da75a, type: 3}
