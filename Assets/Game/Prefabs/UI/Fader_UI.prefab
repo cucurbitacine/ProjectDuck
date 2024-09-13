@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3165512882060405663}
   - component: {fileID: 1937997741035414496}
   m_Layer: 5
-  m_Name: Fader
+  m_Name: Fader_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Release LMB for teleportation
+  m_text: Release LMB to teleport
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5865636052337992673, guid: 8338b5b71b5a52248aa137e49d69216f, type: 3}
       propertyPath: m_text
-      value: Hold LMB for aim
+      value: Hold LMB to aim
       objectReference: {fileID: 0}
     - target: {fileID: 6353154421924855670, guid: 8338b5b71b5a52248aa137e49d69216f, type: 3}
       propertyPath: m_AnchoredPosition.x

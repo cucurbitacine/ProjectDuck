@@ -26,6 +26,7 @@ namespace Game.Scripts.Core
         private const string KeyName_PlayerData = nameof(PlayerData);
         
         public const int TotalNumberLevels = 2;
+        
         private const int SceneBuildIndex_MainMenu = 0;
         private const int SceneBuildIndex_FirstLevel = 1;
         private const int SceneBuildIndex_CreditsScene = SceneBuildIndex_FirstLevel + TotalNumberLevels;

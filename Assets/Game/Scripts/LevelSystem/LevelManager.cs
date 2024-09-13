@@ -137,7 +137,6 @@ namespace Game.Scripts.LevelSystem
             yield return new WaitUntil(() => Player);
             
             Player.Pause(true);
-
             Player.Health.OnDied += HandlePlayerDeath;
 
             var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
@@ -146,7 +145,7 @@ namespace Game.Scripts.LevelSystem
             
             playerData.levelNumber = levelNumber;
             
-            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
+            //yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
         }
 
         private IEnumerator ShutdownLevel()
@@ -162,6 +161,8 @@ namespace Game.Scripts.LevelSystem
             yield return fader?.FadeIn(fadeInTime);
 
             Player.Pause(true);
+            
+            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
             
             yield return DisposeLevel();
         }
@@ -182,11 +183,9 @@ namespace Game.Scripts.LevelSystem
 
         private IEnumerator RestartingLevel()
         {
-            yield return ShutdownLevel();
-            
             playerData.attemptNumber++;
-
-            yield return new WaitUntil(() => GameManager.Instance.SavePlayerDataAsync(playerData).IsCompleted);
+            
+            yield return ShutdownLevel();
             
             yield return GameManager.Instance.StartGameAsync(playerData);
         }

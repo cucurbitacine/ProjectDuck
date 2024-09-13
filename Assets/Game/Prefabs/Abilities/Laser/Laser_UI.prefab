@@ -14,7 +14,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5865636052337992673, guid: 8338b5b71b5a52248aa137e49d69216f, type: 3}
       propertyPath: m_text
-      value: LMB for laser emition
+      value: 'LMB to emit
+
+        a laser'
       objectReference: {fileID: 0}
     - target: {fileID: 6540599579140577546, guid: 8338b5b71b5a52248aa137e49d69216f, type: 3}
       propertyPath: m_LocalPosition.x

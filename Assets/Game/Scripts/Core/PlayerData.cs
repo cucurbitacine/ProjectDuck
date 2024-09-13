@@ -11,6 +11,7 @@ namespace Game.Scripts.Core
         public int playerId;
         public int attemptNumber;
         public int levelNumber = -1;
+        public long time;
         
         public override string ToString()
         {
