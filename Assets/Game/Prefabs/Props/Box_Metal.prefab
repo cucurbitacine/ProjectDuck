@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d47b97381f404383b4138ccd6410f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyObject: 0
+  destroyObject: 1
   deathEffectPrefab: {fileID: 4231454172808684664, guid: 259f7fbef9b2deb47a17a9447cce78ea, type: 3}
 --- !u!114 &7071413294294398952
 MonoBehaviour:
