@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5975007505279067373, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
       propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5975007505279067373, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6572435250544804343, guid: 1b55e29ba67065145b0e993e03214673, type: 3}
       propertyPath: stopAction

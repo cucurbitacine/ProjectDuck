@@ -90,7 +90,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -105,7 +105,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 1
   easeInOut: 0.2
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &4063526588192327610
 GameObject:
@@ -262,7 +263,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -277,7 +278,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -343,6 +344,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &4778496787071578823
 GameObject:

@@ -8,11 +8,11 @@ namespace Game.Scripts.SFX
     {
         [SerializeField] private Vector3 offset = Vector3.zero;
         
-        public AudioListener ListenerMain { get; private set; }
+        public static AudioListener Main { get; private set; }
         
         private void Awake()
         {
-            ListenerMain = GetComponent<AudioListener>();
+            Main = GetComponent<AudioListener>();
         }
 
         private void Start()
@@ -21,7 +21,7 @@ namespace Game.Scripts.SFX
 
             foreach (var listener in listeners)
             {
-                listener.enabled = ListenerMain == listener;
+                listener.enabled = Main == listener;
             }
         }
 

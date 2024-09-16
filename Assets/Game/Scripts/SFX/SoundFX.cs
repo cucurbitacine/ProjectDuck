@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,9 @@ namespace Game.Scripts.SFX
         [SerializeField] private bool loop;
         [SerializeField] [Min(0f)] private float easeInOut = 0.5f;
         
+        [SerializeField] private bool _easeInOut;
         private Coroutine _playingContinuous;
+        private AudioSourceSetting _sourceSetting;
         
         [field: SerializeField, Space] private SoundState State { get; set; }
         
@@ -113,7 +116,11 @@ namespace Game.Scripts.SFX
         {
             State = state;
             
-            if (_playingContinuous != null) StopCoroutine(_playingContinuous);
+            if (_playingContinuous != null)
+            {
+                _easeInOut = false;
+                StopCoroutine(_playingContinuous);
+            }
             
             if (inOut > 0f)
             {
@@ -137,6 +144,8 @@ namespace Game.Scripts.SFX
         
         private IEnumerator PlayingContinuous(SoundState soundState, float easeDuration)
         {
+            _easeInOut = true;
+            
             var volume = GetVolume();
             
             var origin = audioSource.isPlaying ? audioSource.volume : (soundState == SoundState.Playing ? 0f : volume);
@@ -150,6 +159,7 @@ namespace Game.Scripts.SFX
             var speed = volume / easeDuration;
             var distance = Mathf.Abs(target - origin);
             var duration = distance / speed;
+            
             
             var timer = 0f;
             while (timer < duration)
@@ -169,6 +179,8 @@ namespace Game.Scripts.SFX
             }
             
             audioSource.volume = volume;
+            
+            _easeInOut = false;
         }
 
         private void PlayOneShot()
@@ -202,15 +214,14 @@ namespace Game.Scripts.SFX
         {
             audioSource.Stop();
         }
-
+        
         private float GetVolume()
         {
-            if (soundProfile)
-            {
-                return soundProfile.Volume * volumeScale;
-            }
-            
-            return volumeScale;
+            var sourceVolume = _sourceSetting ? _sourceSetting.GetVolume() : 1f;
+            var soundVolume = soundProfile ? soundProfile.Volume : 1f;
+            var objectVolume = volumeScale;
+                
+            return sourceVolume * soundVolume * objectVolume;
         }
         
         private AudioClip GetAudioClip()
@@ -228,6 +239,8 @@ namespace Game.Scripts.SFX
             if (audioSource == null) audioSource = GetComponent<AudioSource>();
             if (audioSource == null) audioSource = GetComponentInParent<AudioSource>();
 
+            audioSource.TryGetComponent(out _sourceSetting);
+            
             audioSource.playOnAwake = false;
             
             if (soundType == SoundType.PlayOneShot)
@@ -246,6 +259,16 @@ namespace Game.Scripts.SFX
                 Debug.LogWarning($"\"{name} ({nameof(SoundFX)})\" without any audio clips");
             }
         }
+
+#if UNITY_WEBGL
+        private void Update()
+        {
+            if (soundType == SoundType.Continuous && State == SoundState.Playing && !_easeInOut)
+            {
+                audioSource.volume = GetVolume();
+            }
+        }
+#endif
 
         private void OnValidate()
         {

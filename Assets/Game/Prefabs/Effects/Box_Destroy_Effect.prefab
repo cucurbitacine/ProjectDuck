@@ -4829,7 +4829,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4844,7 +4844,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4997,4 +4997,5 @@ MonoBehaviour:
   playOnEnable: 1
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0

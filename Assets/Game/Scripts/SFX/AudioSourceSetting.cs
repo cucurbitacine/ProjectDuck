@@ -14,7 +14,41 @@ namespace Game.Scripts.SFX
         [SerializeField] private AudioSettings customSettings = new AudioSettings();
         
         private AudioSource _audio;
-        
+
+        public AudioSettings GetAudioSettings()
+        {
+            if (useCustomSettings)
+            {
+                return customSettings;
+            }
+            
+            return soundGroup ? soundGroup.GetSettings() : customSettings;
+        }
+
+        public float GetVolume()
+        {
+#if !UNITY_WEBGL
+            return 1f;
+#endif
+            
+            var settings = GetAudioSettings();
+
+            if (settings.spatialType == SpatialType.Flat) return 1f;
+
+            if (settings.spreadBlend >= 1f) return 1f;
+            
+            if (!MainAudioListener.Main) return 1f;
+
+            var distance = Vector3.Distance(MainAudioListener.Main.transform.position,
+                _audio ? _audio.transform.position : transform.position);
+
+            if (distance < settings.minDistance) return 1f;
+
+            if (distance < settings.maxDistance) return 1f - (distance - settings.minDistance) / (settings.maxDistance - settings.minDistance);
+
+            return 0f;
+        }
+
         private void SetupAudio()
         {
             if (_audio == null) _audio = GetComponent<AudioSource>();
@@ -39,7 +73,7 @@ namespace Game.Scripts.SFX
         {
             if (_audio)
             {
-                var settings = !useCustomSettings && soundGroup ? soundGroup.GetSettings() : customSettings;
+                var settings = GetAudioSettings();
                 
                 if (settings.spatialType == SpatialType.Surrounded)
                 {

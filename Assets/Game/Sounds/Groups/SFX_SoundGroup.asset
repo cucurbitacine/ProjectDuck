@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GroupName>k__BackingField: SFX
   <AudioMixer>k__BackingField: {fileID: 24100000, guid: 77d678bfd496c17488083f58ebc32b5a, type: 2}
+  audioSettings:
+    spatialType: 1
+    spreadBlend: 0.8
+    rolloffType: 0
+    dopplerLevel: 0
+    minDistance: 5
+    maxDistance: 20

@@ -40,6 +40,11 @@ namespace Game.Scripts.SFX
             {
                 audioSource.outputAudioMixerGroup = AudioMixerGroup;
             }
+            
+#if UNITY_WEBGL
+            audioSource.spatialBlend = 0f;
+            audioSource.spread = 180f;
+#endif
         }
     }
 }

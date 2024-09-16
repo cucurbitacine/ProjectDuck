@@ -90,7 +90,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -105,7 +105,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 1
   easeInOut: 0.1
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &2267006040606918010
 GameObject:
@@ -250,12 +251,12 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 5, z: 0}
-  - {x: 0.11353308, y: 3.6907103, z: 0}
-  - {x: 0.4529013, y: 3.7011583, z: 0}
-  - {x: 0.3120059, y: 2.296234, z: 0}
-  - {x: 0.04985293, y: 1.5746083, z: 0}
-  - {x: -0.28830212, y: 1.1900989, z: 0}
-  - {x: 0.34626868, y: 0.15741527, z: 0}
+  - {x: -0.23847306, y: 4.0286407, z: 0}
+  - {x: 0.25439715, y: 3.0760214, z: 0}
+  - {x: -0.2667645, y: 3.2662084, z: 0}
+  - {x: 0.49725232, y: 2.5638757, z: 0}
+  - {x: 0.027296282, y: 1.9730742, z: 0}
+  - {x: -0.355327, y: 0.4972237, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3

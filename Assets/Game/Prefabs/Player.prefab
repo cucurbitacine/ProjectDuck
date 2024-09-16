@@ -106,6 +106,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &1530689378962891380
 GameObject:
@@ -159,6 +160,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &2626709236698249867
 GameObject:
@@ -300,6 +302,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1 &6434564125593350038
 GameObject:
@@ -425,6 +428,7 @@ MonoBehaviour:
   playOnEnable: 0
   loop: 0
   easeInOut: 0.5
+  _easeInOut: 0
   <State>k__BackingField: 0
 --- !u!1001 &3745454656850409785
 PrefabInstance:
@@ -561,6 +565,10 @@ PrefabInstance:
     - target: {fileID: 7837905242655151043, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
       propertyPath: customSettings.spatialType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867245406200969512, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8867245406200969512, guid: 4cc58d5f2fda01741a8ac9c7b859dd21, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value

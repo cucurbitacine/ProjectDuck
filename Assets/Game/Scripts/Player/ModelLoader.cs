@@ -53,6 +53,15 @@ namespace Game.Scripts.Player
             Addressables.ReleaseInstance(modelInstantiateHandle);
         }
 
+        private void Awake()
+        {
+            // Addressable does not support WEBGL
+            
+#if UNITY_WEBGL
+            useDefault = true;
+#endif
+        }
+
         private async void Start()
         {
             await LoadModel();

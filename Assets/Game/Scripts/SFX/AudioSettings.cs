@@ -7,8 +7,8 @@ namespace Game.Scripts.SFX
     public class AudioSettings
     {
         public SpatialType spatialType = SpatialType.Surrounded;
-        
-        [Header("Surrounded Settings Only")]
+
+        [Header("Surrounded Settings Only")] 
         [Range(0f, 1f)] public float spreadBlend = 0.8f;
         
         [Space]
