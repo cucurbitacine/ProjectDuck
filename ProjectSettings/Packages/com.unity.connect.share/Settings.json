@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Projects/Unity/ProjectDuck/WebGL Builds/PD_0.1.4.6;C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.4.5;C:/Projects/Unity/ProjectDuck/WebGL Builds/PRojectDuck_0.1.4.4;C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.4;C:/Projects/Unity/ProjectDuck/WebGL Builds;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.6.0;C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.5.0;C:/Projects/Unity/ProjectDuck/WebGL Builds/PD_0.1.4.6;C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.4.5;C:/Projects/Unity/ProjectDuck/WebGL Builds/ProjectDuck_0.1.4;C:/Projects/Unity/ProjectDuck/WebGL Builds;;;;\"}"
             }
         ]
     }

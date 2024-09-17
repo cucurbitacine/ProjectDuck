@@ -48,7 +48,7 @@ namespace Game.Scripts.SFX
         [SerializeField] private bool loop;
         [SerializeField] [Min(0f)] private float easeInOut = 0.5f;
         
-        [SerializeField] private bool _easeInOut;
+        private bool _easeInOut;
         private Coroutine _playingContinuous;
         private AudioSourceSetting _sourceSetting;
         

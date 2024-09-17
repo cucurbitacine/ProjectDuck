@@ -21,6 +21,34 @@ namespace Game.Scripts.LevelSystem
         [SerializeField] private Button continueGameButton;
         [SerializeField] private Button quitGameButton;
         
+        [Header("Web GL")]
+        [SerializeField] private Button playTutorialLevelButton;
+        [SerializeField] private Button playDemoLevelButton;
+        
+        private async void PlayTutorialLevel()
+        {
+            var playerData = await GameManager.Instance.GetPlayerDataAsync();
+            playerData.levelNumber = 0;
+            GameManager.Instance.SetPlayerData(playerData);
+            
+            playTutorialLevelButton.gameObject.SetActive(false);
+            playDemoLevelButton.gameObject.SetActive(false);
+            
+            StartGame();
+        }
+        
+        private async void PlayDemoLevel()
+        {
+            var playerData = await GameManager.Instance.GetPlayerDataAsync();
+            playerData.levelNumber = 1;
+            GameManager.Instance.SetPlayerData(playerData);
+            
+            playTutorialLevelButton.gameObject.SetActive(false);
+            playDemoLevelButton.gameObject.SetActive(false);
+            
+            StartGame();
+        }
+        
         private void HandleNewGame()
         {
             GameManager.Instance.ResetPlayerData();
@@ -89,6 +117,9 @@ namespace Game.Scripts.LevelSystem
             newGameButton.onClick.AddListener(HandleNewGame);
             continueGameButton.onClick.AddListener(HandleContinueGame);
             quitGameButton.onClick.AddListener(HandleQuit);
+            
+            playTutorialLevelButton.onClick.AddListener(PlayTutorialLevel);
+            playDemoLevelButton.onClick.AddListener(PlayDemoLevel);
         }
 
         private void OnDisable()
@@ -96,6 +127,9 @@ namespace Game.Scripts.LevelSystem
             newGameButton.onClick.RemoveListener(HandleNewGame);
             continueGameButton.onClick.RemoveListener(HandleContinueGame);
             quitGameButton.onClick.RemoveListener(HandleQuit);
+            
+            playTutorialLevelButton.onClick.RemoveListener(PlayTutorialLevel);
+            playDemoLevelButton.onClick.RemoveListener(PlayDemoLevel);
         }
 
         private IEnumerator Start()
@@ -105,6 +139,9 @@ namespace Game.Scripts.LevelSystem
             newGameButton.gameObject.SetActive(false);
             continueGameButton.gameObject.SetActive(false);
             quitGameButton.gameObject.SetActive(false);
+            
+            playTutorialLevelButton.gameObject.SetActive(false);
+            playDemoLevelButton.gameObject.SetActive(false);
 
             var gettingPlayerData = GameManager.Instance.GetPlayerDataAsync();
             yield return new WaitUntil(() => gettingPlayerData.IsCompleted);
@@ -115,14 +152,18 @@ namespace Game.Scripts.LevelSystem
             if (mainCamera)
             {
                 var brain = VCam.GetBrain();
-                brain.m_DefaultBlend =
-                    new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, camBlend);
+                brain.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, camBlend);
                 VCam.SetActive(mainCamera);
                 yield return new WaitForSeconds(camBlend);
             }
-            
+
+#if UNITY_WEBGL
+            playTutorialLevelButton.gameObject.SetActive(true);
+            playDemoLevelButton.gameObject.SetActive(true);
+#else
             newGameButton.gameObject.SetActive(true);
             continueGameButton.gameObject.SetActive(0 <= playerData.levelNumber && playerData.levelNumber < GameManager.TotalNumberLevels);
+#endif
             quitGameButton.gameObject.SetActive(true);
         }
 

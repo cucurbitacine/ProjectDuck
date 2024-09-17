@@ -98,6 +98,13 @@ namespace Game.Scripts.Core
             return PlayerData;
         }
 
+        public void SetPlayerData(PlayerData playerData)
+        {
+            PlayerData = playerData;
+            
+            Debug.Log($"[SET PLAYER] \"{PlayerData}\"");
+        }
+        
         /// <summary>
         /// Resetting Player Data.  
         /// </summary>
